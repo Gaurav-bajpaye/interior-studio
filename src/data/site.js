@@ -59,38 +59,47 @@ export const contact = {
 }
 
 /* --- 3. Booking ---------------------------------------------------
-   Enquiries are written straight into the Google Sheet at
+   The consultation form is a Google Form whose responses land in the
+   enquiries spreadsheet:
    docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4
 
-   A page cannot write to a sheet on its own — it posts to a small
-   Google Apps Script published from that sheet, which appends the row.
-   The script is in scripts/google-sheet-endpoint.gs and the four-step
-   setup is in the README. Paste the deployment URL below.
+   Don't build the form by hand — scripts/create-google-form.gs makes it
+   with the right questions and links it to that sheet in one run, then
+   prints the two URLs below. See the README.
 
-   With no endpoint set the same form falls back to composing an email,
-   so the section keeps working either way.                            */
+   Modes, in the order the page picks them:
+     viewUrl set                -> a button that opens the form  (current)
+     + useEmbed true            -> the form embedded in the page as well
+     sheetEndpoint set          -> our own form posting to an Apps Script
+     nothing set                -> our own form composing an email        */
 export const booking = {
-  /* Held back until the deployment is public. The URL below answers with
-     a mirajspaces.com sign-in page, which every visitor would hit:
-     re-deploy with "Who has access: Anyone", then paste it back in and
-     run `npm run check:sheet`. Empty = the form emails instead, so the
-     page keeps working in the meantime.
+  viewUrl: '',              // TODO the form's live URL, from the script above
+  embedUrl: '',             // TODO the same URL with ?embedded=true
+  useEmbed: false,          // true to show the form inline instead of a button
 
-     https://script.google.com/a/macros/mirajspaces.com/s/AKfycbwOeYHZ-QpPSha_kd6Rl11ihfE7_nlYXNSlV8BMi2rz34OFZ21GDO4uRMsyKwgo1USH/exec  */
+  /* An Apps Script endpoint is the alternative to a Google Form: it lets
+     our own designed form write to the sheet directly. It needs a web
+     app published to "Anyone", which a Workspace policy may block.
+     See scripts/google-sheet-endpoint.gs. */
   sheetEndpoint: '',
-  sheetName: 'Enquiries',   // tab the script writes to; it creates it if missing
-
-  /* Optional alternative: embed a Google Form instead of the form above.
-     Get both links from the form's Send -> < > panel. */
-  useEmbed: false,
-  viewUrl: 'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform',
-  embedUrl: 'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform?embedded=true',
 
   responseTime: 'We reply within one working day.',
+  formMinutes: 'about two minutes',
+
   expect: [
     'A 30-minute call or shop visit, free of cost.',
     'Honest feedback on what your space can realistically become.',
     'A written scope, timeline and estimate within 5 days.',
+  ],
+
+  /* Shown beside the button so people know what to have ready. */
+  asks: [
+    'Your name and phone number',
+    'Store type and location',
+    'Roughly how many square feet',
+    'What you need done',
+    'A budget range',
+    'A date that suits you',
   ],
 }
 

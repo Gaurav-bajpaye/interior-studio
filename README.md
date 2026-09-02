@@ -38,68 +38,42 @@ Then update the page title, meta description, canonical URL and the
 
 ### Booking form → Google Sheet
 
-Enquiries land in the [enquiries spreadsheet](https://docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4/edit).
+Enquiries land in the [enquiries spreadsheet](https://docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4/edit)
+via a Google Form. The page shows a panel that says what the form asks
+and a button that opens it in a new tab — no iframe, so it works even
+where embedding is blocked, and it keeps the page light.
 
-A web page cannot write to a sheet on its own — it needs something with
-permission to do the writing. That something is a small Google Apps
-Script published from the sheet itself, which keeps the site free of a
-backend. One-time setup, about two minutes:
+Don't build the form by hand. This creates it with the right ten
+questions and links it to the sheet:
 
 1. Open the sheet → **Extensions → Apps Script**
-2. Replace everything in `Code.gs` with
-   [`scripts/google-sheet-endpoint.gs`](scripts/google-sheet-endpoint.gs), and Save
-3. **Deploy → New deployment → Web app**, with
-   *Execute as* **Me** and *Who has access* **Anyone**, then authorise
-4. Copy the `/exec` URL and paste it into `booking.sheetEndpoint` in
+2. New script file, paste in
+   [`scripts/create-google-form.gs`](scripts/create-google-form.gs), Save
+3. Pick **createEnquiryForm** in the function dropdown → **Run** → authorise
+4. Open the execution log and copy the two URLs it prints into
+   `booking.viewUrl` and `booking.embedUrl` in
    [`src/data/site.js`](src/data/site.js)
 
-Then check it from the repo:
+Responses appear in a new tab of the same spreadsheet. To change a
+question later, edit the form in the Forms UI — re-running the script
+would make a second form.
 
-```bash
-npm run check:sheet
-```
+Set `useEmbed: true` to show the form inline on the page as well as
+offering the button. The iframe only loads as the visitor scrolls near
+it, so it never delays the first paint on a phone.
 
-That validates the URL shape, confirms the deployment answers, and names
-the tab it writes to. It writes nothing. To prove the round trip, add
-`-- --post` and it sends one row labelled `TEST ROW — delete me` for you
-to delete afterwards.
+#### The alternative: our own form writing to the sheet
 
-If it reports a problem it tells you which one: a 404 means the URL is
-not a live deployment (Deploy → Manage deployments → copy the active
-web app's `/exec` URL), and a sign-in page means access is not set to
-**Anyone**.
+`booking.sheetEndpoint` keeps the site's own designed form and posts it
+to a Google Apps Script that appends the row —
+[`scripts/google-sheet-endpoint.gs`](scripts/google-sheet-endpoint.gs),
+verified with `npm run check:sheet`. Nicer to use, but it needs a web
+app published to **Anyone**, which a Google Workspace policy can block.
+The Google Form route has no such requirement, which is why it is the
+default. A `viewUrl` wins over `sheetEndpoint` if both are set.
 
-The script creates an **Enquiries** tab with a frozen, styled header row
-on first use, and appends one row per submission: received time, name,
-phone, email, store type, location, size, service, budget, preferred
-date, details, and a Status column for you to work through.
-
-After editing the script, re-deploy it (**Deploy → Manage deployments →
-edit → New version**) or the site keeps hitting the old copy.
-
-On a Google Workspace account, watch two traps. **Who has access** lives
-in the deployment dialog — changing the script file's Drive sharing to
-*Anyone with the link* does nothing for the web app. And *Anyone with
-Google Account* is not enough either: a shop owner filling the form is
-not signed in at all, so the setting has to be plain **Anyone**. If that
-option is missing from the dropdown, an admin has blocked publishing
-outside the domain (Admin console → Apps → Google Workspace → Drive and
-Docs → Sharing settings).
-
-On the site the form shows a spinner while sending, swaps to a thank-you
-panel on success, and on failure keeps everything the visitor typed and
-offers the phone number and email instead. A hidden honeypot field turns
-away basic bots; *Who has access: Anyone* is what makes a backend-free
-form possible, so if the sheet ever starts collecting junk, add a shared
-token to the script and send it as a hidden field.
-
-**Leave `sheetEndpoint` empty** and the same form composes the answers
-into an email instead — useful for local work, and it means the section
-is never broken.
-
-To use a Google **Form** rather than the sheet endpoint, clear
-`sheetEndpoint`, set `useEmbed: true` and fill in `viewUrl` / `embedUrl`
-from the form's *Send → `< >`* panel.
+**With neither set** the page falls back to its own form composing an
+email to `contact.email`, so the section is never broken.
 
 ### WhatsApp
 

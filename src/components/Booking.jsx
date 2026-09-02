@@ -7,10 +7,12 @@ import { waHref, mailHref } from '../lib/links'
 const storeTypes = ['Clothing store', 'Salon / barbershop', 'Café / bakery', 'Small retail', 'Other']
 const budgets = ['Under ₹3 lakh', '₹3 – 6 lakh', '₹6 – 12 lakh', '₹12 lakh +', 'Not sure yet']
 
-/* A form link still holding the placeholder ID is not a form. */
-const isPlaceholder = (url) => !url || url.includes('REPLACE_WITH_YOUR_FORM_ID')
-const formReady = booking.useEmbed && !booking.sheetEndpoint && !isPlaceholder(booking.embedUrl)
-const linkReady = !booking.sheetEndpoint && !isPlaceholder(booking.viewUrl)
+/* A link still holding a placeholder is not a link. */
+const real = (url) => Boolean(url) && !url.includes('REPLACE_WITH_YOUR_FORM_ID')
+
+const hasForm = real(booking.viewUrl)
+const showEmbed = booking.useEmbed && real(booking.embedUrl)
+const toSheetEndpoint = !hasForm && Boolean(booking.sheetEndpoint)
 
 /* The Google Form iframe only mounts once it is close to the viewport,
    so it never blocks the first paint on a phone. */
@@ -49,6 +51,65 @@ function EmbeddedForm() {
   )
 }
 
+/* Button-first: the Google Form opens in its own tab, which keeps the
+   page light and means the form works even where an iframe is blocked.
+   The panel lists what the form asks so nobody clicks through
+   unprepared, and keeps phone and email in reach for anyone who would
+   rather just talk. */
+function FormCta() {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-line bg-cream">
+      <div className="p-7 md:p-9">
+        <span className="eyebrow">The consultation form</span>
+        <h3 className="mt-4 font-display text-[1.5rem] font-medium leading-snug text-charcoal md:text-[1.75rem]">
+          Ten questions, {booking.formMinutes}.
+        </h3>
+        <p className="mt-3 leading-relaxed text-muted">
+          Answer what you can — a rough size and a photo of the shop is
+          usually enough for us to tell you whether we are the right fit.
+        </p>
+
+        <ul className="mt-7 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+          {booking.asks.map((a) => (
+            <li key={a} className="flex gap-2.5 text-[.9375rem] text-ink">
+              <Icon.check className="mt-0.5 h-4 w-4 shrink-0 text-gold-ink" />
+              {a}
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href={booking.viewUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="group mt-8 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-charcoal px-7 py-4 text-[1.0625rem] font-medium text-cream shadow-soft transition-all duration-300 hover:bg-gold-ink hover:shadow-lift sm:w-auto"
+        >
+          Open the booking form
+          <Icon.arrowUpRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </a>
+
+        <p className="mt-3.5 text-[.8125rem] text-muted">
+          Opens in a new tab. {booking.responseTime}
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-3 border-t border-line bg-shell/60 px-7 py-5 sm:flex-row sm:items-center sm:justify-between md:px-9">
+        <span className="text-[.875rem] text-muted">Would rather talk it through?</span>
+        <span className="flex flex-wrap items-center gap-x-5 gap-y-1 text-[.875rem] font-medium">
+          <a href={`tel:${contact.phone}`} className="link-underline -my-2 flex items-center gap-2 py-2 text-charcoal">
+            <Icon.phone className="h-4 w-4 text-gold-ink" />
+            {contact.phoneLabel}
+          </a>
+          <a href={mailHref(contact)} className="link-underline -my-2 flex items-center gap-2 py-2 text-charcoal">
+            <Icon.mail className="h-4 w-4 text-gold-ink" />
+            {contact.email}
+          </a>
+        </span>
+      </div>
+    </div>
+  )
+}
+
 /* The enquiry form.
 
    On submit it posts to the Google Apps Script published from the
@@ -62,7 +123,7 @@ function EmbeddedForm() {
 function EnquiryForm() {
   const [state, setState] = useState('idle') // idle | sending | sent | error
   const [error, setError] = useState('')
-  const toSheet = Boolean(booking.sheetEndpoint)
+  const toSheet = toSheetEndpoint
   const viaWhatsapp = !toSheet && contact.showWhatsapp
 
   const compose = (data) =>
@@ -335,28 +396,9 @@ export default function Booking() {
               ))}
             </Reveal>
 
-            {linkReady && (
-              <Reveal delay={260} className="mt-9 space-y-2.5 border-t border-cream/12 pt-7">
-                <a
-                  href={booking.viewUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-cream/25 px-5 py-3.5 text-[.9375rem] font-medium text-cream transition-colors hover:border-cream/60 hover:bg-cream/5 sm:w-auto"
-                >
-                  Open booking form
-                  <Icon.arrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-                <p className="text-[.75rem] text-sand/70">
-                  Opens in a new tab, in case the embedded form does not load.
-                </p>
-              </Reveal>
-            )}
-
             <Reveal
               delay={300}
-              className={`flex flex-wrap gap-x-6 gap-y-2 text-[.875rem] text-sand/70 ${
-                linkReady ? 'mt-7' : 'mt-9 border-t border-cream/12 pt-7'
-              }`}
+              className="mt-9 flex flex-wrap gap-x-6 gap-y-2 border-t border-cream/12 pt-7 text-[.875rem] text-sand/70"
             >
               <a href={`tel:${contact.phone}`} className="link-underline -my-3 flex items-center gap-2 py-3">
                 <Icon.phone className="h-4 w-4 text-gold-soft" />
@@ -370,8 +412,9 @@ export default function Booking() {
           </div>
 
           {/* form */}
-          <Reveal delay={120} className="text-ink">
-            {formReady ? <EmbeddedForm /> : <EnquiryForm />}
+          <Reveal delay={120} className="space-y-5 text-ink">
+            {showEmbed && <EmbeddedForm />}
+            {hasForm ? !showEmbed && <FormCta /> : <EnquiryForm />}
           </Reveal>
         </div>
       </div>
