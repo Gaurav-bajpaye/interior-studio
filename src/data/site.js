@@ -51,10 +51,20 @@ export const contact = {
   addressLines: ['2nd Floor, 14 Kasturba Cross Road', 'Bengaluru 560001, Karnataka'],
   mapsUrl: 'https://maps.google.com/?q=Kasturba+Cross+Road+Bengaluru', // TODO
   hours: 'Mon – Sat · 10:00 to 7:00',
+  /* Add a row here and it appears in the contact section and the footer.
+     Icons exist for Instagram, Pinterest and LinkedIn; anything else
+     falls back to a generic arrow. */
   socials: [
-    { label: 'Instagram', handle: '@mirajspaces', url: 'https://instagram.com/' }, // TODO
-    { label: 'Pinterest', handle: 'mirajspaces', url: 'https://pinterest.com/' },   // TODO
-    { label: 'LinkedIn', handle: 'Miraj Spaces', url: 'https://linkedin.com/' },    // TODO
+    {
+      label: 'Instagram',
+      handle: '@mirajspaces',
+      url: 'https://www.instagram.com/mirajspaces',
+    },
+    {
+      label: 'LinkedIn',
+      handle: 'Miraj Spaces',
+      url: 'https://www.linkedin.com/in/miraj-spaces-078125433/',
+    },
   ],
 }
 
