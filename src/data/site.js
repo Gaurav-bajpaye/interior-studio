@@ -38,6 +38,11 @@ export const contact = {
   phoneLabel: '+91 80506 90693',
   phone: '+918050690693',                // digits only, with country code
   email: 'contact@mirajspaces.com',
+  /* Where "email us" takes people: 'gmail', 'outlook', or 'mailto' to
+     hand off to whatever mail client they have set up. A plain mailto
+     silently does nothing on a machine with no mail client, which is
+     why it is not the default. */
+  emailProvider: 'gmail',
 
   /* WhatsApp is wired up but switched off for now. Flip this to true
      and every WhatsApp route comes back: the header button, the

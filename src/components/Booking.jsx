@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Reveal from './Reveal'
 import Icon from './Icons'
 import { booking, contact, business, services } from '../data/site'
-import { waHref, mailHref } from '../lib/links'
+import { waHref, mailHref, mailProps } from '../lib/links'
 
 const storeTypes = ['Clothing store', 'Salon / barbershop', 'Café / bakery', 'Small retail', 'Other']
 const budgets = ['Under ₹3 lakh', '₹3 – 6 lakh', '₹6 – 12 lakh', '₹12 lakh +', 'Not sure yet']
@@ -100,7 +100,7 @@ function FormCta() {
             <Icon.phone className="h-4 w-4 text-gold-ink" />
             {contact.phoneLabel}
           </a>
-          <a href={mailHref(contact)} className="link-underline -my-2 flex items-center gap-2 py-2 text-charcoal">
+          <a {...mailProps(contact)} className="link-underline -my-2 flex items-center gap-2 py-2 text-charcoal">
             <Icon.mail className="h-4 w-4 text-gold-ink" />
             {contact.email}
           </a>
@@ -154,9 +154,9 @@ function EnquiryForm() {
       if (viaWhatsapp) {
         window.open(waHref(contact, body), '_blank', 'noopener')
       } else {
-        window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(
-          'Consultation request — ' + business.legalName,
-        )}&body=${encodeURIComponent(body)}`
+        const href = mailHref(contact, `Consultation request — ${business.legalName}`, body)
+        if (href.startsWith('mailto:')) window.location.href = href
+        else window.open(href, '_blank', 'noopener')
       }
       setState('sent')
       return
@@ -328,7 +328,7 @@ function EnquiryForm() {
               {contact.phoneLabel}
             </a>{' '}
             or email{' '}
-            <a href={mailHref(contact)} className="link-underline font-medium text-charcoal">
+            <a {...mailProps(contact)} className="link-underline font-medium text-charcoal">
               {contact.email}
             </a>
             .
@@ -351,7 +351,7 @@ function EnquiryForm() {
           <>
             This opens your email app with the answers filled in — review and press send.
             Or write to{' '}
-            <a className="link-underline font-medium text-charcoal" href={mailHref(contact)}>
+            <a className="link-underline font-medium text-charcoal" {...mailProps(contact)}>
               {contact.email}
             </a>
             .

@@ -3,7 +3,7 @@ import Img from './Img'
 import Icon from './Icons'
 import BeforeAfter from './BeforeAfter'
 import { projects, contact } from '../data/site'
-import { waHref, mailHref } from '../lib/links'
+import { waHref, mailProps } from '../lib/links'
 
 export default function ProjectModal({ index, onClose, onNavigate }) {
   const open = index !== null && index !== undefined
@@ -211,8 +211,9 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
                 const wa = contact.showWhatsapp
                 return (
                   <a
-                    href={wa ? waHref(contact, note) : mailHref(contact, `Enquiry — similar to ${project.name}`)}
-                    {...(wa ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
+                    {...(wa
+                      ? { href: waHref(contact, note), target: '_blank', rel: 'noreferrer noopener' }
+                      : mailProps(contact, `Enquiry — similar to ${project.name}`, note))}
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-line px-5 py-3.5 text-[.9375rem] font-medium text-charcoal transition-colors hover:border-charcoal/40 hover:bg-shell"
                   >
                     {wa ? (

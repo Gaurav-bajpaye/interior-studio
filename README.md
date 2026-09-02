@@ -82,6 +82,25 @@ need to rebuild it.
 **With nothing set** the page falls back to its own form composing an
 email to `contact.email`, so the section is never broken.
 
+### Email links
+
+`mailto:` only works when the visitor has a mail client set up, and on
+desktop it very often does nothing at all — the click just dies, which
+is exactly what happened here. So email links open a webmail compose
+window instead, chosen by `contact.emailProvider` in
+[`src/data/site.js`](src/data/site.js):
+
+| Value | Behaviour |
+| --- | --- |
+| `'gmail'` | Gmail compose in a new tab — the default, since the studio is on Google Workspace |
+| `'outlook'` | Outlook web compose |
+| `'mailto'` | Hand off to the visitor's own mail client |
+
+The recipient and subject are prefilled, and the "ask about it" button
+on a project also prefills the message. The address stays visible as the
+link text everywhere, so anyone on a different mail setup can still copy
+it.
+
 ### WhatsApp
 
 WhatsApp is built but switched off. One flag brings it all back:

@@ -2,11 +2,13 @@ import Section from './Section'
 import Reveal from './Reveal'
 import Icon from './Icons'
 import { contact } from '../data/site'
-import { waHref, telHref, mailHref } from '../lib/links'
+import { waHref, telHref, mailProps } from '../lib/links'
 
 const socialIcon = { Instagram: Icon.instagram, Pinterest: Icon.pinterest, LinkedIn: Icon.linkedin }
 
 export default function Contact() {
+  const email = mailProps(contact)
+
   const cards = [
     {
       icon: Icon.phone,
@@ -19,7 +21,8 @@ export default function Contact() {
       icon: Icon.mail,
       label: 'Email',
       value: contact.email,
-      href: mailHref(contact),
+      href: email.href,
+      external: email.target === '_blank',
       note: 'Drawings and estimates come by email.',
     },
   ]
@@ -81,8 +84,9 @@ export default function Contact() {
           </div>
         </div>
         <a
-          href={contact.showWhatsapp ? waHref(contact) : mailHref(contact)}
-          {...(contact.showWhatsapp ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
+          {...(contact.showWhatsapp
+            ? { href: waHref(contact), target: '_blank', rel: 'noreferrer noopener' }
+            : mailProps(contact))}
           className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-charcoal px-6 py-3.5 font-medium text-cream transition-colors duration-300 hover:bg-gold-ink"
         >
           {contact.showWhatsapp ? 'Start a chat' : 'Email us'}

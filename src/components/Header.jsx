@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Logo from './Logo'
 import Icon from './Icons'
 import { navLinks, contact } from '../data/site'
-import { waHref, mailHref } from '../lib/links'
+import { waHref, mailProps } from '../lib/links'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -190,7 +190,8 @@ export default function Header() {
                 </a>
               ) : (
                 <a
-                  href={mailHref(contact)}
+                  {...mailProps(contact)}
+                  onClick={() => setOpen(false)}
                   className="flex items-center justify-center gap-2 rounded-full border border-line px-6 py-3.5 font-medium text-charcoal"
                 >
                   <Icon.mail className="h-[18px] w-[18px] text-gold-ink" />

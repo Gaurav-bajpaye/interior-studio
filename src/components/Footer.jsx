@@ -1,7 +1,7 @@
 import { LogoLockup } from './Logo'
 import Icon from './Icons'
 import { business, contact, navLinks, services } from '../data/site'
-import { waHref, telHref, mailHref } from '../lib/links'
+import { waHref, telHref, mailProps } from '../lib/links'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -81,7 +81,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href={mailHref(contact)} className="link-underline inline-block break-all py-2.5 transition-colors hover:text-cream sm:py-0">
+                  <a {...mailProps(contact)} className="link-underline inline-block break-all py-2.5 transition-colors hover:text-cream sm:py-0">
                     {contact.email}
                   </a>
                 </li>
