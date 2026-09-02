@@ -1,0 +1,13 @@
+{
+  "name": "Vistaar Studio — Retail Interior Design",
+  "short_name": "Vistaar",
+  "description": "Interior design, renovation and expansion for small shops in Bengaluru.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FCF9F4",
+  "theme_color": "#FCF9F4",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

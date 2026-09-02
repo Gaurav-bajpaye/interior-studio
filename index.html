@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#FCF9F4" />
+
+    <title>Vistaar Studio — Retail Interior Design for Small Shops in Bengaluru</title>
+    <meta
+      name="description"
+      content="Interior design, renovation and expansion for small shops — clothing stores, salons, cafés and neighbourhood retail in Bengaluru. Free first consultation, fixed timelines, honest estimates."
+    />
+    <link rel="canonical" href="https://vistaarstudio.in/" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vistaar Studio — Retail Interior Design for Small Shops" />
+    <meta
+      property="og:description"
+      content="We design, renovate and expand small commercial spaces in Bengaluru. More stock, better flow, the same rent."
+    />
+    <meta property="og:url" content="https://vistaarstudio.in/" />
+    <meta property="og:image" content="/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Mark: the shopfront arch -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600&display=swap"
+    />
+    <!-- Preload the hero photograph, matching the candidate the <img> will
+         actually pick so the browser fetches it once, not twice. -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero-main-960.webp"
+      imagesrcset="/images/hero-main-480.webp 480w, /images/hero-main-960.webp 960w, /images/hero-main-1600.webp 1600w"
+      imagesizes="(max-width: 1024px) 92vw, 46vw"
+      fetchpriority="high"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "InteriorDesignBusiness",
+        "name": "Vistaar Design Studio",
+        "description": "Retail interior design, renovation and expansion for small shops — clothing stores, salons, cafés and neighbourhood retail.",
+        "url": "https://vistaarstudio.in/",
+        "telephone": "+919845012345",
+        "email": "hello@vistaarstudio.in",
+        "priceRange": "₹₹",
+        "areaServed": "Bengaluru, Karnataka, India",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "2nd Floor, 14 Kasturba Cross Road",
+          "addressLocality": "Bengaluru",
+          "postalCode": "560001",
+          "addressRegion": "Karnataka",
+          "addressCountry": "IN"
+        },
+        "openingHours": "Mo-Sa 10:00-19:00",
+        "sameAs": ["https://instagram.com/", "https://pinterest.com/", "https://linkedin.com/"]
+      }
+    </script>
+
+    <style>
+      /* First-paint shell — replaced the instant React mounts.
+         Keeps the load from flashing an empty white page. */
+      #boot {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background: #fcf9f4;
+        z-index: 100;
+        transition: opacity 0.5s ease, visibility 0.5s;
+      }
+      #boot.done {
+        opacity: 0;
+        visibility: hidden;
+      }
+      #boot svg {
+        width: 44px;
+        height: 44px;
+        color: #b5542e;
+        animation: bootIn 1.4s ease-in-out infinite alternate;
+      }
+      @keyframes bootIn {
+        from {
+          opacity: 0.35;
+          transform: translateY(2px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #boot svg {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="boot" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.1">
+        <path d="M4 38V16a16 16 0 0 1 32 0v22" />
+        <path d="M12.5 38V17.5a7.5 7.5 0 0 1 15 0V38" opacity=".42" />
+        <path d="M2 38h36" />
+      </svg>
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
