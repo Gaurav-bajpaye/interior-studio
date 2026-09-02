@@ -10,7 +10,8 @@
     "lint": "oxlint",
     "images": "python3 scripts/build-images.py",
     "brand": "python3 scripts/build-brand.py",
-    "mark": "python3 scripts/build-mark.py"
+    "mark": "python3 scripts/build-mark.py",
+    "check:sheet": "node scripts/check-sheet.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

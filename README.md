@@ -53,8 +53,21 @@ backend. One-time setup, about two minutes:
 4. Copy the `/exec` URL and paste it into `booking.sheetEndpoint` in
    [`src/data/site.js`](src/data/site.js)
 
-Open the `/exec` URL in a browser to check it is live — it answers with
-`{"ok":true,...}`.
+Then check it from the repo:
+
+```bash
+npm run check:sheet
+```
+
+That validates the URL shape, confirms the deployment answers, and names
+the tab it writes to. It writes nothing. To prove the round trip, add
+`-- --post` and it sends one row labelled `TEST ROW — delete me` for you
+to delete afterwards.
+
+If it reports a problem it tells you which one: a 404 means the URL is
+not a live deployment (Deploy → Manage deployments → copy the active
+web app's `/exec` URL), and a sign-in page means access is not set to
+**Anyone**.
 
 The script creates an **Enquiries** tab with a frozen, styled header row
 on first use, and appends one row per submission: received time, name,
