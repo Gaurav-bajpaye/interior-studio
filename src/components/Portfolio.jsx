@@ -35,7 +35,7 @@ export default function Portfolio() {
               type="button"
               onClick={() => setFilter(c)}
               aria-pressed={on}
-              className={`group inline-flex items-center gap-2 rounded-full border px-4 py-2 text-[.875rem] transition-all duration-300 ${
+              className={`group inline-flex min-h-11 items-center gap-2 rounded-full border px-4 py-2 text-[.875rem] transition-all duration-300 sm:min-h-0 ${
                 on
                   ? 'border-charcoal bg-charcoal text-cream'
                   : 'border-line bg-cream text-ink/75 hover:border-charcoal/35 hover:text-charcoal'
@@ -138,7 +138,7 @@ export default function Portfolio() {
         </p>
         <a
           href="#booking"
-          className="group inline-flex items-center gap-2 text-[.9375rem] font-medium text-charcoal link-underline"
+          className="group -my-3 inline-flex items-center gap-2 py-3 text-[.9375rem] font-medium text-charcoal link-underline"
         >
           Talk to us about yours
           <Icon.arrow className="h-4 w-4 text-clay transition-transform duration-300 group-hover:translate-x-1" />

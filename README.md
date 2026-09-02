@@ -1,4 +1,4 @@
-# Vistaar Studio — retail interior design website
+# MirajSpaces — retail interior design website
 
 A single-page marketing site for an interior design studio that works on small
 commercial spaces: clothing stores, salons, cafés and neighbourhood retail.

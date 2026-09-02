@@ -45,7 +45,10 @@ export default function BeforeAfter({ before, after, alt }) {
         setDragging(true)
         setFromClientX(e.clientX)
       }}
-      className={`relative select-none overflow-hidden rounded-xl bg-sand ${
+      /* pan-y lets a vertical swipe scroll the dialog as usual while
+         horizontal drags stay with the wipe. */
+      style={{ touchAction: 'pan-y' }}
+      className={`relative touch-pan-y select-none overflow-hidden rounded-xl bg-sand ${
         dragging ? 'cursor-grabbing' : 'cursor-grab'
       }`}
     >
@@ -111,6 +114,7 @@ export default function BeforeAfter({ before, after, alt }) {
             e.stopPropagation()
             setDragging(true)
           }}
+          style={{ touchAction: 'none' }}
           className="pointer-events-auto absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cream text-charcoal shadow-lift transition-transform duration-200 hover:scale-105 active:scale-95"
         >
           <Icon.drag className="h-[18px] w-[18px]" />

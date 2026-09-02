@@ -187,7 +187,7 @@ export default function Header() {
               </a>
               <a
                 href={`tel:${contact.phone}`}
-                className="pt-1 text-center text-sm text-muted"
+                className="py-3 text-center text-sm text-muted"
               >
                 or call {contact.phoneLabel}
               </a>

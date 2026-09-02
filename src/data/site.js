@@ -7,9 +7,11 @@
 
 /* --- 1. Business ------------------------------------------------ */
 export const business = {
-  name: 'Vistaar',                       // TODO your business name
-  suffix: 'Studio',
-  legalName: 'Vistaar Design Studio',
+  name: 'Miraj',                         // wordmark reads MIRAJ / SPACES
+  suffix: 'Spaces',
+  legalName: 'Miraj Spaces',
+  domain: 'mirajspaces.com',
+  url: 'https://mirajspaces.com/',
   tagline: 'Retail interiors for small businesses',
   city: 'Bengaluru',
   // Short description used in the footer + SEO meta
@@ -24,15 +26,15 @@ export const contact = {
   phone: '+919845012345',                // TODO digits only, with country code
   whatsapp: '919845012345',              // TODO country code + number, no +
   whatsappMessage:
-    "Hi Vistaar Studio, I'd like to discuss the interiors for my shop.",
-  email: 'hello@vistaarstudio.in',       // TODO
+    "Hi Miraj Spaces, I'd like to discuss the interiors for my shop.",
+  email: 'hello@mirajspaces.com',        // TODO
   addressLines: ['2nd Floor, 14 Kasturba Cross Road', 'Bengaluru 560001, Karnataka'],
   mapsUrl: 'https://maps.google.com/?q=Kasturba+Cross+Road+Bengaluru', // TODO
   hours: 'Mon – Sat · 10:00 to 7:00',
   socials: [
-    { label: 'Instagram', handle: '@vistaar.studio', url: 'https://instagram.com/' }, // TODO
-    { label: 'Pinterest', handle: 'vistaarstudio', url: 'https://pinterest.com/' },   // TODO
-    { label: 'LinkedIn', handle: 'Vistaar Studio', url: 'https://linkedin.com/' },    // TODO
+    { label: 'Instagram', handle: '@mirajspaces', url: 'https://instagram.com/' }, // TODO
+    { label: 'Pinterest', handle: 'mirajspaces', url: 'https://pinterest.com/' },   // TODO
+    { label: 'LinkedIn', handle: 'Miraj Spaces', url: 'https://linkedin.com/' },    // TODO
   ],
 }
 

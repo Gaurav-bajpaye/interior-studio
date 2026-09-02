@@ -65,8 +65,8 @@ sub = ImageFont.truetype(SANS, 21)
 line = ImageFont.truetype(SERIF, 40)
 small = ImageFont.truetype(SANS, 20)
 
-tracked(d, (72, 250), "VISTAAR", name, CREAM, 13)
-tracked(d, (76, 348), "STUDIO  ·  BENGALURU", sub, (196, 182, 164), 6)
+tracked(d, (72, 250), "MIRAJ", name, CREAM, 15)
+tracked(d, (76, 348), "SPACES  ·  BENGALURU", sub, (196, 182, 164), 6)
 
 d.line([(72, 404), (170, 404)], fill=CLAY, width=3)
 d.text((72, 436), "Retail interiors for", font=line, fill=CREAM)

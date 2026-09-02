@@ -116,7 +116,7 @@ export default function About() {
               </div>
               <a
                 href="#booking"
-                className="group inline-flex items-center gap-2 text-[.9375rem] font-medium text-charcoal link-underline"
+                className="group -my-3 inline-flex items-center gap-2 py-3 text-[.9375rem] font-medium text-charcoal link-underline"
               >
                 Meet us about your shop
                 <Icon.arrow className="h-4 w-4 text-clay transition-transform duration-300 group-hover:translate-x-1" />

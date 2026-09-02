@@ -236,7 +236,7 @@ export default function Booking() {
             </Reveal>
 
             <Reveal delay={300} className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-[.875rem] text-sand/70">
-              <a href={`tel:${contact.phone}`} className="link-underline flex items-center gap-2">
+              <a href={`tel:${contact.phone}`} className="link-underline -my-3 flex items-center gap-2 py-3">
                 <Icon.phone className="h-4 w-4 text-clay-soft" />
                 {contact.phoneLabel}
               </a>

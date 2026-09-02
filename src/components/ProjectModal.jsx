@@ -83,7 +83,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
             <button
               type="button"
               onClick={() => onNavigate(index - 1)}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-charcoal/40 hover:bg-shell"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-charcoal/40 hover:bg-shell sm:h-9 sm:w-9"
               aria-label="Previous project"
             >
               <Icon.chevronLeft className="h-[18px] w-[18px]" />
@@ -91,7 +91,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
             <button
               type="button"
               onClick={() => onNavigate(index + 1)}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-charcoal/40 hover:bg-shell"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-charcoal/40 hover:bg-shell sm:h-9 sm:w-9"
               aria-label="Next project"
             >
               <Icon.chevronRight className="h-[18px] w-[18px]" />
@@ -99,7 +99,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
             <button
               type="button"
               onClick={onClose}
-              className="ml-1 flex h-9 w-9 items-center justify-center rounded-full bg-charcoal text-cream transition-colors hover:bg-clay"
+              className="ml-1 flex h-11 w-11 items-center justify-center rounded-full bg-charcoal text-cream transition-colors hover:bg-clay sm:h-9 sm:w-9"
               aria-label="Close"
             >
               <Icon.close className="h-[18px] w-[18px]" />

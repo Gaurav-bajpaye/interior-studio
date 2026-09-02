@@ -101,7 +101,7 @@ export default function Contact() {
               href={s.url}
               target="_blank"
               rel="noreferrer noopener"
-              className="group inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-[.875rem] text-ink/80 transition-colors hover:border-charcoal/40 hover:text-charcoal"
+              className="group inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 py-2 text-[.875rem] text-ink/80 transition-colors hover:border-charcoal/40 hover:text-charcoal"
             >
               <Glyph className="h-4 w-4 text-clay" />
               {s.handle}

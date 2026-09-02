@@ -1,10 +1,9 @@
 import { business } from '../data/site'
 
 /* -----------------------------------------------------------------
-   The mark: an arch — a shopfront doorway — cut by a vertical rule
-   that reads as both a door jamb and the stem of a "V" for Vistaar.
-   Two nested arches suggest a space inside a space: a store within
-   a shell, which is literally what the studio does.
+   The mark: an arch — a shopfront doorway — with a second arch nested
+   inside it. A space within a space: the designed store sitting inside
+   the shell the owner leased, which is literally what the studio does.
    ----------------------------------------------------------------- */
 export function LogoMark({ className = 'h-9 w-9', title }) {
   return (
@@ -65,7 +64,7 @@ export default function Logo({ className = '', compact = false, mono = false }) 
         </span>
         <span
           className="mt-[3px] font-sans text-muted"
-          style={{ fontSize: compact ? '.5rem' : '.5625rem', letterSpacing: '.34em', fontWeight: 600 }}
+          style={{ fontSize: compact ? '.5938rem' : '.625rem', letterSpacing: '.32em', fontWeight: 600 }}
         >
           {business.suffix.toUpperCase()}
         </span>
