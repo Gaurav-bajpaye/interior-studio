@@ -36,43 +36,43 @@ Anything still holding sample content is marked `// TODO`.
 Then update the page title, meta description, canonical URL and the
 `InteriorDesignBusiness` structured data in [`index.html`](index.html).
 
-### Booking form → Google Sheet
+### Booking form
 
-Enquiries land in the [enquiries spreadsheet](https://docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4/edit)
-via a Google Form. The page shows a panel that says what the form asks
-and a button that opens it in a new tab — no iframe, so it works even
-where embedding is blocked, and it keeps the page light.
+The page shows a panel saying what the form asks, and a button that
+opens a Google Form in a new tab. **Setup is one link.**
 
-Don't build the form by hand. This creates it with the right ten
-questions and links it to the sheet:
-
-1. Open the sheet → **Extensions → Apps Script**
-2. New script file, paste in
-   [`scripts/create-google-form.gs`](scripts/create-google-form.gs), Save
-3. Pick **createEnquiryForm** in the function dropdown → **Run** → authorise
-4. Open the execution log and copy the two URLs it prints into
-   `booking.viewUrl` and `booking.embedUrl` in
+1. Make a form at [forms.google.com](https://forms.google.com)
+2. In the form: **Responses → the Sheets icon → Select existing
+   spreadsheet →** the [enquiries sheet](https://docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4/edit),
+   so answers land there
+3. **Send → link**, and paste that URL into `booking.viewUrl` in
    [`src/data/site.js`](src/data/site.js)
 
-Responses appear in a new tab of the same spreadsheet. To change a
-question later, edit the form in the Forms UI — re-running the script
-would make a second form.
+That's it. A button rather than an iframe, so it still works where
+embedding is blocked and the page stays light.
 
-Set `useEmbed: true` to show the form inline on the page as well as
-offering the button. The iframe only loads as the visitor scrolls near
-it, so it never delays the first paint on a phone.
+If you'd rather not type out ten questions,
+[`scripts/create-google-form.gs`](scripts/create-google-form.gs) builds
+the form and links the sheet in one run — paste it into the sheet's Apps
+Script, run `createEnquiryForm`, and copy the URLs it prints. Purely a
+shortcut; nothing depends on it.
 
-#### The alternative: our own form writing to the sheet
+Optional extras: set `useEmbed: true` and fill `embedUrl` (the same link
+plus `?embedded=true`) to show the form inline on the page as well.
+
+<details>
+<summary>The other route, currently unused</summary>
 
 `booking.sheetEndpoint` keeps the site's own designed form and posts it
-to a Google Apps Script that appends the row —
+to a Google Apps Script that appends the row directly —
 [`scripts/google-sheet-endpoint.gs`](scripts/google-sheet-endpoint.gs),
-verified with `npm run check:sheet`. Nicer to use, but it needs a web
-app published to **Anyone**, which a Google Workspace policy can block.
-The Google Form route has no such requirement, which is why it is the
-default. A `viewUrl` wins over `sheetEndpoint` if both are set.
+checkable with `npm run check:sheet`. Nicer to fill in, but it needs a
+web app published to **Anyone**, and the `mirajspaces.com` Workspace
+policy blocks publishing outside the domain. That is why the form is the
+default. A `viewUrl` takes precedence if both are set.
+</details>
 
-**With neither set** the page falls back to its own form composing an
+**With nothing set** the page falls back to its own form composing an
 email to `contact.email`, so the section is never broken.
 
 ### WhatsApp

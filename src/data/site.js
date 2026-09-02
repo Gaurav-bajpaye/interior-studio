@@ -59,28 +59,27 @@ export const contact = {
 }
 
 /* --- 3. Booking ---------------------------------------------------
-   The consultation form is a Google Form whose responses land in the
-   enquiries spreadsheet:
+   The page shows a button that opens a Google Form in a new tab.
+   All it needs is the form's link.
+
+   Make the form however you like at forms.google.com, then in the form
+   click Responses -> the Sheets icon -> "Select existing spreadsheet"
+   and pick the enquiries sheet, so answers land there:
    docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4
 
-   Don't build the form by hand — scripts/create-google-form.gs makes it
-   with the right questions and links it to that sheet in one run, then
-   prints the two URLs below. See the README.
+   Paste the Send -> link URL into viewUrl below. That is the whole setup.
 
-   Modes, in the order the page picks them:
-     viewUrl set                -> a button that opens the form  (current)
-     + useEmbed true            -> the form embedded in the page as well
-     sheetEndpoint set          -> our own form posting to an Apps Script
-     nothing set                -> our own form composing an email        */
+   (Optional shortcut: scripts/create-google-form.gs builds the form and
+   links the sheet in one run, if you would rather not type out ten
+   questions. Nothing depends on it.)                                    */
 export const booking = {
-  viewUrl: '',              // TODO the form's live URL, from the script above
-  embedUrl: '',             // TODO the same URL with ?embedded=true
-  useEmbed: false,          // true to show the form inline instead of a button
+  viewUrl: '',              // TODO paste your Google Form link here
+  embedUrl: '',             // optional: the same link + ?embedded=true
+  useEmbed: false,          // optional: also show the form inline on the page
 
-  /* An Apps Script endpoint is the alternative to a Google Form: it lets
-     our own designed form write to the sheet directly. It needs a web
-     app published to "Anyone", which a Workspace policy may block.
-     See scripts/google-sheet-endpoint.gs. */
+  /* Unused. The other route: our own form posting to an Apps Script that
+     writes to the sheet. Needs a web app published to "Anyone", which the
+     mirajspaces.com Workspace policy currently blocks. */
   sheetEndpoint: '',
 
   responseTime: 'We reply within one working day.',
