@@ -36,27 +36,48 @@ Anything still holding sample content is marked `// TODO`.
 Then update the page title, meta description, canonical URL and the
 `InteriorDesignBusiness` structured data in [`index.html`](index.html).
 
-### Booking form
+### Booking form → Google Sheet
 
-The consultation form is a Google Form. Get both links from your form's
-**Send → `< >`** panel and put them in `booking` in `site.js`:
+Enquiries land in the [enquiries spreadsheet](https://docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4/edit).
 
-```js
-export const booking = {
-  useEmbed: true,
-  viewUrl:  'https://docs.google.com/forms/d/e/YOUR_ID/viewform',
-  embedUrl: 'https://docs.google.com/forms/d/e/YOUR_ID/viewform?embedded=true',
-}
-```
+A web page cannot write to a sheet on its own — it needs something with
+permission to do the writing. That something is a small Google Apps
+Script published from the sheet itself, which keeps the site free of a
+backend. One-time setup, about two minutes:
 
-The iframe only loads as the visitor scrolls near it, so it never
-delays the first paint on a phone. The **Open booking form** button
-appears alongside it as a fallback if the embed is ever blocked.
+1. Open the sheet → **Extensions → Apps Script**
+2. Replace everything in `Code.gs` with
+   [`scripts/google-sheet-endpoint.gs`](scripts/google-sheet-endpoint.gs), and Save
+3. **Deploy → New deployment → Web app**, with
+   *Execute as* **Me** and *Who has access* **Anyone**, then authorise
+4. Copy the `/exec` URL and paste it into `booking.sheetEndpoint` in
+   [`src/data/site.js`](src/data/site.js)
 
-Until a real form ID is in place the section falls back to the
-built-in form, which asks the same questions and composes them into an
-email to `contact.email`. Nothing is ever broken or empty on the page,
-and there is no backend either way.
+Open the `/exec` URL in a browser to check it is live — it answers with
+`{"ok":true,...}`.
+
+The script creates an **Enquiries** tab with a frozen, styled header row
+on first use, and appends one row per submission: received time, name,
+phone, email, store type, location, size, service, budget, preferred
+date, details, and a Status column for you to work through.
+
+After editing the script, re-deploy it (**Deploy → Manage deployments →
+edit → New version**) or the site keeps hitting the old copy.
+
+On the site the form shows a spinner while sending, swaps to a thank-you
+panel on success, and on failure keeps everything the visitor typed and
+offers the phone number and email instead. A hidden honeypot field turns
+away basic bots; *Who has access: Anyone* is what makes a backend-free
+form possible, so if the sheet ever starts collecting junk, add a shared
+token to the script and send it as a hidden field.
+
+**Leave `sheetEndpoint` empty** and the same form composes the answers
+into an email instead — useful for local work, and it means the section
+is never broken.
+
+To use a Google **Form** rather than the sheet endpoint, clear
+`sheetEndpoint`, set `useEmbed: true` and fill in `viewUrl` / `embedUrl`
+from the form's *Send → `< >`* panel.
 
 ### WhatsApp
 

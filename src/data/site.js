@@ -58,21 +58,27 @@ export const contact = {
   ],
 }
 
-/* --- 3. Booking -------------------------------------------------- */
-/* Paste your Google Form links below.
-   - viewUrl  : the normal "share" link  (.../viewform)
-   - embedUrl : the same link with ?embedded=true  (Send → < >  in Forms)
-   Set useEmbed to true once your real form is in place. Until then the
-   page shows a built-in enquiry form that composes the same answers
-   into an email — no backend either way. */
+/* --- 3. Booking ---------------------------------------------------
+   Enquiries are written straight into the Google Sheet at
+   docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4
+
+   A page cannot write to a sheet on its own — it posts to a small
+   Google Apps Script published from that sheet, which appends the row.
+   The script is in scripts/google-sheet-endpoint.gs and the four-step
+   setup is in the README. Paste the deployment URL below.
+
+   With no endpoint set the same form falls back to composing an email,
+   so the section keeps working either way.                            */
 export const booking = {
-  /* The consultation form is a Google Form. Paste your two links below
-     and it appears embedded in the page. Until a real form ID is in
-     place the page falls back to the built-in form, which sends the
-     same answers by email — so the section always works. */
-  useEmbed: true,
-  viewUrl: 'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform',   // TODO
-  embedUrl: 'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform?embedded=true', // TODO
+  sheetEndpoint: '',        // TODO paste the Apps Script /exec URL here
+  sheetName: 'Enquiries',   // tab the script writes to; it creates it if missing
+
+  /* Optional alternative: embed a Google Form instead of the form above.
+     Get both links from the form's Send -> < > panel. */
+  useEmbed: false,
+  viewUrl: 'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform',
+  embedUrl: 'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform?embedded=true',
+
   responseTime: 'We reply within one working day.',
   expect: [
     'A 30-minute call or shop visit, free of cost.',

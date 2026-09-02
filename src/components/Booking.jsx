@@ -9,8 +9,8 @@ const budgets = ['Under ₹3 lakh', '₹3 – 6 lakh', '₹6 – 12 lakh', '₹1
 
 /* A form link still holding the placeholder ID is not a form. */
 const isPlaceholder = (url) => !url || url.includes('REPLACE_WITH_YOUR_FORM_ID')
-const formReady = booking.useEmbed && !isPlaceholder(booking.embedUrl)
-const linkReady = !isPlaceholder(booking.viewUrl)
+const formReady = booking.useEmbed && !booking.sheetEndpoint && !isPlaceholder(booking.embedUrl)
+const linkReady = !booking.sheetEndpoint && !isPlaceholder(booking.viewUrl)
 
 /* The Google Form iframe only mounts once it is close to the viewport,
    so it never blocks the first paint on a phone. */
@@ -49,49 +49,112 @@ function EmbeddedForm() {
   )
 }
 
-/* Fallback while the Google Form link is not in place: the same
-   questions, composed into an email (or a WhatsApp message when that
-   channel is switched on). No backend either way. */
-function EnquiryForm() {
-  const [sent, setSent] = useState(false)
-  const viaWhatsapp = contact.showWhatsapp
+/* The enquiry form.
 
-  const compose = (form) => {
-    const f = Object.fromEntries(new FormData(form).entries())
-    return [
+   On submit it posts to the Google Apps Script published from the
+   enquiries spreadsheet, which appends one row. The body is sent as
+   URL-encoded form data on purpose: that counts as a "simple" request,
+   so the browser skips the CORS preflight that Apps Script cannot
+   answer.
+
+   With no endpoint configured the same answers are composed into an
+   email instead, so the form is never a dead end. */
+function EnquiryForm() {
+  const [state, setState] = useState('idle') // idle | sending | sent | error
+  const [error, setError] = useState('')
+  const toSheet = Boolean(booking.sheetEndpoint)
+  const viaWhatsapp = !toSheet && contact.showWhatsapp
+
+  const compose = (data) =>
+    [
       `New enquiry from the ${business.legalName} website`,
       '',
-      `Name: ${f.name}`,
-      `Phone: ${f.phone}`,
-      f.email ? `Email: ${f.email}` : null,
-      `Store type: ${f.storeType}`,
-      `Location: ${f.location}`,
-      f.size ? `Approx. size: ${f.size} sq ft` : null,
-      `Service needed: ${f.service}`,
-      `Budget: ${f.budget}`,
-      f.date ? `Preferred meeting date: ${f.date}` : null,
-      f.details ? `\nDetails: ${f.details}` : null,
+      `Name: ${data.name}`,
+      `Phone: ${data.phone}`,
+      data.email ? `Email: ${data.email}` : null,
+      `Store type: ${data.storeType}`,
+      `Location: ${data.location}`,
+      data.size ? `Approx. size: ${data.size} sq ft` : null,
+      `Service needed: ${data.service}`,
+      `Budget: ${data.budget}`,
+      data.date ? `Preferred meeting date: ${data.date}` : null,
+      data.details ? `\nDetails: ${data.details}` : null,
     ]
       .filter(Boolean)
       .join('\n')
-  }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-    const body = compose(e.currentTarget)
-    if (viaWhatsapp) {
-      window.open(waHref(contact, body), '_blank', 'noopener')
-    } else {
-      window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(
-        'Consultation request — ' + business.legalName,
-      )}&body=${encodeURIComponent(body)}`
+    const form = e.currentTarget
+    const data = Object.fromEntries(new FormData(form).entries())
+
+    if (!toSheet) {
+      const body = compose(data)
+      if (viaWhatsapp) {
+        window.open(waHref(contact, body), '_blank', 'noopener')
+      } else {
+        window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(
+          'Consultation request — ' + business.legalName,
+        )}&body=${encodeURIComponent(body)}`
+      }
+      setState('sent')
+      return
     }
-    setSent(true)
+
+    setState('sending')
+    setError('')
+    try {
+      const res = await fetch(booking.sheetEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body: new URLSearchParams(data).toString(),
+        redirect: 'follow',
+      })
+      const out = await res.json().catch(() => ({ ok: res.ok }))
+      if (!out.ok) throw new Error(out.error || 'the sheet turned it away.')
+      form.reset()
+      setState('sent')
+    } catch (err) {
+      /* A failed fetch here is almost always the network or a script
+         that has not been re-deployed — neither is worth showing raw. */
+      const network = err instanceof TypeError
+      setError(network ? 'the connection dropped.' : String(err.message || err))
+      setState('error')
+    }
   }
 
   const field =
     'w-full rounded-lg border border-line bg-cream px-3.5 py-3 text-[.9375rem] text-ink placeholder:text-muted transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/15'
   const label = 'block text-[.75rem] font-semibold uppercase tracking-[.1em] text-muted'
+
+  if (state === 'sent' && toSheet) {
+    return (
+      <div className="rounded-2xl border border-line bg-cream p-8 text-center md:p-12">
+        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gold/12 text-gold-ink">
+          <Icon.check className="h-7 w-7" />
+        </span>
+        <h3 className="mt-6 font-display text-[1.5rem] font-medium text-charcoal">
+          Thank you — we have your details.
+        </h3>
+        <p className="mx-auto mt-3 max-w-sm leading-relaxed text-muted">
+          {booking.responseTime} If it is urgent, call{' '}
+          <a href={`tel:${contact.phone}`} className="link-underline font-medium text-charcoal">
+            {contact.phoneLabel}
+          </a>
+          .
+        </p>
+        <button
+          type="button"
+          onClick={() => setState('idle')}
+          className="mt-7 inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 text-[.9375rem] font-medium text-charcoal transition-colors hover:border-charcoal/40 hover:bg-shell"
+        >
+          Send another enquiry
+        </button>
+      </div>
+    )
+  }
+
+  const sending = state === 'sending'
 
   return (
     <form
@@ -167,11 +230,23 @@ function EnquiryForm() {
         </div>
       </div>
 
+      {/* Honeypot — hidden from people, catnip to bots. */}
+      <div aria-hidden className="absolute h-0 w-0 overflow-hidden opacity-0">
+        <label htmlFor="bk-company">Company (leave blank)</label>
+        <input id="bk-company" name="company" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <button
         type="submit"
-        className="group mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-charcoal px-6 py-4 font-medium text-cream transition-colors duration-300 hover:bg-gold-ink sm:w-auto"
+        disabled={sending}
+        className="group mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-charcoal px-6 py-4 font-medium text-cream transition-colors duration-300 hover:bg-gold-ink disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
-        {viaWhatsapp ? (
+        {sending ? (
+          <>
+            <span className="h-4 w-4 animate-spin rounded-full border-2 border-cream/30 border-t-cream" />
+            Sending…
+          </>
+        ) : viaWhatsapp ? (
           <>
             <Icon.whatsapp className="h-[18px] w-[18px]" />
             Send on WhatsApp
@@ -184,14 +259,31 @@ function EnquiryForm() {
         )}
       </button>
 
-      <p className="mt-4 text-[.8125rem] leading-relaxed text-muted">
-        {sent ? (
+      <p className="mt-4 text-[.8125rem] leading-relaxed text-muted" aria-live="polite">
+        {state === 'error' ? (
+          <span className="text-gold-ink">
+            We could not save that — {error} Please call{' '}
+            <a href={`tel:${contact.phone}`} className="link-underline font-medium text-charcoal">
+              {contact.phoneLabel}
+            </a>{' '}
+            or email{' '}
+            <a href={mailHref(contact)} className="link-underline font-medium text-charcoal">
+              {contact.email}
+            </a>
+            .
+          </span>
+        ) : state === 'sent' ? (
           <span className="flex items-center gap-1.5 text-gold-ink">
             <Icon.check className="h-4 w-4" />
             {viaWhatsapp
               ? 'WhatsApp should have opened with your details.'
               : 'Your email app should have opened with the details filled in — press send.'}
           </span>
+        ) : toSheet ? (
+          <>
+            Your answers go straight to our enquiries sheet. We only use them to
+            reply to you.
+          </>
         ) : viaWhatsapp ? (
           <>This opens WhatsApp with your answers filled in — review and hit send.</>
         ) : (
