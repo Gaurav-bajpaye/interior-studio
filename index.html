@@ -59,16 +59,17 @@
         "telephone": "+918050690693",
         "email": "contact@mirajspaces.com",
         "priceRange": "₹₹",
-        "areaServed": "Bengaluru, Karnataka, India",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "2nd Floor, 14 Kasturba Cross Road",
-          "addressLocality": "Bengaluru",
-          "postalCode": "560001",
-          "addressRegion": "Karnataka",
-          "addressCountry": "IN"
-        },
         "openingHours": "Mo-Sa 10:00-19:00",
+        "areaServed": {
+          "@type": "City",
+          "name": "Bengaluru",
+          "containedInPlace": { "@type": "State", "name": "Karnataka" }
+        },
+        "serviceArea": {
+          "@type": "GeoCircle",
+          "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 12.9716, "longitude": 77.5946 },
+          "geoRadius": 40000
+        },
         "sameAs": [
           "https://www.instagram.com/mirajspaces",
           "https://www.linkedin.com/in/miraj-spaces-078125433/"

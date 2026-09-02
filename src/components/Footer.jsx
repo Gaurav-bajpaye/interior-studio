@@ -98,11 +98,7 @@ export default function Footer() {
                   </li>
                 )}
                 <li className="pt-3 leading-relaxed text-sand/70 sm:pt-1">
-                  {contact.addressLines.map((l) => (
-                    <span key={l} className="block">
-                      {l}
-                    </span>
-                  ))}
+                  {contact.hours}
                 </li>
               </ul>
             </div>

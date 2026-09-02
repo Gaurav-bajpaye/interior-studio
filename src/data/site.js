@@ -48,8 +48,10 @@ export const contact = {
   whatsapp: '918050690693',              // country code + number, no +
   whatsappMessage:
     "Hi Miraj Spaces, I'd like to discuss the interiors for my shop.",
-  addressLines: ['2nd Floor, 14 Kasturba Cross Road', 'Bengaluru 560001, Karnataka'],
-  mapsUrl: 'https://maps.google.com/?q=Kasturba+Cross+Road+Bengaluru', // TODO
+  /* No studio address — the practice runs remotely and goes to the shop.
+     If that changes, add addressLines + mapsUrl back and the contact
+     section will show a third card for it again. */
+  basedNote: 'We work remotely and come to your shop for the survey and site visits.',
   hours: 'Mon – Sat · 10:00 to 7:00',
   /* Add a row here and it appears in the contact section and the footer.
      Icons exist for Instagram, Pinterest and LinkedIn; anything else

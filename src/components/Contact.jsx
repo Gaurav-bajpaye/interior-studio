@@ -22,25 +22,18 @@ export default function Contact() {
       href: mailHref(contact),
       note: 'Drawings and estimates come by email.',
     },
-    {
-      icon: Icon.pin,
-      label: 'Studio',
-      value: contact.addressLines[0],
-      href: contact.mapsUrl,
-      external: true,
-      note: contact.addressLines[1],
-    },
   ]
 
   return (
     <Section
       id="contact"
       eyebrow="Contact"
-      title="Call, message, or come by the studio"
-      intro="Send a photo of your shop with a rough size and we can usually tell you straight away whether we are the right fit."
+      title="Call or write to us"
+      intro={`Send a photo of your shop with a rough size and we can usually tell you
+        straight away whether we are the right fit. ${contact.basedNote}`}
       className="py-20 md:py-28"
     >
-      <div className="mt-12 grid gap-5 md:grid-cols-3">
+      <div className="mt-12 grid gap-5 sm:grid-cols-2">
         {cards.map((c, i) => (
           <Reveal key={c.label} delay={i * 80}>
             <a
