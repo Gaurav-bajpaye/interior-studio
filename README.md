@@ -39,26 +39,29 @@ Then update the page title, meta description, canonical URL and the
 ### Booking form
 
 The page shows a panel saying what the form asks, and a button that
-opens a Google Form in a new tab. **Setup is one link.**
-
-1. Make a form at [forms.google.com](https://forms.google.com)
-2. In the form: **Responses → the Sheets icon → Select existing
-   spreadsheet →** the [enquiries sheet](https://docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4/edit),
-   so answers land there
-3. **Send → link**, and paste that URL into `booking.viewUrl` in
-   [`src/data/site.js`](src/data/site.js)
-
-That's it. A button rather than an iframe, so it still works where
+opens the **[Miraj Spaces consultation form](https://docs.google.com/forms/d/e/1FAIpQLSc1dA9ZJsPBQE0KJGz4K3xruTmeZShTCQYNOuVG6P6JsRTp2g/viewform)**
+in a new tab. A button rather than an iframe, so it still works where
 embedding is blocked and the page stays light.
 
-If you'd rather not type out ten questions,
-[`scripts/create-google-form.gs`](scripts/create-google-form.gs) builds
-the form and links the sheet in one run — paste it into the sheet's Apps
-Script, run `createEnquiryForm`, and copy the URLs it prints. Purely a
-shortcut; nothing depends on it.
+The link lives in `booking.viewUrl` in [`src/data/site.js`](src/data/site.js).
+Swap the form and you swap that one line.
 
-Optional extras: set `useEmbed: true` and fill `embedUrl` (the same link
-plus `?embedded=true`) to show the form inline on the page as well.
+Two bits of copy sit next to the button and should be kept in step with
+the form itself, or the page promises something the form does not
+deliver:
+
+- `booking.formHeadline` — currently *"Nine questions, about two minutes."*
+- `booking.asks` — the summary bullets of what to have ready
+
+**Where the answers go.** Responses land wherever the form's *Responses*
+tab points. To send them to the
+[enquiries sheet](https://docs.google.com/spreadsheets/d/1ELByOma55j3O8nz1iNRtdHxGIWVopJb_WuhFJ4G2jA4/edit):
+in the form, **Responses → the Sheets icon → Select existing
+spreadsheet**. Nothing in this repo controls that.
+
+Set `useEmbed: true` (with `embedUrl` already filled in) to show the form
+inline on the page as well as offering the button. The iframe only loads
+as the visitor scrolls near it, so it never delays the first paint.
 
 <details>
 <summary>The other route, currently unused</summary>
@@ -68,8 +71,12 @@ to a Google Apps Script that appends the row directly —
 [`scripts/google-sheet-endpoint.gs`](scripts/google-sheet-endpoint.gs),
 checkable with `npm run check:sheet`. Nicer to fill in, but it needs a
 web app published to **Anyone**, and the `mirajspaces.com` Workspace
-policy blocks publishing outside the domain. That is why the form is the
-default. A `viewUrl` takes precedence if both are set.
+policy blocks publishing outside the domain. A `viewUrl` takes
+precedence if both are set.
+
+[`scripts/create-google-form.gs`](scripts/create-google-form.gs) builds a
+consultation form from scratch and links it to the sheet, if you ever
+need to rebuild it.
 </details>
 
 **With nothing set** the page falls back to its own form composing an

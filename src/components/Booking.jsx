@@ -62,7 +62,7 @@ function FormCta() {
       <div className="p-7 md:p-9">
         <span className="eyebrow">The consultation form</span>
         <h3 className="mt-4 font-display text-[1.5rem] font-medium leading-snug text-charcoal md:text-[1.75rem]">
-          Ten questions, {booking.formMinutes}.
+          {booking.formHeadline}
         </h3>
         <p className="mt-3 leading-relaxed text-muted">
           Answer what you can — a rough size and a photo of the shop is

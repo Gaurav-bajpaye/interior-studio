@@ -85,8 +85,10 @@ export const contact = {
    links the sheet in one run, if you would rather not type out ten
    questions. Nothing depends on it.)                                    */
 export const booking = {
-  viewUrl: '',              // TODO paste your Google Form link here
-  embedUrl: '',             // optional: the same link + ?embedded=true
+  viewUrl:
+    'https://docs.google.com/forms/d/e/1FAIpQLSc1dA9ZJsPBQE0KJGz4K3xruTmeZShTCQYNOuVG6P6JsRTp2g/viewform',
+  embedUrl:
+    'https://docs.google.com/forms/d/e/1FAIpQLSc1dA9ZJsPBQE0KJGz4K3xruTmeZShTCQYNOuVG6P6JsRTp2g/viewform?embedded=true',
   useEmbed: false,          // optional: also show the form inline on the page
 
   /* Unused. The other route: our own form posting to an Apps Script that
@@ -95,7 +97,8 @@ export const booking = {
   sheetEndpoint: '',
 
   responseTime: 'We reply within one working day.',
-  formMinutes: 'about two minutes',
+  /* Keep this in step with the form — it is the promise the button makes. */
+  formHeadline: 'Nine questions, about two minutes.',
 
   expect: [
     'A 30-minute call or shop visit, free of cost.',
@@ -103,14 +106,15 @@ export const booking = {
     'A written scope, timeline and estimate within 5 days.',
   ],
 
-  /* Shown beside the button so people know what to have ready. */
+  /* Shown beside the button so people know what to have ready.
+     A summary of the form's questions, not a copy of them. */
   asks: [
     'Your name and phone number',
-    'Store type and location',
-    'Roughly how many square feet',
-    'What you need done',
-    'A budget range',
-    'A date that suits you',
+    'Where the space is',
+    'What kind of space it is',
+    'Roughly how big it is',
+    'Your budget range',
+    'When you would like to start',
   ],
 }
 
