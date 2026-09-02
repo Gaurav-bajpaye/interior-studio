@@ -3,7 +3,7 @@ import Img from './Img'
 import Icon from './Icons'
 import BeforeAfter from './BeforeAfter'
 import { projects, contact } from '../data/site'
-import { waHref } from '../lib/links'
+import { waHref, mailHref } from '../lib/links'
 
 export default function ProjectModal({ index, onClose, onNavigate }) {
   const open = index !== null && index !== undefined
@@ -206,15 +206,24 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
                 Book a similar project
                 <Icon.arrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
-              <a
-                href={waHref(contact, `Hi, I saw the ${project.name} project on your website — I have a ${project.type.toLowerCase()} space and would like a quote.`)}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-line px-5 py-3.5 text-[.9375rem] font-medium text-charcoal transition-colors hover:border-charcoal/40 hover:bg-shell"
-              >
-                <Icon.whatsapp className="h-[18px] w-[18px] text-[#25D366]" />
-                Ask about it
-              </a>
+              {(() => {
+                const note = `Hi, I saw the ${project.name} project on your website — I have a ${project.type.toLowerCase()} space and would like a quote.`
+                const wa = contact.showWhatsapp
+                return (
+                  <a
+                    href={wa ? waHref(contact, note) : mailHref(contact, `Enquiry — similar to ${project.name}`)}
+                    {...(wa ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-line px-5 py-3.5 text-[.9375rem] font-medium text-charcoal transition-colors hover:border-charcoal/40 hover:bg-shell"
+                  >
+                    {wa ? (
+                      <Icon.whatsapp className="h-[18px] w-[18px] text-[#25D366]" />
+                    ) : (
+                      <Icon.mail className="h-[18px] w-[18px] text-gold-ink" />
+                    )}
+                    Ask about it
+                  </a>
+                )
+              })()}
             </div>
           </div>
         </div>

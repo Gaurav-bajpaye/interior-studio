@@ -37,7 +37,7 @@ export default function Contact() {
       id="contact"
       eyebrow="Contact"
       title="Call, message, or come by the studio"
-      intro="Fastest is WhatsApp — send a photo of your shop and we can usually tell you straight away whether we are the right fit."
+      intro="Send a photo of your shop with a rough size and we can usually tell you straight away whether we are the right fit."
       className="py-20 md:py-28"
     >
       <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -63,29 +63,36 @@ export default function Contact() {
         ))}
       </div>
 
-      {/* WhatsApp band */}
+      {/* Fast-route band — WhatsApp when it's on, email while it isn't */}
       <Reveal
         delay={140}
         className="mt-5 flex flex-col items-start gap-5 rounded-2xl bg-shell p-6 sm:flex-row sm:items-center sm:justify-between md:p-8"
       >
         <div className="flex items-center gap-4">
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#25D366]/15 text-[#1FA855]">
-            <Icon.whatsapp className="h-6 w-6" />
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold/12 text-gold-ink">
+            {contact.showWhatsapp ? (
+              <Icon.whatsapp className="h-6 w-6" />
+            ) : (
+              <Icon.mail className="h-6 w-6" />
+            )}
           </span>
           <div>
-            <h3 className="text-[1.125rem] font-medium">Message us on WhatsApp</h3>
+            <h3 className="text-[1.125rem] font-medium">
+              {contact.showWhatsapp ? 'Message us on WhatsApp' : 'Send us your shop details'}
+            </h3>
             <p className="mt-1 text-[.875rem] text-muted">
-              Photos, measurements, voice notes — whatever is easiest.
+              {contact.showWhatsapp
+                ? 'Photos, measurements, voice notes — whatever is easiest.'
+                : 'Photos, rough measurements and what is not working today.'}
             </p>
           </div>
         </div>
         <a
-          href={waHref(contact)}
-          target="_blank"
-          rel="noreferrer noopener"
-          className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-charcoal px-6 py-3.5 font-medium text-cream transition-colors duration-300 hover:bg-gold"
+          href={contact.showWhatsapp ? waHref(contact) : mailHref(contact)}
+          {...(contact.showWhatsapp ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
+          className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-charcoal px-6 py-3.5 font-medium text-cream transition-colors duration-300 hover:bg-gold-ink"
         >
-          Start a chat
+          {contact.showWhatsapp ? 'Start a chat' : 'Email us'}
           <Icon.arrow className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-1" />
         </a>
       </Reveal>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Logo from './Logo'
 import Icon from './Icons'
 import { navLinks, contact } from '../data/site'
-import { waHref } from '../lib/links'
+import { waHref, mailHref } from '../lib/links'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -79,16 +79,18 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2.5">
-            <a
-              href={waHref(contact)}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="hidden h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-gold hover:bg-gold hover:text-cream sm:flex"
-              aria-label="Chat with us on WhatsApp"
-              title="WhatsApp"
-            >
-              <Icon.whatsapp className="h-[18px] w-[18px]" />
-            </a>
+            {contact.showWhatsapp && (
+              <a
+                href={waHref(contact)}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="hidden h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-gold hover:bg-gold hover:text-cream sm:flex"
+                aria-label="Chat with us on WhatsApp"
+                title="WhatsApp"
+              >
+                <Icon.whatsapp className="h-[18px] w-[18px]" />
+              </a>
+            )}
 
             <a
               href="#booking"
@@ -176,15 +178,25 @@ export default function Header() {
                 Book a consultation
                 <Icon.arrow className="h-4 w-4" />
               </a>
-              <a
-                href={waHref(contact)}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="flex items-center justify-center gap-2 rounded-full border border-line px-6 py-3.5 font-medium text-charcoal"
-              >
-                <Icon.whatsapp className="h-[18px] w-[18px] text-[#25D366]" />
-                WhatsApp us
-              </a>
+              {contact.showWhatsapp ? (
+                <a
+                  href={waHref(contact)}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex items-center justify-center gap-2 rounded-full border border-line px-6 py-3.5 font-medium text-charcoal"
+                >
+                  <Icon.whatsapp className="h-[18px] w-[18px] text-[#25D366]" />
+                  WhatsApp us
+                </a>
+              ) : (
+                <a
+                  href={mailHref(contact)}
+                  className="flex items-center justify-center gap-2 rounded-full border border-line px-6 py-3.5 font-medium text-charcoal"
+                >
+                  <Icon.mail className="h-[18px] w-[18px] text-gold-ink" />
+                  Email us
+                </a>
+              )}
               <a
                 href={`tel:${contact.phone}`}
                 className="py-3 text-center text-sm text-muted"

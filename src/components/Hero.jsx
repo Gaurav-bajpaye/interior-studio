@@ -1,7 +1,6 @@
 import Img from './Img'
 import Icon from './Icons'
-import { business, contact, projects } from '../data/site'
-import { waHref } from '../lib/links'
+import { business, projects } from '../data/site'
 
 const stats = [
   { v: '60+', l: 'shops delivered' },
@@ -162,16 +161,6 @@ export default function Hero() {
           We design clothing stores, salons, cafés, bakeries and neighbourhood retail.
         </span>
       </div>
-
-      {/* quiet WhatsApp affordance for phone visitors */}
-      <a
-        href={waHref(contact)}
-        target="_blank"
-        rel="noreferrer noopener"
-        className="sr-only"
-      >
-        Message us on WhatsApp
-      </a>
     </section>
   )
 }

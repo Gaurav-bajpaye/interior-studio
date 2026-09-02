@@ -85,16 +85,18 @@ export default function Footer() {
                     {contact.email}
                   </a>
                 </li>
-                <li>
-                  <a
-                    href={waHref(contact)}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="link-underline inline-block py-2.5 transition-colors hover:text-cream sm:py-0"
-                  >
-                    WhatsApp
-                  </a>
-                </li>
+                {contact.showWhatsapp && (
+                  <li>
+                    <a
+                      href={waHref(contact)}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="link-underline inline-block py-2.5 transition-colors hover:text-cream sm:py-0"
+                    >
+                      WhatsApp
+                    </a>
+                  </li>
+                )}
                 <li className="pt-3 leading-relaxed text-sand/70 sm:pt-1">
                   {contact.addressLines.map((l) => (
                     <span key={l} className="block">

@@ -35,12 +35,19 @@ export const brand = {
 
 /* --- 2. Contact -------------------------------------------------- */
 export const contact = {
-  phoneLabel: '+91 98450 12345',         // TODO
-  phone: '+919845012345',                // TODO digits only, with country code
-  whatsapp: '919845012345',              // TODO country code + number, no +
+  phoneLabel: '+91 80506 90693',
+  phone: '+918050690693',                // digits only, with country code
+  email: 'contact@mirajspaces.com',
+
+  /* WhatsApp is wired up but switched off for now. Flip this to true
+     and every WhatsApp route comes back: the header button, the
+     floating chat button, the contact band, the footer link, the
+     "ask about it" button on each project, and the enquiry form
+     switches from email to a prefilled WhatsApp message. */
+  showWhatsapp: false,
+  whatsapp: '918050690693',              // country code + number, no +
   whatsappMessage:
     "Hi Miraj Spaces, I'd like to discuss the interiors for my shop.",
-  email: 'hello@mirajspaces.com',        // TODO
   addressLines: ['2nd Floor, 14 Kasturba Cross Road', 'Bengaluru 560001, Karnataka'],
   mapsUrl: 'https://maps.google.com/?q=Kasturba+Cross+Road+Bengaluru', // TODO
   hours: 'Mon – Sat · 10:00 to 7:00',
@@ -56,10 +63,14 @@ export const contact = {
    - viewUrl  : the normal "share" link  (.../viewform)
    - embedUrl : the same link with ?embedded=true  (Send → < >  in Forms)
    Set useEmbed to true once your real form is in place. Until then the
-   page shows a built-in enquiry form that opens WhatsApp with the
-   details filled in — no backend, works out of the box. */
+   page shows a built-in enquiry form that composes the same answers
+   into an email — no backend either way. */
 export const booking = {
-  useEmbed: false,                                                    // TODO true when your form is ready
+  /* The consultation form is a Google Form. Paste your two links below
+     and it appears embedded in the page. Until a real form ID is in
+     place the page falls back to the built-in form, which sends the
+     same answers by email — so the section always works. */
+  useEmbed: true,
   viewUrl: 'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform',   // TODO
   embedUrl: 'https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/viewform?embedded=true', // TODO
   responseTime: 'We reply within one working day.',
@@ -299,7 +310,7 @@ export const benefits = [
 
 /* --- 7. Process --------------------------------------------------- */
 export const steps = [
-  { n: '01', title: 'Book a consultation', text: 'Fill the form or message us on WhatsApp. We call back within a working day and fix a shop visit.', meta: 'Day 1 · Free' },
+  { n: '01', title: 'Book a consultation', text: 'Fill in the form or give us a call. We reply within a working day and fix a shop visit.', meta: 'Day 1 · Free' },
   { n: '02', title: 'Share the space', text: 'Measurements, photos, your stock list and what is not working today. We survey the site ourselves if you are in the city.', meta: 'Day 2–4' },
   { n: '03', title: 'Concept & estimate', text: 'Layout options, a material board, 3D views of the key walls, and a line-item estimate with timelines.', meta: 'Day 5–12' },
   { n: '04', title: 'Approve the design', text: 'Two rounds of revisions are included. We freeze drawings only once you are happy with the numbers.', meta: 'Day 13–18' },

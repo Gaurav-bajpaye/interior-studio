@@ -38,17 +38,40 @@ Then update the page title, meta description, canonical URL and the
 
 ### Booking form
 
-The booking section works in two modes:
+The consultation form is a Google Form. Get both links from your form's
+**Send → `< >`** panel and put them in `booking` in `site.js`:
 
-- **`booking.useEmbed: false`** (default) — a built-in enquiry form that
-  composes the answers into a WhatsApp message. Works immediately, no setup.
-- **`booking.useEmbed: true`** — embeds your Google Form in an iframe that only
-  loads as the visitor approaches it. Get both links from Forms → **Send** →
-  `< >`: the `viewform` URL goes in `viewUrl`, the same URL with
-  `?embedded=true` goes in `embedUrl`.
+```js
+export const booking = {
+  useEmbed: true,
+  viewUrl:  'https://docs.google.com/forms/d/e/YOUR_ID/viewform',
+  embedUrl: 'https://docs.google.com/forms/d/e/YOUR_ID/viewform?embedded=true',
+}
+```
 
-The **Open booking form** button is always shown, so the form is reachable even
-if the iframe is blocked.
+The iframe only loads as the visitor scrolls near it, so it never
+delays the first paint on a phone. The **Open booking form** button
+appears alongside it as a fallback if the embed is ever blocked.
+
+Until a real form ID is in place the section falls back to the
+built-in form, which asks the same questions and composes them into an
+email to `contact.email`. Nothing is ever broken or empty on the page,
+and there is no backend either way.
+
+### WhatsApp
+
+WhatsApp is built but switched off. One flag brings it all back:
+
+```js
+// src/data/site.js
+export const contact = { showWhatsapp: true, whatsapp: '918050690693', ... }
+```
+
+That restores the header button, the floating chat button, the contact
+band, the footer link and the per-project "ask about it" button, and
+switches the enquiry form from email to a prefilled WhatsApp message.
+With it off, every one of those routes becomes email or phone instead —
+no dead ends.
 
 ### Photographs
 

@@ -19,6 +19,8 @@ export default function WhatsAppFab() {
     }
   }, [])
 
+  if (!contact.showWhatsapp) return null
+
   return (
     <a
       href={waHref(contact)}

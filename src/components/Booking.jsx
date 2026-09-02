@@ -7,6 +7,11 @@ import { waHref, mailHref } from '../lib/links'
 const storeTypes = ['Clothing store', 'Salon / barbershop', 'Café / bakery', 'Small retail', 'Other']
 const budgets = ['Under ₹3 lakh', '₹3 – 6 lakh', '₹6 – 12 lakh', '₹12 lakh +', 'Not sure yet']
 
+/* A form link still holding the placeholder ID is not a form. */
+const isPlaceholder = (url) => !url || url.includes('REPLACE_WITH_YOUR_FORM_ID')
+const formReady = booking.useEmbed && !isPlaceholder(booking.embedUrl)
+const linkReady = !isPlaceholder(booking.viewUrl)
+
 /* The Google Form iframe only mounts once it is close to the viewport,
    so it never blocks the first paint on a phone. */
 function EmbeddedForm() {
@@ -44,15 +49,17 @@ function EmbeddedForm() {
   )
 }
 
-/* No-backend fallback: composes the enquiry into a WhatsApp message
-   (or an email) so nothing is lost if the Google Form is not set up. */
+/* Fallback while the Google Form link is not in place: the same
+   questions, composed into an email (or a WhatsApp message when that
+   channel is switched on). No backend either way. */
 function EnquiryForm() {
   const [sent, setSent] = useState(false)
+  const viaWhatsapp = contact.showWhatsapp
 
   const compose = (form) => {
     const f = Object.fromEntries(new FormData(form).entries())
     return [
-      `New enquiry from the ${business.name} ${business.suffix} website`,
+      `New enquiry from the ${business.legalName} website`,
       '',
       `Name: ${f.name}`,
       `Phone: ${f.phone}`,
@@ -71,8 +78,14 @@ function EnquiryForm() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    const text = compose(e.currentTarget)
-    window.open(waHref(contact, text), '_blank', 'noopener')
+    const body = compose(e.currentTarget)
+    if (viaWhatsapp) {
+      window.open(waHref(contact, body), '_blank', 'noopener')
+    } else {
+      window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(
+        'Consultation request — ' + business.legalName,
+      )}&body=${encodeURIComponent(body)}`
+    }
     setSent(true)
   }
 
@@ -94,7 +107,7 @@ function EnquiryForm() {
 
         <div>
           <label className={label} htmlFor="bk-phone">Phone *</label>
-          <input id="bk-phone" name="phone" required type="tel" className={`${field} mt-2`} placeholder="+91 98450 12345" autoComplete="tel" />
+          <input id="bk-phone" name="phone" required type="tel" className={`${field} mt-2`} placeholder="+91 80506 90693" autoComplete="tel" />
         </div>
 
         <div>
@@ -156,29 +169,39 @@ function EnquiryForm() {
 
       <button
         type="submit"
-        className="group mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-charcoal px-6 py-4 font-medium text-cream transition-colors duration-300 hover:bg-gold sm:w-auto"
+        className="group mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-charcoal px-6 py-4 font-medium text-cream transition-colors duration-300 hover:bg-gold-ink sm:w-auto"
       >
-        <Icon.whatsapp className="h-[18px] w-[18px]" />
-        Send on WhatsApp
+        {viaWhatsapp ? (
+          <>
+            <Icon.whatsapp className="h-[18px] w-[18px]" />
+            Send on WhatsApp
+          </>
+        ) : (
+          <>
+            <Icon.mail className="h-[18px] w-[18px]" />
+            Send enquiry
+          </>
+        )}
       </button>
 
       <p className="mt-4 text-[.8125rem] leading-relaxed text-muted">
         {sent ? (
           <span className="flex items-center gap-1.5 text-gold-ink">
             <Icon.check className="h-4 w-4" />
-            WhatsApp should have opened with your details. If it did not,{' '}
-            <a className="link-underline font-medium text-charcoal" href={mailHref(contact)}>
-              email us instead
-            </a>
-            .
+            {viaWhatsapp
+              ? 'WhatsApp should have opened with your details.'
+              : 'Your email app should have opened with the details filled in — press send.'}
           </span>
+        ) : viaWhatsapp ? (
+          <>This opens WhatsApp with your answers filled in — review and hit send.</>
         ) : (
           <>
-            This opens WhatsApp with your answers filled in — review and hit send. Prefer
-            email?{' '}
+            This opens your email app with the answers filled in — review and press send.
+            Or write to{' '}
             <a className="link-underline font-medium text-charcoal" href={mailHref(contact)}>
               {contact.email}
             </a>
+            .
           </>
         )}
       </p>
@@ -220,22 +243,29 @@ export default function Booking() {
               ))}
             </Reveal>
 
-            <Reveal delay={260} className="mt-9 space-y-2.5 border-t border-cream/12 pt-7">
-              <a
-                href={booking.viewUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-cream/25 px-5 py-3.5 text-[.9375rem] font-medium text-cream transition-colors hover:border-cream/60 hover:bg-cream/5 sm:w-auto"
-              >
-                Open booking form
-                <Icon.arrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-              <p className="text-[.75rem] text-sand/70">
-                Opens in a new tab, in case the embedded form does not load.
-              </p>
-            </Reveal>
+            {linkReady && (
+              <Reveal delay={260} className="mt-9 space-y-2.5 border-t border-cream/12 pt-7">
+                <a
+                  href={booking.viewUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-cream/25 px-5 py-3.5 text-[.9375rem] font-medium text-cream transition-colors hover:border-cream/60 hover:bg-cream/5 sm:w-auto"
+                >
+                  Open booking form
+                  <Icon.arrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+                <p className="text-[.75rem] text-sand/70">
+                  Opens in a new tab, in case the embedded form does not load.
+                </p>
+              </Reveal>
+            )}
 
-            <Reveal delay={300} className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-[.875rem] text-sand/70">
+            <Reveal
+              delay={300}
+              className={`flex flex-wrap gap-x-6 gap-y-2 text-[.875rem] text-sand/70 ${
+                linkReady ? 'mt-7' : 'mt-9 border-t border-cream/12 pt-7'
+              }`}
+            >
               <a href={`tel:${contact.phone}`} className="link-underline -my-3 flex items-center gap-2 py-3">
                 <Icon.phone className="h-4 w-4 text-gold-soft" />
                 {contact.phoneLabel}
@@ -249,7 +279,7 @@ export default function Booking() {
 
           {/* form */}
           <Reveal delay={120} className="text-ink">
-            {booking.useEmbed ? <EmbeddedForm /> : <EnquiryForm />}
+            {formReady ? <EmbeddedForm /> : <EnquiryForm />}
           </Reveal>
         </div>
       </div>
