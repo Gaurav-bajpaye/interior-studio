@@ -26,7 +26,7 @@ export default function Testimonials() {
             delay={i * 80}
             className="flex w-[85vw] shrink-0 snap-start flex-col rounded-2xl border border-line bg-cream p-6 sm:w-auto"
           >
-            <div className="flex gap-0.5 text-clay" aria-label="Five out of five">
+            <div className="flex gap-0.5 text-gold-ink" aria-label="Five out of five">
               {[...Array(5)].map((_, s) => (
                 <Icon.star key={s} className="h-3.5 w-3.5" />
               ))}
@@ -37,7 +37,7 @@ export default function Testimonials() {
             </blockquote>
 
             <figcaption className="mt-6 flex items-center gap-3 border-t border-line pt-5">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-clay/10 font-display text-[.8125rem] font-medium text-clay">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold/10 font-display text-[.8125rem] font-medium text-gold-ink">
                 {initials(t.name)}
               </span>
               <span className="min-w-0">

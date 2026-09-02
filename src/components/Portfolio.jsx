@@ -42,7 +42,7 @@ export default function Portfolio() {
               }`}
             >
               {c}
-              <span className={`text-[.6875rem] ${on ? 'text-cream/55' : 'text-muted/70'}`}>
+              <span className={`text-[.6875rem] ${on ? 'text-cream/55' : 'text-muted'}`}>
                 {count(c)}
               </span>
             </button>
@@ -99,7 +99,7 @@ export default function Portfolio() {
                     </span>
                   </span>
                 </span>
-                <span className="flex h-10 w-10 shrink-0 translate-y-1 items-center justify-center rounded-full bg-cream/12 text-cream opacity-0 backdrop-blur-sm transition-all duration-500 group-hover:translate-y-0 group-hover:bg-clay group-hover:opacity-100">
+                <span className="flex h-10 w-10 shrink-0 translate-y-1 items-center justify-center rounded-full bg-cream/12 text-cream opacity-0 backdrop-blur-sm transition-all duration-500 group-hover:translate-y-0 group-hover:bg-gold group-hover:opacity-100">
                   <Icon.arrowUpRight className="h-[18px] w-[18px]" />
                 </span>
               </span>
@@ -110,9 +110,9 @@ export default function Portfolio() {
         <Reveal delay={120} className="min-h-[16rem]">
           <a
             href="#booking"
-            className="group flex h-full flex-col justify-between rounded-2xl border border-clay/25 bg-clay/8 p-6 transition-colors duration-500 hover:border-clay/50 hover:bg-clay/12"
+            className="group flex h-full flex-col justify-between rounded-2xl border border-gold/25 bg-gold/8 p-6 transition-colors duration-500 hover:border-gold/50 hover:bg-gold/12"
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-clay text-cream transition-transform duration-500 group-hover:rotate-45">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold text-cream transition-transform duration-500 group-hover:rotate-45">
               <Icon.arrowUpRight className="h-5 w-5" />
             </span>
             <span>
@@ -123,7 +123,7 @@ export default function Portfolio() {
                 Tell us the size, the trade and what is not working. We will tell you
                 honestly what the space can become.
               </span>
-              <span className="mt-4 inline-flex items-center gap-1.5 text-[.875rem] font-medium text-clay">
+              <span className="mt-4 inline-flex items-center gap-1.5 text-[.875rem] font-medium text-gold-ink">
                 Book a consultation
                 <Icon.arrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
@@ -141,7 +141,7 @@ export default function Portfolio() {
           className="group -my-3 inline-flex items-center gap-2 py-3 text-[.9375rem] font-medium text-charcoal link-underline"
         >
           Talk to us about yours
-          <Icon.arrow className="h-4 w-4 text-clay transition-transform duration-300 group-hover:translate-x-1" />
+          <Icon.arrow className="h-4 w-4 text-gold-ink transition-transform duration-300 group-hover:translate-x-1" />
         </a>
       </Reveal>
 

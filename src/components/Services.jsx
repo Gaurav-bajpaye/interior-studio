@@ -23,19 +23,19 @@ export default function Services() {
             >
               <span
                 aria-hidden
-                className="absolute left-0 top-0 h-px w-full origin-left scale-x-0 bg-clay transition-transform duration-500 ease-[cubic-bezier(.16,.84,.28,1)] group-hover:scale-x-100"
+                className="absolute left-0 top-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-500 ease-[cubic-bezier(.16,.84,.28,1)] group-hover:scale-x-100"
               />
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-shell text-clay transition-colors duration-500 group-hover:bg-clay group-hover:text-cream">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-shell text-gold-ink transition-colors duration-500 group-hover:bg-gold group-hover:text-cream">
                 <Glyph className="h-[22px] w-[22px]" />
               </span>
 
               <h3 className="mt-6 text-[1.1875rem] font-medium leading-snug">{s.title}</h3>
               <p className="mt-3 text-[.9375rem] leading-relaxed text-muted">{s.text}</p>
 
-              <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2 border-t border-line/80 pt-5 text-[.8125rem] text-ink/70">
+              <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-2 border-t border-line/80 pt-5 text-[.8125rem] text-ink/80">
                 {s.points.map((p) => (
                   <li key={p} className="flex items-center gap-1.5">
-                    <Icon.check className="h-3.5 w-3.5 text-clay/70" />
+                    <Icon.check className="h-3.5 w-3.5 text-gold-ink/70" />
                     {p}
                   </li>
                 ))}

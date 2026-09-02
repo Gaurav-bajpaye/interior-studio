@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "oxlint",
     "images": "python3 scripts/build-images.py",
-    "brand": "python3 scripts/build-brand.py"
+    "brand": "python3 scripts/build-brand.py",
+    "mark": "python3 scripts/build-mark.py"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

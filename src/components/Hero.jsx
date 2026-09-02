@@ -27,8 +27,8 @@ export default function Hero() {
           {/* ---------------- copy ---------------- */}
           <div className="max-w-xl">
             <div className="animate-rise inline-flex items-center gap-2.5 rounded-full border border-line bg-cream/70 py-1.5 pl-2 pr-4">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-clay/12">
-                <span className="h-1.5 w-1.5 rounded-full bg-clay" />
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold/12">
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               </span>
               <span className="text-[.75rem] font-medium tracking-wide text-ink/80">
                 Retail interior studio · {business.city}
@@ -42,7 +42,7 @@ export default function Hero() {
               Transform your store into
               <span className="relative mx-2 inline-block">
                 <em
-                  className="not-italic text-clay"
+                  className="not-italic text-gold-ink"
                   style={{ fontVariationSettings: '"SOFT" 20, "WONK" 1', fontStyle: 'italic' }}
                 >
                   a space
@@ -66,7 +66,7 @@ export default function Hero() {
             >
               <a
                 href="#booking"
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-charcoal px-7 py-4 font-medium text-cream shadow-soft transition-all duration-300 hover:bg-clay hover:shadow-lift"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-charcoal px-7 py-4 font-medium text-cream shadow-soft transition-all duration-300 hover:bg-gold hover:shadow-lift"
               >
                 Schedule a meeting
                 <Icon.arrow className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-1" />
@@ -111,7 +111,7 @@ export default function Hero() {
               {/* keyline echoing the arch, offset like a drawing overlay */}
               <div
                 aria-hidden
-                className="arch pointer-events-none absolute -bottom-4 -right-4 -top-4 left-4 border border-clay/25 md:-right-6 md:left-6"
+                className="arch pointer-events-none absolute -bottom-4 -right-4 -top-4 left-4 border border-gold/25 md:-right-6 md:left-6"
               />
             </div>
 
@@ -151,8 +151,8 @@ export default function Hero() {
                 'Store expansions',
               ].map((t) => (
                 <span key={`${dup}-${t}`} className="flex items-center gap-8">
-                  <span className="text-[.8125rem] font-medium tracking-wide text-ink/70">{t}</span>
-                  <span className="h-1 w-1 rounded-full bg-clay/50" />
+                  <span className="text-[.8125rem] font-medium tracking-wide text-ink/80">{t}</span>
+                  <span className="h-1 w-1 rounded-full bg-gold/50" />
                 </span>
               )),
             )}

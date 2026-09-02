@@ -77,7 +77,7 @@ function EnquiryForm() {
   }
 
   const field =
-    'w-full rounded-lg border border-line bg-cream px-3.5 py-3 text-[.9375rem] text-ink placeholder:text-muted/60 transition-colors focus:border-clay focus:outline-none focus:ring-2 focus:ring-clay/15'
+    'w-full rounded-lg border border-line bg-cream px-3.5 py-3 text-[.9375rem] text-ink placeholder:text-muted transition-colors focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/15'
   const label = 'block text-[.75rem] font-semibold uppercase tracking-[.1em] text-muted'
 
   return (
@@ -156,7 +156,7 @@ function EnquiryForm() {
 
       <button
         type="submit"
-        className="group mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-charcoal px-6 py-4 font-medium text-cream transition-colors duration-300 hover:bg-clay sm:w-auto"
+        className="group mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-charcoal px-6 py-4 font-medium text-cream transition-colors duration-300 hover:bg-gold sm:w-auto"
       >
         <Icon.whatsapp className="h-[18px] w-[18px]" />
         Send on WhatsApp
@@ -164,7 +164,7 @@ function EnquiryForm() {
 
       <p className="mt-4 text-[.8125rem] leading-relaxed text-muted">
         {sent ? (
-          <span className="flex items-center gap-1.5 text-olive">
+          <span className="flex items-center gap-1.5 text-gold-ink">
             <Icon.check className="h-4 w-4" />
             WhatsApp should have opened with your details. If it did not,{' '}
             <a className="link-underline font-medium text-charcoal" href={mailHref(contact)}>
@@ -194,8 +194,8 @@ export default function Booking() {
           {/* left rail */}
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal className="flex items-center gap-3">
-              <span className="eyebrow text-clay-soft">Schedule a meeting</span>
-              <span className="h-px w-10 bg-clay-soft/40" />
+              <span className="eyebrow text-gold-soft">Schedule a meeting</span>
+              <span className="h-px w-10 bg-gold-soft/40" />
             </Reveal>
 
             <Reveal
@@ -214,7 +214,7 @@ export default function Booking() {
             <Reveal delay={200} className="mt-8 space-y-3.5">
               {booking.expect.map((e) => (
                 <div key={e} className="flex gap-3 text-[.9375rem] text-sand/85">
-                  <Icon.check className="mt-0.5 h-4 w-4 shrink-0 text-clay-soft" />
+                  <Icon.check className="mt-0.5 h-4 w-4 shrink-0 text-gold-soft" />
                   {e}
                 </div>
               ))}
@@ -230,18 +230,18 @@ export default function Booking() {
                 Open booking form
                 <Icon.arrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
-              <p className="text-[.75rem] text-sand/50">
+              <p className="text-[.75rem] text-sand/70">
                 Opens in a new tab, in case the embedded form does not load.
               </p>
             </Reveal>
 
             <Reveal delay={300} className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-[.875rem] text-sand/70">
               <a href={`tel:${contact.phone}`} className="link-underline -my-3 flex items-center gap-2 py-3">
-                <Icon.phone className="h-4 w-4 text-clay-soft" />
+                <Icon.phone className="h-4 w-4 text-gold-soft" />
                 {contact.phoneLabel}
               </a>
               <span className="flex items-center gap-2">
-                <Icon.clock className="h-4 w-4 text-clay-soft" />
+                <Icon.clock className="h-4 w-4 text-gold-soft" />
                 {contact.hours}
               </span>
             </Reveal>

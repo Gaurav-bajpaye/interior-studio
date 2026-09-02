@@ -83,7 +83,7 @@ export default function Header() {
               href={waHref(contact)}
               target="_blank"
               rel="noreferrer noopener"
-              className="hidden h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-clay hover:bg-clay hover:text-cream sm:flex"
+              className="hidden h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-gold hover:bg-gold hover:text-cream sm:flex"
               aria-label="Chat with us on WhatsApp"
               title="WhatsApp"
             >
@@ -92,7 +92,7 @@ export default function Header() {
 
             <a
               href="#booking"
-              className="group hidden items-center gap-2 rounded-full bg-charcoal px-5 py-2.5 text-[.875rem] font-medium text-cream transition-all duration-300 hover:bg-clay sm:inline-flex"
+              className="group hidden items-center gap-2 rounded-full bg-charcoal px-5 py-2.5 text-[.875rem] font-medium text-cream transition-all duration-300 hover:bg-gold sm:inline-flex"
             >
               Book a consultation
               <Icon.arrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -158,7 +158,7 @@ export default function Header() {
                       open ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
                     }`}
                   >
-                    <span className="font-sans text-[.625rem] font-semibold tracking-[.2em] text-clay">
+                    <span className="font-sans text-[.625rem] font-semibold tracking-[.2em] text-gold-ink">
                       0{i + 1}
                     </span>
                     {l.label}

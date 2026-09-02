@@ -99,7 +99,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
             <button
               type="button"
               onClick={onClose}
-              className="ml-1 flex h-11 w-11 items-center justify-center rounded-full bg-charcoal text-cream transition-colors hover:bg-clay sm:h-9 sm:w-9"
+              className="ml-1 flex h-11 w-11 items-center justify-center rounded-full bg-charcoal text-cream transition-colors hover:bg-gold sm:h-9 sm:w-9"
               aria-label="Close"
             >
               <Icon.close className="h-[18px] w-[18px]" />
@@ -114,7 +114,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
               <>
                 <BeforeAfter before={project.before} after={project.photo} alt={project.name} />
                 <p className="mt-2.5 flex items-center gap-1.5 text-[.75rem] text-muted">
-                  <Icon.drag className="h-3.5 w-3.5 text-clay" />
+                  <Icon.drag className="h-3.5 w-3.5 text-gold-ink" />
                   Drag the handle to see the space before we started.
                 </p>
               </>
@@ -147,7 +147,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
                       aria-label={`View photo ${i + 1}`}
                       aria-current={shot === i}
                       className={`overflow-hidden rounded-lg border-2 transition-colors ${
-                        shot === i ? 'border-clay' : 'border-transparent hover:border-line'
+                        shot === i ? 'border-gold' : 'border-transparent hover:border-line'
                       }`}
                     >
                       <Img
@@ -179,7 +179,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
               <ul className="mt-6 space-y-2.5 rounded-xl bg-shell/70 p-5">
                 {project.highlights.map((h) => (
                   <li key={h} className="flex gap-2.5 text-[.9375rem] text-ink">
-                    <Icon.check className="mt-0.5 h-4 w-4 shrink-0 text-clay" />
+                    <Icon.check className="mt-0.5 h-4 w-4 shrink-0 text-gold-ink" />
                     {h}
                   </li>
                 ))}
@@ -201,7 +201,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
               <a
                 href="#booking"
                 onClick={onClose}
-                className="group inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-charcoal px-5 py-3.5 text-[.9375rem] font-medium text-cream transition-colors hover:bg-clay"
+                className="group inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-charcoal px-5 py-3.5 text-[.9375rem] font-medium text-cream transition-colors hover:bg-gold"
               >
                 Book a similar project
                 <Icon.arrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

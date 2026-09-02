@@ -22,7 +22,7 @@ export default function Section({
             {eyebrow && (
               <Reveal className="flex items-center gap-3" style={{ justifyContent: align === 'center' ? 'center' : undefined }}>
                 <span className="eyebrow">{eyebrow}</span>
-                <span className="h-px w-10 origin-left bg-clay/40" />
+                <span className="h-px w-10 origin-left bg-gold/40" />
               </Reveal>
             )}
             {title && (

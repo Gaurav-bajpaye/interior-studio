@@ -28,7 +28,7 @@ export default function Process() {
               className="group relative flex gap-5 lg:block"
             >
               <div className="relative shrink-0">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-cream font-display text-[.8125rem] font-medium text-clay transition-colors duration-500 group-hover:border-clay group-hover:bg-clay group-hover:text-cream">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-cream font-display text-[.8125rem] font-medium text-gold-ink transition-colors duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-cream">
                   {s.n}
                 </span>
               </div>
@@ -57,7 +57,7 @@ export default function Process() {
         </div>
         <a
           href="#booking"
-          className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-charcoal px-6 py-3.5 font-medium text-cream transition-colors duration-300 hover:bg-clay"
+          className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-charcoal px-6 py-3.5 font-medium text-cream transition-colors duration-300 hover:bg-gold"
         >
           Book a consultation
           <Icon.arrow className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-1" />

@@ -22,7 +22,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={s.label}
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/18 sm:h-10 sm:w-10 text-sand/80 transition-colors hover:border-clay-soft hover:bg-clay hover:text-cream"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/18 sm:h-10 sm:w-10 text-sand/80 transition-colors hover:border-gold-soft hover:bg-gold hover:text-cream"
                 >
                   {(s.label === 'Instagram' && <Icon.instagram className="h-[18px] w-[18px]" />) ||
                     (s.label === 'Pinterest' && <Icon.pinterest className="h-[18px] w-[18px]" />) ||
@@ -95,7 +95,7 @@ export default function Footer() {
                     WhatsApp
                   </a>
                 </li>
-                <li className="pt-3 leading-relaxed text-sand/55 sm:pt-1">
+                <li className="pt-3 leading-relaxed text-sand/70 sm:pt-1">
                   {contact.addressLines.map((l) => (
                     <span key={l} className="block">
                       {l}
@@ -107,7 +107,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 py-7 text-[.8125rem] text-sand/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 py-7 text-[.8125rem] text-sand/70 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {business.legalName}. All rights reserved.
           </p>

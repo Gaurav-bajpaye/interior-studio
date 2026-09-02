@@ -27,7 +27,7 @@ export default function ScrollProgress() {
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-px" aria-hidden>
       <div
-        className="h-full origin-left bg-clay/70 transition-transform duration-150 ease-out"
+        className="h-full origin-left bg-gold/70 transition-transform duration-150 ease-out"
         style={{ transform: `scaleX(${p})` }}
       />
     </div>

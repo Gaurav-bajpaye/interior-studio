@@ -46,9 +46,9 @@ export default function Contact() {
             <a
               href={c.href}
               {...(c.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
-              className="group flex h-full flex-col rounded-2xl border border-line bg-cream p-6 transition-all duration-400 hover:-translate-y-0.5 hover:border-clay/40 hover:shadow-soft"
+              className="group flex h-full flex-col rounded-2xl border border-line bg-cream p-6 transition-all duration-400 hover:-translate-y-0.5 hover:border-gold/40 hover:shadow-soft"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-shell text-clay transition-colors duration-400 group-hover:bg-clay group-hover:text-cream">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-shell text-gold-ink transition-colors duration-400 group-hover:bg-gold group-hover:text-cream">
                 <c.icon className="h-5 w-5" />
               </span>
               <span className="mt-5 text-[.6875rem] font-semibold uppercase tracking-[.14em] text-muted">
@@ -66,7 +66,7 @@ export default function Contact() {
       {/* WhatsApp band */}
       <Reveal
         delay={140}
-        className="mt-5 flex flex-col items-start gap-5 rounded-2xl bg-olive/10 p-6 sm:flex-row sm:items-center sm:justify-between md:p-8"
+        className="mt-5 flex flex-col items-start gap-5 rounded-2xl bg-shell p-6 sm:flex-row sm:items-center sm:justify-between md:p-8"
       >
         <div className="flex items-center gap-4">
           <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#25D366]/15 text-[#1FA855]">
@@ -83,7 +83,7 @@ export default function Contact() {
           href={waHref(contact)}
           target="_blank"
           rel="noreferrer noopener"
-          className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-charcoal px-6 py-3.5 font-medium text-cream transition-colors duration-300 hover:bg-clay"
+          className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-charcoal px-6 py-3.5 font-medium text-cream transition-colors duration-300 hover:bg-gold"
         >
           Start a chat
           <Icon.arrow className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-1" />
@@ -103,7 +103,7 @@ export default function Contact() {
               rel="noreferrer noopener"
               className="group inline-flex min-h-11 items-center gap-2 rounded-full border border-line px-4 py-2 text-[.875rem] text-ink/80 transition-colors hover:border-charcoal/40 hover:text-charcoal"
             >
-              <Glyph className="h-4 w-4 text-clay" />
+              <Glyph className="h-4 w-4 text-gold-ink" />
               {s.handle}
             </a>
           )

@@ -102,18 +102,39 @@ scripts/
 
 ## Design
 
-Warm neutral ground (`cream` / `shell` / `sand`), charcoal text, a single
-terracotta accent (`clay`) with olive as a quiet second. Display type is
-Fraunces, body is Inter. Tokens are defined once in
-[`src/styles.css`](src/styles.css) under `@theme` — change them there and the
-whole site follows.
+Ivory ground, navy ink, gold accent — taken straight from the identity.
+Tokens are defined once in [`src/styles.css`](src/styles.css) under
+`@theme`, so changing them there moves the whole site.
 
-The arch — a shopfront doorway — is the recurring motif: it's the logo mark, the
-frame around the hero and About photographs, and the shape of the favicon.
+| Token | Hex | Used for |
+| --- | --- | --- |
+| `navy` / `charcoal` | `#16273F` | Headings, dark sections, buttons |
+| `ink` | `#2B3B52` | Body text |
+| `muted` | `#5F6B7C` | Secondary text |
+| `gold` | `#B78D4A` | The mark, fills, rules, icons |
+| `gold-ink` | `#8A6830` | Gold **text** on the ivory ground |
+| `gold-soft` | `#CBA765` | Gold on navy |
+| `cream` / `shell` / `sand` | `#FCFAF6` / `#F4F0E8` / `#E7E0D3` | Grounds |
 
-Accessibility and motion: every interactive element is a real button or link
-with a visible focus ring, the modal traps Escape and restores body scroll, and
-all scroll animations collapse under `prefers-reduced-motion`.
+Two golds is deliberate: the brand gold only reaches 2.9:1 on ivory,
+well under the 4.5:1 WCAG AA needs for text, so anything set in gold
+type uses `gold-ink` while graphics keep the brand value. The logotype
+itself keeps the brand gold — logos are exempt, and it should match
+your printed collateral.
+
+Display type is Fraunces, body is Inter.
+
+The **MS monogram** is composed from Didot outlines with the S set
+behind the M and a four-pane gold window under the apex, so the mark
+reads as a building rather than two letters. It is drawn in code
+(`Logo.jsx`) so it recolours for the light header and the navy footer
+from one source — see [`public/brand/README.md`](public/brand/README.md)
+to swap in your own artwork files.
+
+Accessibility and motion: every interactive element is a real button or
+link with a visible focus ring, touch targets meet 44px, the modal traps
+Escape and restores body scroll, and all scroll animations collapse
+under `prefers-reduced-motion`.
 
 ## Deploying
 

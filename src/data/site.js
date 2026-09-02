@@ -12,12 +12,25 @@ export const business = {
   legalName: 'Miraj Spaces',
   domain: 'mirajspaces.com',
   url: 'https://mirajspaces.com/',
-  tagline: 'Retail interiors for small businesses',
+  tagline: 'Design · Execute · Transform',
   city: 'Bengaluru',
   // Short description used in the footer + SEO meta
   blurb:
     'We design, renovate and expand small commercial spaces — clothing stores, salons, cafés and neighbourhood retail — so they work harder for the people who run them.',
   foundedYear: 2019,
+}
+
+/* --- 1b. Brand artwork -------------------------------------------
+   The MS monogram and wordmark are drawn in code (see Logo.jsx), so
+   they stay crisp at every size and recolour for light and dark
+   sections. To use your original artwork files instead, drop them in
+   /public/brand and set the paths below — see public/brand/README.md.
+
+   markArtwork  replaces just the monogram (square-ish crop)
+   fullArtwork  replaces the whole header lockup (mark + wordmark)   */
+export const brand = {
+  markArtwork: null,   // e.g. '/brand/ms-monogram.svg'
+  fullArtwork: null,   // e.g. '/brand/miraj-spaces-logo.svg'
 }
 
 /* --- 2. Contact -------------------------------------------------- */

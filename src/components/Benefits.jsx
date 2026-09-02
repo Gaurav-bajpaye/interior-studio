@@ -7,14 +7,14 @@ export default function Benefits() {
     <section className="grain relative overflow-hidden bg-charcoal py-20 text-cream md:py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-32 top-1/2 h-[30rem] w-[30rem] -translate-y-1/2 rounded-full bg-clay/12 blur-3xl"
+        className="pointer-events-none absolute -right-32 top-1/2 h-[30rem] w-[30rem] -translate-y-1/2 rounded-full bg-gold/12 blur-3xl"
       />
       <div className="shell relative">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1fr)] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal className="flex items-center gap-3">
-              <span className="eyebrow text-clay-soft">Why choose us</span>
-              <span className="h-px w-10 bg-clay-soft/40" />
+              <span className="eyebrow text-gold-soft">Why choose us</span>
+              <span className="h-px w-10 bg-gold-soft/40" />
             </Reveal>
             <Reveal
               as="h2"
@@ -49,11 +49,11 @@ export default function Benefits() {
                 delay={i * 80}
                 className="group flex gap-6 border-b border-cream/12 py-7 first:pt-0 last:border-0"
               >
-                <span className="mt-1 font-display text-[.9375rem] text-clay-soft">
+                <span className="mt-1 font-display text-[.9375rem] text-gold-soft">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
-                  <h3 className="text-[1.25rem] font-medium text-cream transition-colors duration-300 group-hover:text-clay-soft">
+                  <h3 className="text-[1.25rem] font-medium text-cream transition-colors duration-300 group-hover:text-gold-soft">
                     {b.title}
                   </h3>
                   <p className="mt-2.5 max-w-lg leading-relaxed text-sand/65">{b.text}</p>

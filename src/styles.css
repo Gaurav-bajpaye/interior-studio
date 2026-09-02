@@ -4,19 +4,30 @@
    Design tokens — warm neutral base, charcoal ink, terracotta accent
    --------------------------------------------------------------- */
 @theme {
-  --color-cream: #FCF9F4;
-  --color-shell: #F5EEE4;
-  --color-sand: #EADFCF;
-  --color-line: #E2D6C4;
+  /* Ivory ground — the identity sits on white, so the page keeps a
+     warm off-white rather than competing with the gold. */
+  --color-cream: #FCFAF6;
+  --color-shell: #F4F0E8;
+  --color-sand: #E7E0D3;
+  --color-line: #E1D9CB;
 
-  --color-charcoal: #1B1917;
-  --color-ink: #33302B;
-  --color-muted: #7C7367;
+  /* Navy from the mark, carried through headings, dark sections and
+     buttons. `charcoal` is kept as an alias so nothing reads as a
+     different colour system half-way down the page. */
+  --color-navy: #16273F;
+  --color-charcoal: #16273F;
+  --color-ink: #2B3B52;
+  --color-muted: #5F6B7C;
 
-  --color-clay: #B5542E;
-  --color-clay-soft: #C9764F;
-  --color-clay-dark: #8E3F20;
-  --color-olive: #5A6349;
+  /* Gold from the mark. `gold` is the brand value and is used for
+     fills, rules, icons and the monogram itself. `gold-ink` is the
+     darkened version for gold *text* on the ivory ground — the brand
+     gold only reaches 2.9:1 there, well under AA. `gold-soft` is the
+     lifted version that sits on navy. */
+  --color-gold: #B78D4A;
+  --color-gold-ink: #8A6830;
+  --color-gold-soft: #CBA765;
+  --color-gold-dark: #8A6830;
 
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -58,12 +69,12 @@
   p { text-wrap: pretty; }
 
   ::selection {
-    background: var(--color-clay);
+    background: var(--color-gold);
     color: #fff;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-clay);
+    outline: 2px solid var(--color-gold);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -115,7 +126,7 @@
   font-weight: 600;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--color-clay);
+  color: var(--color-gold-ink);
 }
 
 /* Animated underline for nav + text links */

@@ -41,7 +41,7 @@ export default function About() {
           <div>
             <Reveal className="flex items-center gap-3">
               <span className="eyebrow">About the studio</span>
-              <span className="h-px w-10 bg-clay/40" />
+              <span className="h-px w-10 bg-gold/40" />
             </Reveal>
 
             <Reveal
@@ -119,7 +119,7 @@ export default function About() {
                 className="group -my-3 inline-flex items-center gap-2 py-3 text-[.9375rem] font-medium text-charcoal link-underline"
               >
                 Meet us about your shop
-                <Icon.arrow className="h-4 w-4 text-clay transition-transform duration-300 group-hover:translate-x-1" />
+                <Icon.arrow className="h-4 w-4 text-gold-ink transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </Reveal>
           </div>
