@@ -70,7 +70,14 @@ export const contact = {
    With no endpoint set the same form falls back to composing an email,
    so the section keeps working either way.                            */
 export const booking = {
-  sheetEndpoint: '',        // TODO paste the Apps Script /exec URL here
+  /* Held back until the deployment is public. The URL below answers with
+     a mirajspaces.com sign-in page, which every visitor would hit:
+     re-deploy with "Who has access: Anyone", then paste it back in and
+     run `npm run check:sheet`. Empty = the form emails instead, so the
+     page keeps working in the meantime.
+
+     https://script.google.com/a/macros/mirajspaces.com/s/AKfycbwOeYHZ-QpPSha_kd6Rl11ihfE7_nlYXNSlV8BMi2rz34OFZ21GDO4uRMsyKwgo1USH/exec  */
+  sheetEndpoint: '',
   sheetName: 'Enquiries',   // tab the script writes to; it creates it if missing
 
   /* Optional alternative: embed a Google Form instead of the form above.

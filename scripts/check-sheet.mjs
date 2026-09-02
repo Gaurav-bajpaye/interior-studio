@@ -45,6 +45,14 @@ if (!DEPLOYED.test(url)) {
 }
 ok('URL looks like a web-app deployment')
 
+/* Google answers a locked-down deployment by redirecting to a sign-in
+   page rather than returning an error, so the landing URL is the tell. */
+const signInDomain = (res) => {
+  const m = /\/a\/([^/]+)\/ServiceLogin/.exec(res.url || '')
+  if (m) return m[1]
+  return /ServiceLogin|accounts\.google\.com/.test(res.url || '') ? '' : null
+}
+
 const read = async (res) => {
   const text = await res.text()
   try {
@@ -58,8 +66,31 @@ let failed = false
 
 try {
   const res = await fetch(url, { redirect: 'follow' })
-  const out = await read(res)
-  if (out.ok) {
+  const domain = signInDomain(res)
+  const out = domain === null ? await read(res) : { ok: false }
+
+  if (domain !== null) {
+    failed = true
+    if (domain) {
+      bad(`Locked to the ${domain} domain`)
+      info(`Google is sending visitors to a ${domain} sign-in page, so the`)
+      info('deployment is set to "Anyone within" your organisation rather')
+      info('than "Anyone". Shop owners filling the form are not signed in.')
+      info('')
+      info('Deploy -> Manage deployments -> pencil icon ->')
+      info('  Who has access:  Anyone')
+      info('  Version:         New version')
+      info('then Deploy, and re-copy the Web app URL.')
+      info('')
+      info('If "Anyone" is missing from the dropdown, a Workspace admin has')
+      info('blocked publishing outside the domain: Admin console -> Apps ->')
+      info('Google Workspace -> Drive and Docs -> Sharing settings.')
+    } else {
+      bad('Google asked for a sign-in')
+      info('The deployment is not public. Re-deploy with')
+      info('"Who has access: Anyone" — visitors are not signed in.')
+    }
+  } else if (out.ok) {
     ok(`Endpoint is live — writing to the "${out.sheet ?? 'default'}" tab`)
   } else {
     failed = true
@@ -72,9 +103,8 @@ try {
       info('deployment. In Apps Script: Deploy -> Manage deployments,')
       info('open the active Web app and copy its /exec URL.')
     } else if (res.status === 401 || res.status === 403 || signin) {
-      bad(`Google asked for a sign-in (${res.status})`)
-      info('The deployment is not public. Re-deploy with')
-      info('"Who has access: Anyone" — visitors are not signed in.')
+      bad(`Access denied (${res.status})`)
+      info('Re-deploy with "Who has access: Anyone".')
     } else if (html) {
       bad(`Got a web page back, not JSON (${res.status})`)
       info('Usually a script error. Open the /exec URL in a private')
