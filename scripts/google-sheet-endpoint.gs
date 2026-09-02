@@ -15,6 +15,14 @@
  * Re-deploy (Deploy -> Manage deployments -> edit -> New version) after
  * any change here, or the live site keeps hitting the old version.
  *
+ * WORKSPACE ACCOUNTS: "Who has access" lives inside the deployment
+ * dialog, not in the script file's Drive sharing. Setting the file to
+ * "Anyone with the link" in Drive does nothing for the web app. In the
+ * dropdown, "Anyone with Google Account" is also not enough — a shop
+ * owner filling the form is not signed in at all. It has to be plain
+ * "Anyone". If that option is missing, a Workspace admin has blocked
+ * publishing outside the domain.
+ *
  * "Anyone" means the URL accepts writes from anywhere, which is what
  * makes a backend-free form possible. The honeypot below turns away
  * naive bots; if the sheet ever starts collecting junk, add a shared

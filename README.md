@@ -77,6 +77,15 @@ date, details, and a Status column for you to work through.
 After editing the script, re-deploy it (**Deploy → Manage deployments →
 edit → New version**) or the site keeps hitting the old copy.
 
+On a Google Workspace account, watch two traps. **Who has access** lives
+in the deployment dialog — changing the script file's Drive sharing to
+*Anyone with the link* does nothing for the web app. And *Anyone with
+Google Account* is not enough either: a shop owner filling the form is
+not signed in at all, so the setting has to be plain **Anyone**. If that
+option is missing from the dropdown, an admin has blocked publishing
+outside the domain (Admin console → Apps → Google Workspace → Drive and
+Docs → Sharing settings).
+
 On the site the form shows a spinner while sending, swaps to a thank-you
 panel on success, and on failure keeps everything the visitor typed and
 offers the phone number and email instead. A hidden honeypot field turns
