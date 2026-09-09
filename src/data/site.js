@@ -58,7 +58,7 @@ export const contact = {
      If that changes, add addressLines + mapsUrl back and the contact
      section will show a third card for it again. */
   basedNote: 'We work across India and come to your space for the survey and site visits.',
-  hours: 'Mon – Sat · 10:00 to 7:00',
+  hours: 'Available 24 × 7',
   /* Add a row here and it appears in the contact section and the footer.
      Icons exist for Instagram, Pinterest and LinkedIn; anything else
      falls back to a generic arrow. */
