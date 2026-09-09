@@ -8,8 +8,7 @@ export default function Process() {
     <Section
       id="process"
       eyebrow="How it works"
-      title="Five steps, and you know the cost before the drawings are final"
-      intro="No part of this is a black box. You see the estimate at step three, and nothing is ordered until you have signed off on it."
+      title="Five steps from your vision to final space"
       className="bg-shell/50 py-20 md:py-28"
     >
       <div className="relative mt-14">
@@ -34,10 +33,7 @@ export default function Process() {
               </div>
 
               <div className="lg:mt-6 lg:pr-6">
-                <span className="text-[.6875rem] font-semibold uppercase tracking-[.14em] text-muted">
-                  {s.meta}
-                </span>
-                <h3 className="mt-2 text-[1.125rem] font-medium leading-snug">{s.title}</h3>
+                <h3 className="text-[1.125rem] font-medium leading-snug">{s.title}</h3>
                 <p className="mt-2.5 text-[.9375rem] leading-relaxed text-muted">{s.text}</p>
               </div>
             </Reveal>

@@ -2,12 +2,6 @@ import Img from './Img'
 import Icon from './Icons'
 import { business, projects } from '../data/site'
 
-const stats = [
-  { v: '60+', l: 'shops delivered' },
-  { v: '4–10', l: 'weeks on site' },
-  { v: '94%', l: 'on schedule' },
-]
-
 export default function Hero() {
   return (
     <section id="top" className="grain relative overflow-hidden bg-cream pt-[104px] md:pt-28">
@@ -30,7 +24,7 @@ export default function Hero() {
                 <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               </span>
               <span className="text-[.75rem] font-medium tracking-wide text-ink/80">
-                Retail interior studio · {business.city}
+                Interior studio · {business.reach}
               </span>
             </div>
 
@@ -38,25 +32,25 @@ export default function Hero() {
               className="animate-rise mt-6 text-[clamp(2.5rem,7.2vw,4.4rem)] font-medium leading-[1.02]"
               style={{ animationDelay: '90ms' }}
             >
-              Transform your store into
+              Transform spaces into
               <span className="relative mx-2 inline-block">
                 <em
                   className="not-italic text-gold-ink"
                   style={{ fontVariationSettings: '"SOFT" 20, "WONK" 1', fontStyle: 'italic' }}
                 >
-                  a space
+                  experiences
                 </em>
               </span>
-              customers love.
+              people love.
             </h1>
 
             <p
               className="animate-rise mt-6 max-w-lg text-[1.0625rem] leading-relaxed text-muted"
               style={{ animationDelay: '180ms' }}
             >
-              We design, renovate and expand small commercial spaces — clothing stores,
-              salons, cafés and neighbourhood retail. More stock, better flow, the same
-              rent.
+              We design, renovate and fit out retail stores, salons, cafés, cloud
+              kitchens and restaurants, alongside commercial and residential
+              renovation. Better flow, better rooms, work you can plan around.
             </p>
 
             <div
@@ -79,17 +73,6 @@ export default function Hero() {
               </a>
             </div>
 
-            <dl
-              className="animate-rise mt-12 flex flex-wrap gap-x-10 gap-y-5 border-t border-line pt-7"
-              style={{ animationDelay: '360ms' }}
-            >
-              {stats.map((s) => (
-                <div key={s.l}>
-                  <dt className="font-display text-2xl font-medium text-charcoal">{s.v}</dt>
-                  <dd className="mt-1 text-[.8125rem] text-muted">{s.l}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
 
           {/* ---------------- image ---------------- */}
@@ -100,7 +83,7 @@ export default function Hero() {
             >
               <Img
                 photo="hero-main"
-                alt="A completed clothing store interior with warm lighting and open display racks"
+                alt="A completed retail interior with warm lighting and open display shelving"
                 priority
                 width={1200}
                 ratio={1.24}
@@ -129,7 +112,7 @@ export default function Hero() {
             {/* floating credential chip */}
             <div className="absolute -top-3 right-2 hidden rounded-full border border-line bg-cream/90 px-4 py-2 shadow-soft backdrop-blur-sm md:block lg:-right-6">
               <span className="text-[.75rem] font-medium text-ink">
-                300 – 2,000 sq ft specialists
+                Design · Execute · Transform
               </span>
             </div>
           </div>
@@ -142,12 +125,13 @@ export default function Hero() {
           <div className="animate-marquee flex shrink-0 items-center gap-8 whitespace-nowrap pr-8">
             {[...Array(2)].map((_, dup) =>
               [
-                'Clothing stores',
+                'Retail stores',
                 'Salons & barbershops',
                 'Cafés & bakeries',
-                'Neighbourhood retail',
-                'Shopfronts & signage',
-                'Store expansions',
+                'Cloud kitchens',
+                'Restaurants',
+                'Commercial renovation',
+                'Residential renovation',
               ].map((t) => (
                 <span key={`${dup}-${t}`} className="flex items-center gap-8">
                   <span className="text-[.8125rem] font-medium tracking-wide text-ink/80">{t}</span>
@@ -158,7 +142,8 @@ export default function Hero() {
           </div>
         </div>
         <span className="sr-only">
-          We design clothing stores, salons, cafés, bakeries and neighbourhood retail.
+          We design retail stores, salons, cafés, cloud kitchens, restaurants, and
+          commercial and residential renovations.
         </span>
       </div>
     </section>

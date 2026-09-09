@@ -21,8 +21,7 @@ export default function Portfolio() {
     <Section
       id="work"
       eyebrow="Our work"
-      title="Shops we have designed, built and handed back"
-      intro="Every project below was a working small business. Most stayed open while we built."
+      title="Spaces we have built and handed back"
       className="py-20 md:py-28"
     >
       {/* filters */}

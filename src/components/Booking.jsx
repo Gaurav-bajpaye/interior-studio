@@ -4,7 +4,15 @@ import Icon from './Icons'
 import { booking, contact, business, services } from '../data/site'
 import { waHref, mailHref, mailProps } from '../lib/links'
 
-const storeTypes = ['Clothing store', 'Salon / barbershop', 'Café / bakery', 'Small retail', 'Other']
+const storeTypes = [
+  'Retail store',
+  'Salon / barbershop',
+  'Café / cloud kitchen',
+  'Restaurant',
+  'Commercial renovation',
+  'Residential renovation',
+  'Other',
+]
 const budgets = ['Under ₹3 lakh', '₹3 – 6 lakh', '₹6 – 12 lakh', '₹12 lakh +', 'Not sure yet']
 
 /* A link still holding a placeholder is not a link. */
@@ -133,7 +141,7 @@ function EnquiryForm() {
       `Name: ${data.name}`,
       `Phone: ${data.phone}`,
       data.email ? `Email: ${data.email}` : null,
-      `Store type: ${data.storeType}`,
+      `Space type: ${data.storeType}`,
       `Location: ${data.location}`,
       data.size ? `Approx. size: ${data.size} sq ft` : null,
       `Service needed: ${data.service}`,
@@ -240,7 +248,7 @@ function EnquiryForm() {
         </div>
 
         <div>
-          <label className={label} htmlFor="bk-store">Store type *</label>
+          <label className={label} htmlFor="bk-store">Space type *</label>
           <select id="bk-store" name="storeType" required defaultValue="" className={`${field} mt-2`}>
             <option value="" disabled>Choose one</option>
             {storeTypes.map((s) => <option key={s}>{s}</option>)}
@@ -248,7 +256,7 @@ function EnquiryForm() {
         </div>
 
         <div>
-          <label className={label} htmlFor="bk-loc">Store location *</label>
+          <label className={label} htmlFor="bk-loc">Location *</label>
           <input id="bk-loc" name="location" required className={`${field} mt-2`} placeholder="Indiranagar, Bengaluru" />
         </div>
 
@@ -379,7 +387,7 @@ export default function Booking() {
               delay={80}
               className="mt-5 text-[clamp(1.9rem,4.4vw,3rem)] font-medium leading-[1.08] text-cream"
             >
-              Tell us about your shop.
+              Tell us about your space.
             </Reveal>
 
             <Reveal as="p" delay={140} className="mt-5 max-w-sm leading-relaxed text-sand/70">

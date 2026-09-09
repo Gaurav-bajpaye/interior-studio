@@ -21,12 +21,12 @@ export default function Benefits() {
               delay={80}
               className="mt-5 text-[clamp(1.9rem,4.4vw,3.1rem)] font-medium leading-[1.08] text-cream"
             >
-              Small shops are not scaled-down showrooms.
+              The space has to work as hard as the business does.
             </Reveal>
             <Reveal as="p" delay={150} className="mt-5 max-w-md leading-relaxed text-sand/70">
-              A 400 sq ft store has to do everything a large one does — display, storage,
-              billing, staff, movement — with none of the slack. That constraint is the
-              whole job, and it is the only kind of job we take.
+              Display, storage, billing, staff, movement — a room has to carry all of
+              it, whether it is four hundred square feet or four thousand. Getting
+              that right is the whole job.
             </Reveal>
 
             <Reveal delay={220} className="mt-10 hidden lg:block">

@@ -65,23 +65,8 @@ export default function About() {
               ))}
             </div>
 
-            {/* philosophy */}
-            <Reveal delay={200} className="mt-10">
-              <h3 className="text-[.6875rem] font-semibold uppercase tracking-[.16em] text-charcoal">
-                How we think about it
-              </h3>
-              <dl className="mt-5 divide-y divide-line border-y border-line">
-                {about.philosophy.map((p) => (
-                  <div key={p.k} className="grid gap-1 py-4 sm:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] sm:gap-6">
-                    <dt className="font-display text-[1.0625rem] text-charcoal">{p.k}</dt>
-                    <dd className="text-[.9375rem] leading-relaxed text-muted">{p.v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Reveal>
-
             {/* specialties */}
-            <Reveal delay={240} className="mt-8 flex flex-wrap gap-2">
+            <Reveal delay={200} className="mt-10 flex flex-wrap gap-2">
               {about.specialties.map((s) => (
                 <span
                   key={s}
@@ -118,7 +103,7 @@ export default function About() {
                 href="#booking"
                 className="group -my-3 inline-flex items-center gap-2 py-3 text-[.9375rem] font-medium text-charcoal link-underline"
               >
-                Meet us about your shop
+                Contact us about your space
                 <Icon.arrow className="h-4 w-4 text-gold-ink transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </Reveal>

@@ -32,7 +32,7 @@ export default function Contact() {
       id="contact"
       eyebrow="Contact"
       title="Call or write to us"
-      intro={`Send a photo of your shop with a rough size and we can usually tell you
+      intro={`Send a photo of your space with a rough size and we can usually tell you
         straight away whether we are the right fit. ${contact.basedNote}`}
       className="py-20 md:py-28"
     >
@@ -74,7 +74,7 @@ export default function Contact() {
           </span>
           <div>
             <h3 className="text-[1.125rem] font-medium">
-              {contact.showWhatsapp ? 'Message us on WhatsApp' : 'Send us your shop details'}
+              {contact.showWhatsapp ? 'Message us on WhatsApp' : 'Send us your space details'}
             </h3>
             <p className="mt-1 text-[.875rem] text-muted">
               {contact.showWhatsapp

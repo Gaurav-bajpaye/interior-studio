@@ -14,9 +14,10 @@ export const business = {
   url: 'https://mirajspaces.com/',
   tagline: 'Design · Execute · Transform',
   city: 'Bengaluru',
+  reach: 'Pan India',
   // Short description used in the footer + SEO meta
   blurb:
-    'We design, renovate and expand small commercial spaces — clothing stores, salons, cafés and neighbourhood retail — so they work harder for the people who run them.',
+    'We design, renovate and fit out commercial and residential spaces — retail stores, salons, cafés, cloud kitchens and restaurants — across India.',
   foundedYear: 2019,
 }
 
@@ -56,7 +57,7 @@ export const contact = {
   /* No studio address — the practice runs remotely and goes to the shop.
      If that changes, add addressLines + mapsUrl back and the contact
      section will show a third card for it again. */
-  basedNote: 'We work remotely and come to your shop for the survey and site visits.',
+  basedNote: 'We work across India and come to your space for the survey and site visits.',
   hours: 'Mon – Sat · 10:00 to 7:00',
   /* Add a row here and it appears in the contact section and the footer.
      Icons exist for Instagram, Pinterest and LinkedIn; anything else
@@ -127,9 +128,9 @@ export const booking = {
 export const services = [
   {
     icon: 'blueprint',
-    title: 'New store interior design',
-    text: 'Ground-up design for a new shop — from the empty shell to the day you open the shutter.',
-    points: ['Concept & 3D views', 'Working drawings', 'Signage & shopfront'],
+    title: 'New space interior fit out',
+    text: 'From the empty shell to the space you are looking for.',
+    points: ['Concept 2D & 3D views', 'Working drawings', 'Signage & shopfront'],
   },
   {
     icon: 'expand',
@@ -139,7 +140,7 @@ export const services = [
   },
   {
     icon: 'layout',
-    title: 'Space planning & layout',
+    title: 'Space planning',
     text: 'Circulation, display density, billing and storage planned around how customers actually move.',
     points: ['Zoning plan', 'Fixture layout', 'Storage strategy'],
   },
@@ -169,13 +170,11 @@ export const services = [
    run  npm run images  (see scripts/build-images.py), or drop a file
    in /public and reference it by path, e.g.
    photo: '/projects/maara-after.jpg'  — the code accepts both.       */
-export const categories = ['All', 'Clothing', 'Salon', 'Café', 'Small Retail']
-
 export const projects = [
   {
     id: 'maara',
     name: 'Maara Label',
-    type: 'Clothing',
+    type: 'Retail',
     storeType: 'Womenswear boutique',
     location: 'Indiranagar, Bengaluru',
     size: '480 sq ft',
@@ -194,7 +193,7 @@ export const projects = [
   {
     id: 'thread-co',
     name: 'Thread & Co.',
-    type: 'Clothing',
+    type: 'Retail',
     storeType: 'Streetwear store',
     location: 'HSR Layout, Bengaluru',
     size: '620 sq ft',
@@ -289,7 +288,7 @@ export const projects = [
   {
     id: 'terra-home',
     name: 'Terra Home',
-    type: 'Small Retail',
+    type: 'Retail',
     storeType: 'Homeware store',
     location: 'Whitefield, Bengaluru',
     size: '820 sq ft',
@@ -308,7 +307,7 @@ export const projects = [
   {
     id: 'shelf-life',
     name: 'Shelf Life',
-    type: 'Small Retail',
+    type: 'Retail',
     storeType: 'Neighbourhood grocer',
     location: 'Basavanagudi, Bengaluru',
     size: '400 sq ft',
@@ -326,64 +325,65 @@ export const projects = [
   },
 ]
 
+/* Filter chips, taken from the projects above so a category can never
+   exist with nothing behind it. Add a restaurant project and a
+   Restaurant chip appears on its own. */
+export const categories = ['All', ...new Set(projects.map((p) => p.type))]
+
 /* --- 6. Why choose us -------------------------------------------- */
 export const benefits = [
   {
-    title: 'Built for small businesses',
-    text: 'We work at 300 to 2,000 sq ft. Small shops are not scaled-down showrooms — they need their own thinking.',
+    title: 'Built for all kinds of business',
+    text: 'From small to large scale businesses, we bring your vision to life.',
   },
   {
-    title: 'More out of less space',
+    title: 'More out of every square foot',
     text: 'Every project starts with a capacity question: how much more can this floor hold before it feels crowded?',
   },
   {
     title: 'Budget-honest solutions',
-    text: 'You get the estimate before the drawings are finalised, with the trade-offs named. No mid-project surprises.',
+    text: 'You get the estimate before the fit out starts. No mid-project surprises.',
   },
   {
     title: 'Timelines you can plan around',
-    text: 'A dated week-by-week schedule at handover of drawings, and a phasing plan if you cannot afford to shut.',
-  },
-  {
-    title: 'Designed to sell, not just to look good',
-    text: 'Sightlines, display density and billing flow are planned around footfall, dwell time and basket size.',
+    text: 'A dated week-by-week schedule at handover of your space.',
   },
 ]
 
 /* --- 7. Process --------------------------------------------------- */
 export const steps = [
-  { n: '01', title: 'Book a consultation', text: 'Fill in the form or give us a call. We reply within a working day and fix a shop visit.', meta: 'Day 1 · Free' },
-  { n: '02', title: 'Share the space', text: 'Measurements, photos, your stock list and what is not working today. We survey the site ourselves if you are in the city.', meta: 'Day 2–4' },
-  { n: '03', title: 'Concept & estimate', text: 'Layout options, a material board, 3D views of the key walls, and a line-item estimate with timelines.', meta: 'Day 5–12' },
-  { n: '04', title: 'Approve the design', text: 'Two rounds of revisions are included. We freeze drawings only once you are happy with the numbers.', meta: 'Day 13–18' },
-  { n: '05', title: 'Execution & handover', text: 'Vendors tendered, site supervised weekly, snag list closed before you get the keys back.', meta: '4–10 weeks' },
+  { n: '01', title: 'Book a consultation', text: 'Fill in the form or give us a call. We reply within a working day and fix a site visit.' },
+  { n: '02', title: 'Share the space', text: 'Measurements, photos and what is not working today. We survey the site ourselves wherever we can.' },
+  { n: '03', title: 'Concept & estimate', text: 'Layout options, a material board, 2D and 3D views of the key walls, and a line-item estimate.' },
+  { n: '04', title: 'Approve the design', text: 'Two rounds of revisions are included. We freeze drawings only once you are happy with the numbers.' },
+  { n: '05', title: 'Execution & handover', text: 'Vendors tendered, site supervised weekly, snag list closed before you get the keys back.' },
 ]
 
 /* --- 8. About ----------------------------------------------------- */
 export const about = {
   heading: 'We started with one 300 sq ft shop that had run out of room.',
   paragraphs: [
-    `${business.legalName} began in ${business.foundedYear} with a single brief: a womenswear shop in ${business.city} that had outgrown its floor but could not afford to move. Solving that — more stock, same rent, better shop — turned out to be the problem almost every small retailer has.`,
-    'Since then we have designed and delivered shops for clothing labels, salons, barbers, cafés, bakeries and neighbourhood grocers. Some were empty shells. Most were working businesses that had to stay open while we built around them.',
-    'We are deliberately a small studio. The person who visits your shop is the person who draws it and the person who stands on site when the carpenter has a question.',
+    `${business.legalName} began in ${business.foundedYear} with a single brief: a shop that had outgrown its floor but could not afford to move. Solving that — more usable space, same rent, a better room — turned out to be the problem almost every growing business has.`,
+    'Since then we have designed and delivered spaces for retail stores, salons, cafés, cloud kitchens and restaurants, alongside commercial and residential renovations. Some were empty shells. Most were working businesses that had to stay open while we built around them.',
+    'We are deliberately a small studio. The person who visits your space is the person who draws it and the person who stands on site when the carpenter has a question.',
   ],
-  philosophy: [
-    { k: 'Plan before you decorate', v: 'Layout, sightlines and storage first. Finishes are the last decision, not the first.' },
-    { k: 'Respect the rent', v: 'Every square foot is being paid for monthly. It should be earning.' },
-    { k: 'Build what can be maintained', v: 'Materials your staff can clean and your local carpenter can repair.' },
+  specialties: [
+    'Retail stores',
+    'Salons & barbershops',
+    'Cafés & cloud kitchens',
+    'Restaurants',
+    'Commercial renovation',
+    'Residential renovation',
   ],
-  specialties: ['Clothing & apparel', 'Salons & barbershops', 'Cafés & bakeries', 'Neighbourhood retail'],
-  /* The large About image. Swap this for a photo of you or your team —
-     drop the file in /public and point at it, e.g. '/founder.jpg'.     */
-  portrait: 'about-portrait',                                    // TODO founder / team photo
-  portraitAlt: 'Fitted storage and a reading chair in a completed store interior',
-  portraitCaption: 'Terra Home, Whitefield — fitted storage, week six.',
-  detail: 'about-detail',
+  // TODO replace with a real photo of you / your team: '/team/founder.jpg'
+  portrait: '1524758631624-e2822e304c36',
+  portraitCaption: 'Kalpak, SNN Raj Serenity, Begur.',
+  detail: '1621905251189-08b45d6a269e',
   founder: { name: 'A. Rao', role: `Principal designer, ${business.legalName}` }, // TODO
   stats: [
-    { value: '60+', label: 'Shops delivered' },
-    { value: '6', label: 'Years in retail interiors' },
-    { value: '300–2,000', label: 'Sq ft, our range' },
+    { value: 'Pan India', label: 'Where we work' },
+    { value: '6', label: 'Years in interiors' },
+    { value: 'Retail to residential', label: 'What we fit out' },
     { value: '94%', label: 'Handed over on schedule' },
   ],
 }

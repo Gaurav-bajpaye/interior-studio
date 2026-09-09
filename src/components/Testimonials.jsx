@@ -15,7 +15,7 @@ export default function Testimonials() {
   return (
     <Section
       eyebrow="Clients"
-      title="What shop owners say once the shutters open"
+      title="What clients say"
       className="bg-shell/50 py-20 md:py-28"
     >
       {/* horizontal snap on phones, grid from md up */}
