@@ -234,17 +234,21 @@ export const projects = [
     featured: false,
   },
   {
-    id: 'apartment-fitout',
-    name: 'Apartment fit-out',               // TODO the client's name
-    type: 'Residential renovation',
-    storeType: 'Full home fit-out',
+    /* Reclassified from residential: all four photographs are one
+       showroom floor — several sofa sets, dining sets and a bedroom
+       set staged in the same room, which is retail display rather
+       than somebody's home. */
+    id: 'home-store',
+    name: 'Furniture & home store',          // TODO the client's name
+    type: 'Retail stores',
+    storeType: 'Furniture & home retail',
     location: '',                            // TODO area, city
-    photo: 'apartment-1',
-    gallery: ['apartment-2', 'apartment-3', 'apartment-4'],
+    photo: 'home-store-1',
+    gallery: ['home-store-2', 'home-store-3', 'home-store-4'],
     summary:
-      'A whole flat taken through in one go — living room, bedroom, kitchen and dining.',
+      'A showroom floor broken into room-sets, so customers see the furniture the way they would live with it.',
     description:
-      'One palette of warm wood and off-white runs through every room so the flat reads as a single space rather than a set of them. The kitchen picks up a blue that reappears in the joinery elsewhere.',
+      'The floor is arranged as a series of room-sets rather than rows — living, dining, bedroom and a modular kitchen bay — each lit on its own track so a set can be relit when it is rebuilt. Sightlines stay open across the whole room from the entrance.',
     featured: false,
   },
   {
@@ -325,7 +329,10 @@ export const about = {
   portrait: 'about-portrait',
   portraitAlt:
     'A panelled lounge nook with built-in shelving and plants, from the Kalpak apartment.',
-  portraitCaption: 'Kalpak, SNN Raj Serenity, Begur.',
+  /* The video leads and the photograph is the inset, so the caption
+     names both in that order. */
+  mediaCaption: 'A walk through the beauty store fit-out.',
+  portraitCaption: 'Inset: Kalpak, SNN Raj Serenity, Begur.',
 }
 
 /* A five-second silent loop, shown in the About section. Trimmed from
@@ -340,33 +347,25 @@ export const studioVideo = {
 
 /* --- 9. Testimonials ---------------------------------------------- */
 export const testimonials = [
+  /* ⚠ THE QUOTES BELOW ARE STILL PLACEHOLDER TEXT — I WROTE THEM, NOT
+     YOUR CLIENTS. The names and projects are real; the words are not.
+     Replace each `quote` with what Tanishq and Sidhant actually said
+     before the site goes live, and get their nod on it. Publishing
+     invented words under a real person's name is the one thing on this
+     site that could genuinely embarrass you. */
   {
     quote:
-      'They found space I did not know I had. The shop holds a third more stock than before and somehow feels emptier. My billing queue disappeared.',
-    name: 'Meera K.',
-    shop: 'Maara Label',
-    role: 'Owner, womenswear boutique',
+      'They found space I did not know I had. The flat holds more than it did and somehow feels emptier, and the pooja unit is exactly what I had pictured.',
+    name: 'Tanishq Namvyar',
+    shop: 'Kalpak, SNN Raj Serenity, Begur',
+    role: '',
   },
   {
     quote:
-      'We stayed open through the whole renovation except one week. That mattered more to me than anything else, and they planned for it from the first drawing.',
-    name: 'Imran S.',
-    shop: 'The Fade Room',
-    role: 'Owner, barbershop',
-  },
-  {
-    quote:
-      'The estimate at the start and the final bill were within four percent of each other. Anyone who has built a café in this city will know how unusual that is.',
-    name: 'Divya R.',
-    shop: 'Atlas Coffee',
-    role: 'Founder, specialty café',
-  },
-  {
-    quote:
-      'My father ran this store for forty years. They changed the layout completely and he still recognises his shop. That took real listening.',
-    name: 'Suresh N.',
-    shop: 'Shelf Life',
-    role: 'Second-generation owner',
+      'The estimate at the start and the final bill were within a few percent of each other. Anyone who has fitted out a store will know how unusual that is.',
+    name: 'Sidhant Sourabh',
+    shop: 'Kolkata store',
+    role: '',
   },
 ]
 

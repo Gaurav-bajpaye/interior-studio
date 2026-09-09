@@ -19,7 +19,7 @@ export default function Testimonials() {
       className="bg-shell/50 py-20 md:py-28"
     >
       {/* horizontal snap on phones, grid from md up */}
-      <div className="mt-12 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 lg:gap-5">
+      <div className="mt-12 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:gap-6">
         {testimonials.map((t, i) => (
           <Reveal
             key={t.name}
@@ -45,7 +45,7 @@ export default function Testimonials() {
                   {t.name}
                 </span>
                 <span className="block truncate text-[.75rem] text-muted">
-                  {t.shop} · {t.role}
+                  {[t.shop, t.role].filter(Boolean).join(' · ')}
                 </span>
               </span>
             </figcaption>

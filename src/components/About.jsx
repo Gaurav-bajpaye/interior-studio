@@ -33,53 +33,53 @@ export default function About() {
         <div className="grid gap-12 lg:grid-cols-[minmax(0,.92fr)_minmax(0,1fr)] lg:gap-16">
           {/* images */}
           <div className="relative lg:sticky lg:top-28 lg:self-start">
+            {/* The clip leads, the photograph sits in as the inset. Muted is
+                what makes autoplay legal in every browser, playsInline keeps
+                iOS from going fullscreen, and the poster stands in entirely
+                where motion is unwanted. */}
             <Reveal>
+              <div className="arch relative aspect-4/5 w-full overflow-hidden bg-sand shadow-soft">
+                <video
+                  ref={clip}
+                  src={studioVideo.src}
+                  poster={studioVideo.poster}
+                  aria-label={studioVideo.alt}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="h-full w-full object-cover motion-reduce:hidden"
+                />
+                <img
+                  src={studioVideo.poster}
+                  alt={studioVideo.alt}
+                  className="hidden h-full w-full object-cover motion-reduce:block"
+                />
+              </div>
+            </Reveal>
+
+            <Reveal delay={140} className="absolute -bottom-6 -right-2 w-40 sm:w-48 lg:-right-8">
               <Img
                 photo={about.portrait}
                 alt={about.portraitAlt}
-                width={1000}
-                ratio={1.2}
-                sizes="(max-width: 1024px) 92vw, 42vw"
-                className="arch aspect-4/5 w-full shadow-soft"
+                width={500}
+                ratio={1}
+                sizes="190px"
+                className="aspect-square rounded-2xl border-4 border-cream shadow-lift"
               />
             </Reveal>
 
-            {/* A five-second silent loop. Muted is what makes autoplay
-                legal in every browser; playsInline keeps iOS from taking
-                it fullscreen; the poster covers the moment before it is
-                decoded and stands in entirely where motion is unwanted. */}
-            <Reveal
-              delay={140}
-              className="absolute -bottom-6 -right-2 w-40 overflow-hidden rounded-2xl border-4 border-cream shadow-lift sm:w-48 lg:-right-8"
-            >
-              <video
-                ref={clip}
-                src={studioVideo.src}
-                poster={studioVideo.poster}
-                aria-label={studioVideo.alt}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                className="block aspect-square w-full object-cover motion-reduce:hidden"
-              />
-              <img
-                src={studioVideo.poster}
-                alt={studioVideo.alt}
-                className="hidden aspect-square w-full object-cover motion-reduce:block"
-              />
-            </Reveal>
-
-            <Reveal delay={220} className="mt-10 max-w-xs text-[.8125rem] text-muted lg:mt-8">
-              {about.portraitCaption}
+            <Reveal delay={220} className="mt-10 max-w-xs text-[.8125rem] leading-relaxed text-muted lg:mt-8">
+              {about.mediaCaption}{' '}
+              <span className="text-muted/80">{about.portraitCaption}</span>
             </Reveal>
           </div>
 
           {/* copy */}
           <div>
             <Reveal className="flex items-center gap-3">
-              <span className="eyebrow">About the studio</span>
+              <span className="eyebrow">About Miraj Spaces</span>
               <span className="h-px w-10 bg-gold/40" />
             </Reveal>
 

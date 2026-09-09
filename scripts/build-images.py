@@ -30,11 +30,11 @@ ASSETS = {
     # Office reception
     "office-1":         ("source-photos/1000655392.jpg",  0.75),
 
-    # Apartment fit-out — bedroom, kitchen, dining, living
-    "apartment-1":      ("source-photos/1000655396.jpg",  0.75),
-    "apartment-2":      ("source-photos/1000655393.jpg",  0.75),
-    "apartment-3":      ("source-photos/1000655394.jpg",  0.75),
-    "apartment-4":      ("source-photos/1000655395.jpg",  0.75),
+    # Furniture & home store — room-sets on the showroom floor
+    "home-store-1":     ("source-photos/1000655396.jpg",  0.75),
+    "home-store-2":     ("source-photos/1000655395.jpg",  0.75),
+    "home-store-3":     ("source-photos/1000655394.jpg",  0.75),
+    "home-store-4":     ("source-photos/1000655393.jpg",  0.75),
 
     # Rooftop restaurant — pendant lights over long tables
     "restaurant-1":     ("source-photos/1000671477.jpg",  0.75),
@@ -50,6 +50,9 @@ ASSETS = {
     "kalpak-1":         ("source-photos/1000671483.jpg",  0.75),
     "kalpak-2":         ("source-photos/1000671482.jpg",  0.75),
     "kalpak-3":         ("source-photos/1000671484.jpg",  0.75),
+
+    # Why choose us — a stock interior, deliberately not one of ours
+    "benefits-stock":   ("1524758631624-e2822e304c36",    0.72),
 
     # About: the arch portrait and the square inset
     "about-portrait":   ("source-photos/1000671483.jpg",  1.25),
