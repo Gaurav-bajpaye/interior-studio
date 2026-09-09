@@ -379,13 +379,6 @@ export const about = {
   portrait: '1524758631624-e2822e304c36',
   portraitCaption: 'Kalpak, SNN Raj Serenity, Begur.',
   detail: '1621905251189-08b45d6a269e',
-  founder: { name: 'A. Rao', role: `Principal designer, ${business.legalName}` }, // TODO
-  stats: [
-    { value: 'Pan India', label: 'Where we work' },
-    { value: '6', label: 'Years in interiors' },
-    { value: 'Retail to residential', label: 'What we fit out' },
-    { value: '94%', label: 'Handed over on schedule' },
-  ],
 }
 
 /* --- 9. Testimonials ---------------------------------------------- */

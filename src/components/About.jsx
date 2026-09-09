@@ -77,28 +77,7 @@ export default function About() {
               ))}
             </Reveal>
 
-            {/* stats */}
-            <Reveal delay={280} className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
-              {about.stats.map((s) => (
-                <div key={s.label}>
-                  <div className="font-display text-[1.75rem] font-medium leading-none text-charcoal">
-                    {s.value}
-                  </div>
-                  <div className="mt-2 text-[.8125rem] leading-snug text-muted">{s.label}</div>
-                </div>
-              ))}
-            </Reveal>
-
-            <Reveal delay={320} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <div>
-                <div
-                  className="font-display text-[1.375rem] text-charcoal"
-                  style={{ fontStyle: 'italic', fontVariationSettings: '"SOFT" 20, "WONK" 1' }}
-                >
-                  {about.founder.name}
-                </div>
-                <div className="mt-1 text-[.8125rem] text-muted">{about.founder.role}</div>
-              </div>
+            <Reveal delay={280} className="mt-10">
               <a
                 href="#booking"
                 className="group -my-3 inline-flex items-center gap-2 py-3 text-[.9375rem] font-medium text-charcoal link-underline"
