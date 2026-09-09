@@ -9,7 +9,7 @@ about a real photo should depend on a network fetch.
 The originals sit outside public/ on purpose: they are the masters, and
 shipping 12MB of them to the host alongside the variants generated from
 them is pure deploy weight."""
-import io, os, sys, urllib.request
+import io, json, os, sys, urllib.request
 from PIL import Image
 
 OUT = "public/images"
@@ -46,6 +46,9 @@ ASSETS = {
     "wheedl-1":         ("source-photos/1000671479.jpg",  0.75),
     "wheedl-2":         ("source-photos/1000671480.jpg",  0.75),
 
+    # Cloud kitchen
+    "cloudkitchen-1":   ("source-photos/1000671533.jpg",  0.66),
+
     # Kalpak, SNN Raj Serenity — dining, lounge nook, pooja unit
     "kalpak-1":         ("source-photos/1000671483.jpg",  0.75),
     "kalpak-2":         ("source-photos/1000671482.jpg",  0.75),
@@ -65,6 +68,7 @@ BIAS = {"hero-main": 0.10}
 DEFAULT_BIAS = 0.42
 
 os.makedirs(OUT, exist_ok=True)
+manifest = {}
 cache = {}
 made = 0
 
@@ -95,7 +99,13 @@ for name, (pid, ratio) in ASSETS.items():
         cache[pid] = load(pid)
     master = cache[pid]
 
-    for w in WIDTHS:
+    # Never generate a variant wider than the source: upscaling invents
+    # detail that is not there and the browser would happily pick the
+    # blurriest option believing it the sharpest. The source's own width
+    # is kept as the top variant so a small photo still gets its best.
+    widths = sorted({w for w in WIDTHS if w <= master.width} | {min(master.width, max(WIDTHS))})
+
+    for w in widths:
         h = round(w * ratio)
         # cover-crop to the target box, then resize
         src_ratio = master.height / master.width
@@ -111,4 +121,14 @@ for name, (pid, ratio) in ASSETS.items():
         crop.save(f"{OUT}/{name}-{w}.webp", "WEBP", quality=80, method=5)
         made += 1
 
+    manifest[name] = widths
+
 print("variants written:", made)
+
+# The site needs to know which widths actually exist for each image:
+# emitting a srcset that names a file we never generated makes the
+# browser pick a 404 and show nothing.
+with open("src/lib/image-manifest.json", "w") as f:
+    json.dump(dict(sorted(manifest.items())), f, indent=1, sort_keys=True)
+    f.write("\n")
+print("manifest:", len(manifest), "images ->", "src/lib/image-manifest.json")

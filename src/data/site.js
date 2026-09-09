@@ -252,6 +252,20 @@ export const projects = [
     featured: false,
   },
   {
+    id: 'cloud-kitchen',
+    name: 'Cloud kitchen',                   // TODO the client's name
+    type: 'Cloud kitchen',
+    storeType: 'Production kitchen',
+    location: '',                            // TODO area, city
+    photo: 'cloudkitchen-1',
+    gallery: [],
+    summary:
+      'An open-sided production kitchen with a long service counter, an island prep table and planting beds at the threshold.',
+    description:
+      'Counters run the full length of two walls so the work never doubles back on itself, with the island left free for prep and plating. The roof is carried on an exposed frame lit with festoon runs, and the slatted timber screens keep the sides open for air without opening them to view.',
+    featured: false,
+  },
+  {
     id: 'office-reception',
     name: 'Office reception',                // TODO the client's name
     type: 'Commercial renovation',
@@ -280,21 +294,6 @@ export const spaceTypes = [
 ]
 
 export const categories = ['All', ...spaceTypes]
-
-/* Illustrates a space type we have no finished build photographed yet.
-   `plan: true` draws the studio's own concept-stage layout instead of
-   borrowing a photograph — a stock kitchen either looks domestic or
-   looks like a press shot of somebody else's line, and neither belongs
-   in a section headed "spaces we have built". Swap the entry for a real
-   project the day one is photographed. */
-export const typeReferences = {
-  'Cloud kitchen': {
-    plan: true,
-    title: 'Cloud kitchens',
-    text: 'Compact production kitchens planned around throughput: goods in, cold and dry store, the prep run, the hot line under the hood, plate-up, and a dispatch window the riders never have to walk past the cooking to reach.',
-    note: 'Concept layout. Photographs of our own go up as each build is handed over.',
-  },
-}
 
 /* --- 6. Why choose us -------------------------------------------- */
 export const benefits = [

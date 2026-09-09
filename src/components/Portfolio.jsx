@@ -4,8 +4,7 @@ import Reveal from './Reveal'
 import Img from './Img'
 import Icon from './Icons'
 import ProjectModal from './ProjectModal'
-import KitchenPlan from './KitchenPlan'
-import { categories, projects, typeReferences } from '../data/site'
+import { categories, projects } from '../data/site'
 
 export default function Portfolio() {
   const [filter, setFilter] = useState('All')
@@ -65,40 +64,15 @@ export default function Portfolio() {
             leaving the reader with one stray card. */}
         {shown.length === 0 && (
           <Reveal className="sm:col-span-2 lg:col-span-2">
-            {(() => {
-              const ref = typeReferences[filter]
-              return (
-                <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-shell/40">
-                  {ref?.plan ? (
-                    <KitchenPlan className="aspect-[3/2] w-full" />
-                  ) : (
-                    ref?.photo && (
-                      <Img
-                        photo={ref.photo}
-                        alt={ref.alt}
-                        width={1200}
-                        ratio={0.66}
-                        sizes="(max-width: 640px) 92vw, 60vw"
-                        className="aspect-[3/2] w-full"
-                      />
-                    )
-                  )}
-                  <div className="flex flex-1 flex-col justify-center p-7 md:p-8">
-                    <h3 className="font-display text-[1.375rem] leading-snug text-charcoal">
-                      {ref ? ref.title : `No ${filter.toLowerCase()} projects on the site yet.`}
-                    </h3>
-                    <p className="mt-3 max-w-md leading-relaxed text-muted">
-                      {ref
-                        ? ref.text
-                        : 'It is work we take on, and the photographs go up as each one is handed over. Yours could be the first one on this page.'}
-                    </p>
-                    {ref?.note && (
-                      <p className="mt-4 text-[.8125rem] text-muted/85">{ref.note}</p>
-                    )}
-                  </div>
-                </div>
-              )
-            })()}
+            <div className="flex h-full flex-col justify-center rounded-2xl border border-dashed border-line bg-shell/40 p-8 md:p-10">
+              <h3 className="font-display text-[1.375rem] leading-snug text-charcoal">
+                No {filter.toLowerCase()} projects on the site yet.
+              </h3>
+              <p className="mt-3 max-w-md leading-relaxed text-muted">
+                It is work we take on, and the photographs go up as each one is
+                handed over. Yours could be the first one on this page.
+              </p>
+            </div>
           </Reveal>
         )}
 
