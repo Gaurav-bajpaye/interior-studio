@@ -174,7 +174,7 @@ export const projects = [
   {
     id: 'maara',
     name: 'Maara Label',
-    type: 'Retail',
+    type: 'Retail stores',
     storeType: 'Womenswear boutique',
     location: 'Indiranagar, Bengaluru',
     size: '480 sq ft',
@@ -193,7 +193,7 @@ export const projects = [
   {
     id: 'thread-co',
     name: 'Thread & Co.',
-    type: 'Retail',
+    type: 'Retail stores',
     storeType: 'Streetwear store',
     location: 'HSR Layout, Bengaluru',
     size: '620 sq ft',
@@ -212,7 +212,7 @@ export const projects = [
   {
     id: 'lumen-salon',
     name: 'Lumen Hair Studio',
-    type: 'Salon',
+    type: 'Commercial renovation',
     storeType: 'Unisex salon',
     location: 'Koramangala, Bengaluru',
     size: '540 sq ft',
@@ -231,7 +231,7 @@ export const projects = [
   {
     id: 'fade-room',
     name: 'The Fade Room',
-    type: 'Salon',
+    type: 'Commercial renovation',
     storeType: 'Barbershop',
     location: 'Jayanagar, Bengaluru',
     size: '350 sq ft',
@@ -250,7 +250,7 @@ export const projects = [
   {
     id: 'atlas-coffee',
     name: 'Atlas Coffee',
-    type: 'Café',
+    type: 'Restaurants',
     storeType: 'Specialty café',
     location: 'Sadashivanagar, Bengaluru',
     size: '700 sq ft',
@@ -269,7 +269,7 @@ export const projects = [
   {
     id: 'nook-bakery',
     name: 'The Nook Bakehouse',
-    type: 'Café',
+    type: 'Cloud kitchen',
     storeType: 'Bakery & takeaway',
     location: 'Malleshwaram, Bengaluru',
     size: '280 sq ft',
@@ -288,7 +288,7 @@ export const projects = [
   {
     id: 'terra-home',
     name: 'Terra Home',
-    type: 'Retail',
+    type: 'Retail stores',
     storeType: 'Homeware store',
     location: 'Whitefield, Bengaluru',
     size: '820 sq ft',
@@ -307,7 +307,7 @@ export const projects = [
   {
     id: 'shelf-life',
     name: 'Shelf Life',
-    type: 'Retail',
+    type: 'Retail stores',
     storeType: 'Neighbourhood grocer',
     location: 'Basavanagudi, Bengaluru',
     size: '400 sq ft',
@@ -325,10 +325,23 @@ export const projects = [
   },
 ]
 
-/* Filter chips, taken from the projects above so a category can never
-   exist with nothing behind it. Add a restaurant project and a
-   Restaurant chip appears on its own. */
-export const categories = ['All', ...new Set(projects.map((p) => p.type))]
+/* The space types we take on, in the order they should appear as filter
+   chips. A chip is only rendered when at least one project carries that
+   type, so this list can name everything the studio does without
+   producing a filter that leads to an empty grid. Add the first
+   residential project and its chip appears on its own. */
+export const spaceTypes = [
+  'Retail stores',
+  'Cloud kitchen',
+  'Restaurants',
+  'Commercial renovation',
+  'Residential renovation',
+]
+
+export const categories = [
+  'All',
+  ...spaceTypes.filter((t) => projects.some((p) => p.type === t)),
+]
 
 /* --- 6. Why choose us -------------------------------------------- */
 export const benefits = [

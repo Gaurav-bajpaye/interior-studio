@@ -135,19 +135,6 @@ export default function Portfolio() {
         </Reveal>
       </div>
 
-      <Reveal delay={120} className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8">
-        <p className="text-[.9375rem] text-muted">
-          Every project shows the before, the after and what changed.
-        </p>
-        <a
-          href="#booking"
-          className="group -my-3 inline-flex items-center gap-2 py-3 text-[.9375rem] font-medium text-charcoal link-underline"
-        >
-          Talk to us about yours
-          <Icon.arrow className="h-4 w-4 text-gold-ink transition-transform duration-300 group-hover:translate-x-1" />
-        </a>
-      </Reveal>
-
       <ProjectModal
         index={openIndex}
         onClose={() => setOpenIndex(null)}
