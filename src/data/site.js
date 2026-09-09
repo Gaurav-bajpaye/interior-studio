@@ -182,7 +182,7 @@ export const projects = [
     name: 'Beauty & haircare store',        // TODO the client's name
     type: 'Retail stores',
     storeType: 'Beauty & haircare retail',
-    location: '',                            // TODO area, city
+    location: 'Inorbit Mall, Hubli',
     photo: 'beauty-1',
     gallery: ['beauty-2'],
     summary:
@@ -343,10 +343,9 @@ export const about = {
   portrait: 'about-portrait',
   portraitAlt:
     'A panelled lounge nook with built-in shelving and plants, from the Kalpak apartment.',
-  /* The video leads and the photograph is the inset, so the caption
-     names both in that order. */
-  mediaCaption: 'A walk through the beauty store fit-out.',
-  portraitCaption: 'Inset: Kalpak, SNN Raj Serenity, Begur.',
+  /* The video leads, so the caption names the space it walks through. */
+  mediaCaption: 'A walk through the beauty store fit-out,',
+  portraitCaption: 'Inorbit Mall, Hubli.',
 }
 
 /* A five-second silent loop, shown in the About section. Trimmed from
