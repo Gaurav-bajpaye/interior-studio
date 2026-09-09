@@ -325,11 +325,10 @@ export const projects = [
   },
 ]
 
-/* The space types we take on, in the order they should appear as filter
-   chips. A chip is only rendered when at least one project carries that
-   type, so this list can name everything the studio does without
-   producing a filter that leads to an empty grid. Add the first
-   residential project and its chip appears on its own. */
+/* The space types we take on, in the order they appear as filter chips.
+   Every one is listed whether or not a project carries it yet — the
+   filters double as a statement of what the studio does — and a type
+   with nothing behind it shows a short note instead of an empty grid. */
 export const spaceTypes = [
   'Retail stores',
   'Cloud kitchen',
@@ -338,10 +337,7 @@ export const spaceTypes = [
   'Residential renovation',
 ]
 
-export const categories = [
-  'All',
-  ...spaceTypes.filter((t) => projects.some((p) => p.type === t)),
-]
+export const categories = ['All', ...spaceTypes]
 
 /* --- 6. Why choose us -------------------------------------------- */
 export const benefits = [

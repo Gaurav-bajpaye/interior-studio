@@ -45,9 +45,13 @@ export default function Portfolio() {
               }`}
             >
               {c}
-              <span className={`text-[.6875rem] ${on ? 'text-cream/55' : 'text-muted'}`}>
-                {count(c)}
-              </span>
+              {/* A zero tells the reader nothing the empty state won't say
+                  better once they click. */}
+              {count(c) > 0 && (
+                <span className={`text-[.6875rem] ${on ? 'text-cream/55' : 'text-muted'}`}>
+                  {count(c)}
+                </span>
+              )}
             </button>
           )
         })}
@@ -55,6 +59,23 @@ export default function Portfolio() {
 
       {/* grid */}
       <div className="mt-8 grid auto-rows-auto grid-flow-dense gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        {/* Every space type gets a chip, so some will have nothing behind
+            them until the first project lands. Say so plainly rather than
+            leaving the reader with one stray card. */}
+        {shown.length === 0 && (
+          <Reveal className="sm:col-span-2 lg:col-span-2">
+            <div className="flex h-full flex-col justify-center rounded-2xl border border-dashed border-line bg-shell/40 p-8 md:p-10">
+              <h3 className="font-display text-[1.375rem] leading-snug text-charcoal">
+                No {filter.toLowerCase()} projects on the site yet.
+              </h3>
+              <p className="mt-3 max-w-md leading-relaxed text-muted">
+                It is work we take on, and the photographs go up as each one is
+                handed over. Yours could be the first one on this page.
+              </p>
+            </div>
+          </Reveal>
+        )}
+
         {shown.map((p, i) => (
           <Reveal
             key={p.id}
