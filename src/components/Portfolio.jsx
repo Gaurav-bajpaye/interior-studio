@@ -22,7 +22,11 @@ export default function Portfolio() {
       id="work"
       eyebrow="Our work"
       title="Spaces we have built and handed back"
-      className="py-20 md:py-28"
+      /* Services sits on the same cream ground directly below, so the two
+         paddings stack into one long void with no colour edge to break
+         it. Trimmed here rather than on Services, which does have an
+         edge above it everywhere else. */
+      className="pt-20 pb-8 md:pt-28 md:pb-10"
     >
       {/* filters */}
       <Reveal delay={120} className="mt-10 flex flex-wrap items-center gap-2">
@@ -116,7 +120,7 @@ export default function Portfolio() {
             </span>
             <span>
               <span className="block font-display text-[1.375rem] leading-tight text-charcoal">
-                Your shop next?
+                Your space next?
               </span>
               <span className="mt-2 block text-[.875rem] leading-relaxed text-muted">
                 Tell us the size, the trade and what is not working. We will tell you

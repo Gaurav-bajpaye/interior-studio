@@ -73,7 +73,7 @@ function FormCta() {
           {booking.formHeadline}
         </h3>
         <p className="mt-3 leading-relaxed text-muted">
-          Answer what you can — a rough size and a photo of the shop is
+          Answer what you can — a rough size and a photo of the space is
           usually enough for us to tell you whether we are the right fit.
         </p>
 
@@ -244,7 +244,7 @@ function EnquiryForm() {
 
         <div>
           <label className={label} htmlFor="bk-email">Email</label>
-          <input id="bk-email" name="email" type="email" className={`${field} mt-2`} placeholder="you@shop.com" autoComplete="email" />
+          <input id="bk-email" name="email" type="email" className={`${field} mt-2`} placeholder="you@yourbusiness.com" autoComplete="email" />
         </div>
 
         <div>
