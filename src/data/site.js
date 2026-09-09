@@ -234,24 +234,6 @@ export const projects = [
     featured: false,
   },
   {
-    /* Reclassified from residential: all four photographs are one
-       showroom floor — several sofa sets, dining sets and a bedroom
-       set staged in the same room, which is retail display rather
-       than somebody's home. */
-    id: 'home-store',
-    name: 'Furniture & home store',          // TODO the client's name
-    type: 'Retail stores',
-    storeType: 'Furniture & home retail',
-    location: '',                            // TODO area, city
-    photo: 'home-store-1',
-    gallery: ['home-store-2', 'home-store-3', 'home-store-4'],
-    summary:
-      'A showroom floor broken into room-sets, so customers see the furniture the way they would live with it.',
-    description:
-      'The floor is arranged as a series of room-sets rather than rows — living, dining, bedroom and a modular kitchen bay — each lit on its own track so a set can be relit when it is rebuilt. Sightlines stay open across the whole room from the entrance.',
-    featured: false,
-  },
-  {
     id: 'cloud-kitchen',
     name: 'Cloud kitchen',                   // TODO the client's name
     type: 'Cloud kitchen',
@@ -263,20 +245,6 @@ export const projects = [
       'An open-sided production kitchen with a long service counter, an island prep table and planting beds at the threshold.',
     description:
       'Counters run the full length of two walls so the work never doubles back on itself, with the island left free for prep and plating. The roof is carried on an exposed frame lit with festoon runs, and the slatted timber screens keep the sides open for air without opening them to view.',
-    featured: false,
-  },
-  {
-    id: 'retail-fitout',
-    name: 'Retail store fit-out',            // TODO the client's name
-    type: 'Retail stores',
-    storeType: 'Retail fit-out',
-    location: '',                            // TODO area, city
-    photo: 'retail-fitout-1',
-    gallery: [],
-    summary:
-      'A fitted shell handed over ready for stock — counter, storage and lighting in, floor zoned by finish.',
-    description:
-      'The counter and its mirrored wall cabinet are built in blue against colour-blocked walls, so the fixtures read as part of the room rather than furniture set down in it. Two floor finishes split the space without a partition: timber for the served side, a hard-wearing sheet floor for the customer side. Track lighting runs the length of the ceiling so the layout can change without rewiring.',
     featured: false,
   },
 ]
@@ -348,14 +316,16 @@ export const about = {
   portraitCaption: 'Inorbit Mall, Hubli.',
 }
 
-/* A five-second silent loop, shown in the About section. Trimmed from
-   the studio's own walkthrough of the beauty store fit-out. Autoplay
-   only works muted, and it is decorative, so it carries no audio at all
-   and holds on the poster frame for anyone who prefers less motion. */
+/* A short silent loop, shown in the About section: the studio's own
+   walkthrough of the beauty store fit-out, under five seconds so it
+   reads as a moving still rather than a film. Autoplay only works
+   muted, and it is decorative, so it carries no audio at all and holds
+   on the poster frame for anyone who prefers less motion.
+   Master: source-photos/market-vdo.mp4 */
 export const studioVideo = {
   src: '/video/beauty-store-walkthrough.mp4',
   poster: '/video/beauty-store-poster.webp',
-  alt: 'A walk through the finished beauty store — backlit display wall and curved counter.',
+  alt: 'A walk through the finished beauty store — a lit display wall under a pink ceiling.',
 }
 
 /* --- 9. Testimonials ---------------------------------------------- */

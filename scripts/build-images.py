@@ -27,15 +27,6 @@ ASSETS = {
     "beauty-1":         ("source-photos/1000654615.jpg",  0.75),
     "beauty-2":         ("source-photos/1000654616.jpg",  0.75),
 
-    # Retail store fit-out — counter, mirrored cabinet, colour-blocked walls
-    "retail-fitout-1":  ("source-photos/1000655392.jpg",  0.75),
-
-    # Furniture & home store — room-sets on the showroom floor
-    "home-store-1":     ("source-photos/1000655396.jpg",  0.75),
-    "home-store-2":     ("source-photos/1000655395.jpg",  0.75),
-    "home-store-3":     ("source-photos/1000655394.jpg",  0.75),
-    "home-store-4":     ("source-photos/1000655393.jpg",  0.75),
-
     # Rooftop restaurant — pendant lights over long tables
     "restaurant-1":     ("source-photos/1000671477.jpg",  0.75),
     "restaurant-2":     ("source-photos/1000671478.jpg",  0.75),

@@ -39,7 +39,15 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
 
   if (!open) return null
 
-  const shots = [project.photo, ...(project.gallery || [])]
+  /* With a before/after slider leading, the strip holds the gallery only;
+     without one, the main photo is the strip's first frame. Either way a
+     photograph appears once — the lead used to repeat as shots[0]. */
+  const shots = project.before
+    ? project.gallery || []
+    : [project.photo, ...(project.gallery || [])]
+  /* Only rows that have something to say. Rendering the labels regardless
+     left LOCATION, SIZE, TIMELINE and the rest standing empty under the
+     copy, which reads as broken rather than as unfilled. */
   const meta = [
     ['Space type', project.storeType],
     ['Location', project.location],
@@ -47,7 +55,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
     ['Timeline', project.timeline],
     ['Scope', project.scope],
     ['Completed', project.year],
-  ]
+  ].filter(([, value]) => Boolean(value))
 
   return (
     <div
@@ -120,8 +128,13 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
               </>
             ) : (
               <Img
-                photo={project.photo}
-                alt={`${project.name} interior`}
+                key={shots[shot]}
+                photo={shots[shot]}
+                alt={
+                  shot === 0
+                    ? `${project.name} interior`
+                    : `${project.name} — view ${shot + 1}`
+                }
                 width={1400}
                 ratio={0.68}
                 className="aspect-[3/2] w-full rounded-xl"
@@ -129,39 +142,29 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
             )}
 
             {shots.length > 1 && (
-              <>
-                <Img
-                  key={shots[shot]}
-                  photo={shots[shot]}
-                  alt={`${project.name} — view ${shot + 1}`}
-                  width={1200}
-                  ratio={0.66}
-                  className="mt-4 aspect-[3/2] w-full rounded-xl"
-                />
-                <div className="mt-3 flex gap-2.5">
-                  {shots.map((s, i) => (
-                    <button
-                      key={s}
-                      type="button"
-                      onClick={() => setShot(i)}
-                      aria-label={`View photo ${i + 1}`}
-                      aria-current={shot === i}
-                      className={`overflow-hidden rounded-lg border-2 transition-colors ${
-                        shot === i ? 'border-gold' : 'border-transparent hover:border-line'
-                      }`}
-                    >
-                      <Img
-                        photo={s}
-                        alt=""
-                        width={220}
-                        ratio={0.75}
-                        sizes="76px"
-                        className="h-14 w-[76px]"
-                      />
-                    </button>
-                  ))}
-                </div>
-              </>
+              <div className="mt-3 flex gap-2.5">
+                {shots.map((s, i) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => setShot(i)}
+                    aria-label={`View photo ${i + 1}`}
+                    aria-current={shot === i}
+                    className={`overflow-hidden rounded-lg border-2 transition-colors ${
+                      shot === i ? 'border-gold' : 'border-transparent hover:border-line'
+                    }`}
+                  >
+                    <Img
+                      photo={s}
+                      alt=""
+                      width={220}
+                      ratio={0.75}
+                      sizes="76px"
+                      className="h-14 w-[76px]"
+                    />
+                  </button>
+                ))}
+              </div>
             )}
           </div>
 
@@ -186,16 +189,18 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
               </ul>
             )}
 
-            <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-6">
-              {meta.map(([k, v]) => (
-                <div key={k}>
-                  <dt className="text-[.6875rem] font-semibold uppercase tracking-[.12em] text-muted">
-                    {k}
-                  </dt>
-                  <dd className="mt-1 text-[.9375rem] text-ink">{v}</dd>
-                </div>
-              ))}
-            </dl>
+            {meta.length > 0 && (
+              <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-6">
+                {meta.map(([k, v]) => (
+                  <div key={k}>
+                    <dt className="text-[.6875rem] font-semibold uppercase tracking-[.12em] text-muted">
+                      {k}
+                    </dt>
+                    <dd className="mt-1 text-[.9375rem] text-ink">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
 
             <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
               <a
