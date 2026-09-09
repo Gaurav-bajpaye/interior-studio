@@ -86,11 +86,11 @@ export default function Portfolio() {
               type="button"
               onClick={() => setOpenIndex(projects.indexOf(p))}
               className="group relative block h-full w-full overflow-hidden rounded-2xl bg-charcoal text-left"
-              aria-label={`Open project: ${p.name}, ${p.storeType} in ${p.location}`}
+              aria-label={`Open project: ${p.name}${p.location ? `, ${p.storeType} in ${p.location}` : `, ${p.storeType}`}`}
             >
               <Img
                 photo={p.photo}
-                alt={`${p.name} — ${p.storeType} interior in ${p.location}`}
+                alt={`${p.name} — ${p.storeType}${p.location ? ` in ${p.location}` : ''}`}
                 width={p.featured && i === 0 ? 1400 : 900}
                 ratio={p.featured && i === 0 ? 0.72 : 0.82}
                 sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 31vw"
@@ -115,7 +115,7 @@ export default function Portfolio() {
                     {p.name}
                   </span>
                   <span className="mt-1 block truncate text-[.8125rem] text-cream/70">
-                    {p.storeType} · {p.location}
+                    {[p.storeType, p.location].filter(Boolean).join(' · ')}
                   </span>
                   <span className="mt-2.5 hidden max-w-sm text-[.875rem] leading-relaxed text-cream/75 lg:block">
                     <span className="block max-h-0 overflow-hidden opacity-0 transition-all duration-500 group-hover:max-h-24 group-hover:opacity-100">

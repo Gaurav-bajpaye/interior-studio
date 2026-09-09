@@ -2,10 +2,13 @@
 public/images/.
 
 Each entry's source is either a local file in the repo — the studio's
-own photographs, dropped into public/images-new/ — or an Unsplash id
-for the placeholders still standing in for work we do not have shots
-of yet. Local files win; nothing about a real photo should depend on a
-network fetch."""
+own photographs, which live in source-photos/ — or an Unsplash id for
+anything still standing in as a placeholder. Local files win; nothing
+about a real photo should depend on a network fetch.
+
+The originals sit outside public/ on purpose: they are the masters, and
+shipping 12MB of them to the host alongside the variants generated from
+them is pure deploy weight."""
 import io, os, sys, urllib.request
 from PIL import Image
 
@@ -14,45 +17,49 @@ WIDTHS = [480, 960, 1600]
 UA = {"User-Agent": "Mozilla/5.0"}
 
 # name -> (local file under public/, or an Unsplash id, aspect ratio h/w)
+# BIAS overrides where a crop sits vertically: 0 = flush to the top of the
+# source, 1 = flush to the bottom. The default 0.42 sits just above centre.
 ASSETS = {
-    "hero-main":        ("images-new/1000671484.jpg",     1.25),
+    # ---- the studio's own photographs, from source-photos/ -------------
+    "hero-main":        ("source-photos/1000671484.jpg",  1.25),   # bias below
 
-    "maara-after":      ("1558769132-cb1aea458c5e",    0.75),
-    "maara-before":     ("1517581177682-a085bb7ffb15", 0.75),
-    "maara-2":          ("1490481651871-ab68de25d43d", 0.75),
+    # Beauty & haircare store — pink display wall, curved counter
+    "beauty-1":         ("source-photos/1000654615.jpg",  0.75),
+    "beauty-2":         ("source-photos/1000654616.jpg",  0.75),
 
-    "thread-after":     ("1567401893414-76b7b1e5a7a5", 0.75),
-    "thread-before":    ("1497366811353-6870744d04b2", 0.75),
-    "thread-2":         ("1555529669-e69e7aa0ba9a",    0.75),
+    # Office reception
+    "office-1":         ("source-photos/1000655392.jpg",  0.75),
 
-    "lumen-after":      ("1560066984-138dadb4c035",    0.75),
-    "lumen-before":     ("1522708323590-d24dbb6b0267", 0.75),
-    "lumen-2":          ("1470259078422-826894b933aa", 0.75),
-    "lumen-3":          ("1580618672591-eb180b1a973f", 0.75),
+    # Apartment fit-out — bedroom, kitchen, dining, living
+    "apartment-1":      ("source-photos/1000655396.jpg",  0.75),
+    "apartment-2":      ("source-photos/1000655393.jpg",  0.75),
+    "apartment-3":      ("source-photos/1000655394.jpg",  0.75),
+    "apartment-4":      ("source-photos/1000655395.jpg",  0.75),
 
-    "fade-after":       ("1585747860715-2ba37e788b70", 0.75),
-    "fade-before":      ("1497366754035-f200968a6e72", 0.75),
-    "fade-2":           ("1472851294608-062f824d29cc", 0.75),
+    # Rooftop restaurant — pendant lights over long tables
+    "restaurant-1":     ("source-photos/1000671477.jpg",  0.75),
+    "restaurant-2":     ("source-photos/1000671478.jpg",  0.75),
+    "restaurant-3":     ("source-photos/1000671475.jpg",  0.75),
+    "restaurant-4":     ("source-photos/1000671476.jpg",  0.75),
 
-    "atlas-after":      ("1600093463592-8e36ae95ef56", 0.75),
-    "atlas-before":     ("1517581177682-a085bb7ffb15", 0.75),
-    "atlas-2":          ("1453614512568-c4024d13c247", 0.75),
-    "atlas-3":          ("1445116572660-236099ec97a0", 0.75),
+    # WHEEDL — lit corridor and the workshop floor
+    "wheedl-1":         ("source-photos/1000671479.jpg",  0.75),
+    "wheedl-2":         ("source-photos/1000671480.jpg",  0.75),
 
-    "nook-after":       ("1521017432531-fbd92d768814", 0.75),
-    "nook-before":      ("1497366811353-6870744d04b2", 0.75),
-    "nook-2":           ("1559925393-8be0ec4767c8",    0.75),
+    # Kalpak, SNN Raj Serenity — dining, lounge nook, pooja unit
+    "kalpak-1":         ("source-photos/1000671483.jpg",  0.75),
+    "kalpak-2":         ("source-photos/1000671482.jpg",  0.75),
+    "kalpak-3":         ("source-photos/1000671484.jpg",  0.75),
 
-    "terra-after":      ("1524758631624-e2822e304c36", 0.75),
-    "terra-before":     ("1497366754035-f200968a6e72", 0.75),
-    "terra-2":          ("1505691938895-1758d7feb511", 0.75),
-
-    "shelf-after":      ("1502672260266-1c1ef2d93688", 0.75),
-    "shelf-before":     ("1522708323590-d24dbb6b0267", 0.75),
-
-    "about-portrait":   ("1585128792020-803d29415281", 1.25),
-    "about-detail":     ("1621905251189-08b45d6a269e", 1.00),
+    # About: the arch portrait and the square inset
+    "about-portrait":   ("source-photos/1000671483.jpg",  1.25),
+    "about-detail":     ("source-photos/1000671477.jpg",  1.00),
 }
+
+# The hero's ring light sits right at the top of the frame; a centred crop
+# cut it off, so this one crops from the very top.
+BIAS = {"hero-main": 0.0}
+DEFAULT_BIAS = 0.42
 
 os.makedirs(OUT, exist_ok=True)
 cache = {}
@@ -62,9 +69,14 @@ def load(source):
     """A source with a dot in it is a file in the repo; otherwise it is
     an Unsplash photo id."""
     if "." in source:
-        path = os.path.join("public", source)
-        if not os.path.exists(path):
-            sys.exit(f"missing local source: {path}")
+        # Look in the repo root first, then public/, so photographs dropped
+        # into either place are found.
+        path = next(
+            (c for c in (source, os.path.join("public", source)) if os.path.exists(c)),
+            None,
+        )
+        if not path:
+            sys.exit(f"missing local source: {source}")
         img = Image.open(path).convert("RGB")
         print("local  ", source, img.size)
         return img
@@ -91,7 +103,7 @@ for name, (pid, ratio) in ASSETS.items():
             ch = master.height
             cw = round(ch / ratio)
         left = (master.width - cw) // 2
-        top = round((master.height - ch) * 0.42)   # bias slightly above centre
+        top = round((master.height - ch) * BIAS.get(name, DEFAULT_BIAS))
         crop = master.crop((left, top, left + cw, top + ch)).resize((w, h), Image.LANCZOS)
         crop.save(f"{OUT}/{name}-{w}.webp", "WEBP", quality=80, method=5)
         made += 1

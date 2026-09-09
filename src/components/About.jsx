@@ -1,9 +1,32 @@
+import { useEffect, useRef } from 'react'
 import Reveal from './Reveal'
 import Img from './Img'
 import Icon from './Icons'
-import { about, business } from '../data/site'
+import { about, business, studioVideo } from '../data/site'
 
 export default function About() {
+  const clip = useRef(null)
+
+  /* Browsers pause an autoplaying video once it scrolls out of view and
+     do not reliably resume it, so it can sit frozen mid-frame when the
+     reader comes back. Driving play/pause off visibility fixes that and
+     keeps it from burning CPU while nobody is looking. play() rejects
+     when a browser refuses autoplay outright; the poster covers that. */
+  useEffect(() => {
+    const el = clip.current
+    if (!el || typeof IntersectionObserver === 'undefined') return
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) el.play().catch(() => {})
+        else el.pause()
+      },
+      { threshold: 0.25 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
   return (
     <section id="about" className="scroll-mt-24 py-20 md:py-28">
       <div className="shell">
@@ -21,14 +44,30 @@ export default function About() {
               />
             </Reveal>
 
-            <Reveal delay={140} className="absolute -bottom-6 -right-2 w-40 sm:w-48 lg:-right-8">
-              <Img
-                photo="about-detail"
-                alt="On site during a fit-out — running the trades ourselves"
-                width={500}
-                ratio={1}
-                sizes="190px"
-                className="aspect-square rounded-2xl border-4 border-cream shadow-lift"
+            {/* A five-second silent loop. Muted is what makes autoplay
+                legal in every browser; playsInline keeps iOS from taking
+                it fullscreen; the poster covers the moment before it is
+                decoded and stands in entirely where motion is unwanted. */}
+            <Reveal
+              delay={140}
+              className="absolute -bottom-6 -right-2 w-40 overflow-hidden rounded-2xl border-4 border-cream shadow-lift sm:w-48 lg:-right-8"
+            >
+              <video
+                ref={clip}
+                src={studioVideo.src}
+                poster={studioVideo.poster}
+                aria-label={studioVideo.alt}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="block aspect-square w-full object-cover motion-reduce:hidden"
+              />
+              <img
+                src={studioVideo.poster}
+                alt={studioVideo.alt}
+                className="hidden aspect-square w-full object-cover motion-reduce:block"
               />
             </Reveal>
 

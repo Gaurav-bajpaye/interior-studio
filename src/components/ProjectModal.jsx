@@ -41,7 +41,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
 
   const shots = [project.photo, ...(project.gallery || [])]
   const meta = [
-    ['Store type', project.storeType],
+    ['Space type', project.storeType],
     ['Location', project.location],
     ['Size', project.size],
     ['Timeline', project.timeline],
@@ -75,7 +75,7 @@ export default function ProjectModal({ index, onClose, onNavigate }) {
               {project.name}
             </h3>
             <p className="mt-0.5 truncate text-[.8125rem] text-muted">
-              {project.storeType} · {project.location}
+              {[project.storeType, project.location].filter(Boolean).join(' · ')}
             </p>
           </div>
 

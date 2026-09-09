@@ -31,8 +31,8 @@ export default function Benefits() {
 
             <Reveal delay={220} className="mt-10 hidden lg:block">
               <Img
-                photo="terra-after"
-                alt="A completed homeware store with room-set displays"
+                photo="restaurant-2"
+                alt="A finished rooftop restaurant — long shared tables under woven pendants"
                 width={800}
                 ratio={0.72}
                 sizes="30vw"

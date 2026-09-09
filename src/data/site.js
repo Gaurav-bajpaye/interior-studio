@@ -171,156 +171,94 @@ export const services = [
    in /public and reference it by path, e.g.
    photo: '/projects/maara-after.jpg'  — the code accepts both.       */
 export const projects = [
+  /* Real photographs, from the studio's own shoots. What the camera shows
+     is described; what only you know — the client's name, the address,
+     the size, how long it took, what the brief was — is marked TODO
+     rather than guessed at. Fill those in and the cards and the project
+     dialog pick them up on their own; anything left blank is simply not
+     rendered. */
   {
-    id: 'maara',
-    name: 'Maara Label',
+    id: 'beauty-store',
+    name: 'Beauty & haircare store',        // TODO the client's name
     type: 'Retail stores',
-    storeType: 'Womenswear boutique',
-    location: 'Indiranagar, Bengaluru',
-    size: '480 sq ft',
-    timeline: '7 weeks',
-    year: '2025',
-    scope: 'Full design + execution',
-    photo: 'maara-after',
-    before: 'maara-before',
-    gallery: ['maara-2'],
-    summary: 'A narrow 480 sq ft shell turned into a calm, ivory-toned boutique that holds 40% more stock than the old layout.',
+    storeType: 'Beauty & haircare retail',
+    location: '',                            // TODO area, city
+    photo: 'beauty-1',
+    gallery: ['beauty-2'],
+    summary:
+      'A backlit display wall, a curved service counter and a mirrored consultation station, in a pink-on-cream palette.',
     description:
-      'The shop was long and dark with a single window at the front. We pulled all the storage to one wall, floated the display rails off it, and kept the centre of the room completely clear so customers can see the whole collection from the door. Lime-plaster walls, a cane-and-brass trial room and warm 3000K track lighting do the rest.',
-    highlights: ['Stock capacity up 40%', 'Two trial rooms in the same footprint', 'Opened 4 days ahead of schedule'],
+      'The long wall carries the whole range at eye level on backlit shelving, with the peg display angled so stock reads as a block of colour from the door. The counter curves to keep the walkway clear, and the consultation mirror sits at the far end where the light is softest.',
     featured: true,
   },
   {
-    id: 'thread-co',
-    name: 'Thread & Co.',
-    type: 'Retail stores',
-    storeType: 'Streetwear store',
-    location: 'HSR Layout, Bengaluru',
-    size: '620 sq ft',
-    timeline: '9 weeks',
-    year: '2024',
-    scope: 'Design + expansion into adjacent unit',
-    photo: 'thread-after',
-    before: 'thread-before',
-    gallery: ['thread-2'],
-    summary: 'Two small units merged into one store with a hard-wearing industrial palette built for weekend footfall.',
+    id: 'kalpak',
+    name: 'Kalpak',
+    type: 'Residential renovation',
+    storeType: 'Apartment renovation',
+    location: 'SNN Raj Serenity, Begur, Bengaluru',
+    photo: 'kalpak-1',
+    gallery: ['kalpak-2', 'kalpak-3'],
+    summary:
+      'A teal-panelled lounge nook, a dining wall of open shelving, and a lit pooja unit built into the entrance.',
     description:
-      'The owner took over the neighbouring unit and needed the two to read as a single shop. We removed the shared wall, ran one continuous ceiling grid across both bays, and used the level change as a natural split between apparel and sneakers. Everything is on castors, so the floor can be reset for a drop in under an hour.',
-    highlights: ['Two units read as one shop', 'Fully movable fixtures', 'Weekend footfall up 2.1×'],
+      'Storage does the work of the walls here. The pooja unit is recessed with its own lighting so it reads as joinery rather than furniture, the dining wall carries books and plants on floating shelves, and the lounge nook is panelled to give the corner a back.',
     featured: true,
   },
   {
-    id: 'lumen-salon',
-    name: 'Lumen Hair Studio',
-    type: 'Commercial renovation',
-    storeType: 'Unisex salon',
-    location: 'Koramangala, Bengaluru',
-    size: '540 sq ft',
-    timeline: '8 weeks',
-    year: '2025',
-    scope: 'Full design + execution',
-    photo: 'lumen-after',
-    before: 'lumen-before',
-    gallery: ['lumen-2', 'lumen-3'],
-    summary: 'Six stations, two wash bays and a waiting nook fitted into a space that previously held four chairs.',
-    description:
-      'Salons live and die by their plumbing and their mirrors. We moved the wash bays to the service wall to shorten drainage runs, then lined the long wall with six stations lit from both sides so colour work reads true. Storage sits under a continuous counter, which keeps the floor clear for the cleaning staff at closing time.',
-    highlights: ['+2 chairs, same rent', 'Colour-accurate station lighting', 'Wash bay drainage rerouted'],
-    featured: false,
-  },
-  {
-    id: 'fade-room',
-    name: 'The Fade Room',
-    type: 'Commercial renovation',
-    storeType: 'Barbershop',
-    location: 'Jayanagar, Bengaluru',
-    size: '350 sq ft',
-    timeline: '5 weeks',
-    year: '2024',
-    scope: 'Renovation',
-    photo: 'fade-after',
-    before: 'fade-before',
-    gallery: ['fade-2'],
-    summary: 'Exposed brick, cast-iron chairs and a queue bench that made the wait feel like part of the experience.',
-    description:
-      'A 350 sq ft barbershop with a permanent queue. Instead of squeezing in another chair we gave the waiting area a proper bench, a magazine ledge and its own light, which changed how long the wait felt. The brick behind the chairs was already there under three coats of paint — we just cleaned it up.',
-    highlights: ['Waiting area became the identity', 'Renovated in 5 weeks', 'Shop stayed open through week 3'],
-    featured: false,
-  },
-  {
-    id: 'atlas-coffee',
-    name: 'Atlas Coffee',
+    id: 'rooftop-restaurant',
+    name: 'Rooftop restaurant',              // TODO the client's name
     type: 'Restaurants',
-    storeType: 'Specialty café',
-    location: 'Sadashivanagar, Bengaluru',
-    size: '700 sq ft',
-    timeline: '10 weeks',
-    year: '2025',
-    scope: 'Full design + execution',
-    photo: 'atlas-after',
-    before: 'atlas-before',
-    gallery: ['atlas-2', 'atlas-3'],
-    summary: 'A plant-filled 24-seater with a counter designed around a two-barista workflow.',
+    storeType: 'Rooftop dining',
+    location: '',                            // TODO area, city
+    photo: 'restaurant-1',
+    gallery: ['restaurant-2', 'restaurant-3', 'restaurant-4'],
+    summary:
+      'Long shared tables under a run of woven pendants, opened on two sides to the planting.',
     description:
-      'The brief was 24 covers without the room feeling packed. We planned the counter first — bar, brew, pickup — so two baristas never cross paths, then arranged seating in three sizes: a window ledge for solos, four two-tops, and one long communal table. The planting is on a single irrigated shelf so one person can water the whole café in five minutes.',
-    highlights: ['24 covers in 700 sq ft', 'Two-barista counter workflow', 'Average dwell time 42 min'],
-    featured: true,
-  },
-  {
-    id: 'nook-bakery',
-    name: 'The Nook Bakehouse',
-    type: 'Cloud kitchen',
-    storeType: 'Bakery & takeaway',
-    location: 'Malleshwaram, Bengaluru',
-    size: '280 sq ft',
-    timeline: '6 weeks',
-    year: '2024',
-    scope: 'Design + shopfront',
-    photo: 'nook-after',
-    before: 'nook-before',
-    gallery: ['nook-2'],
-    summary: 'A takeaway-first bakery where the display case does the selling from the pavement.',
-    description:
-      'With 280 sq ft there was no room for seating, so we made the shopfront the whole design. The display case sits at the window at eye level, the queue runs along the outside wall under an awning, and the packing station is hidden behind a half-wall. Customers order, pay and leave without ever entering the room.',
-    highlights: ['Pavement-facing display', 'Queue moved outside', 'Peak-hour throughput doubled'],
+      'Seating is arranged along the length rather than across it, which keeps the service run short and the views open on both sides. The pendants are hung low over the tables so the light pools on the wood and leaves the ceiling dark.',
     featured: false,
   },
   {
-    id: 'terra-home',
-    name: 'Terra Home',
-    type: 'Retail stores',
-    storeType: 'Homeware store',
-    location: 'Whitefield, Bengaluru',
-    size: '820 sq ft',
-    timeline: '9 weeks',
-    year: '2025',
-    scope: 'Full design + execution',
-    photo: 'terra-after',
-    before: 'terra-before',
-    gallery: ['terra-2'],
-    summary: 'Room-set displays that let customers see how the products would sit in their own homes.',
+    id: 'wheedl',
+    name: 'WHEEDL',
+    type: 'Commercial renovation',
+    storeType: 'Workshop & showroom',
+    location: '',                            // TODO area, city
+    photo: 'wheedl-1',
+    gallery: ['wheedl-2'],
+    summary:
+      'A dark green workshop with a lit approach corridor and branding built into the walls.',
     description:
-      'Homeware sells better in context than on shelves. We broke the floor into four loose room-sets with real furniture, kept the perimeter for high-density shelving, and put the billing counter where it can watch both the door and the back of the store. Fixtures are modular, so the sets get rebuilt every quarter.',
-    highlights: ['Four rotating room-sets', 'Modular fixture system', 'Basket size up 28%'],
+      'The corridor is lined with recessed linear lighting that pulls you toward the floor at the end of it. Inside, the walls are dark so the equipment and the branding read as the brightest things in the room.',
     featured: false,
   },
   {
-    id: 'shelf-life',
-    name: 'Shelf Life',
-    type: 'Retail stores',
-    storeType: 'Neighbourhood grocer',
-    location: 'Basavanagudi, Bengaluru',
-    size: '400 sq ft',
-    timeline: '4 weeks',
-    year: '2024',
-    scope: 'Renovation + layout',
-    photo: 'shelf-after',
-    before: 'shelf-before',
+    id: 'apartment-fitout',
+    name: 'Apartment fit-out',               // TODO the client's name
+    type: 'Residential renovation',
+    storeType: 'Full home fit-out',
+    location: '',                            // TODO area, city
+    photo: 'apartment-1',
+    gallery: ['apartment-2', 'apartment-3', 'apartment-4'],
+    summary:
+      'A whole flat taken through in one go — living room, bedroom, kitchen and dining.',
+    description:
+      'One palette of warm wood and off-white runs through every room so the flat reads as a single space rather than a set of them. The kitchen picks up a blue that reappears in the joinery elsewhere.',
+    featured: false,
+  },
+  {
+    id: 'office-reception',
+    name: 'Office reception',                // TODO the client's name
+    type: 'Commercial renovation',
+    storeType: 'Reception & lobby',
+    location: '',                            // TODO area, city
+    photo: 'office-1',
     gallery: [],
-    summary: 'A 40-year-old provision store re-planned for self-service without losing its regulars.',
+    summary:
+      'A reception desk in wood and blue, set against a full-height glazed wall.',
     description:
-      'The owner wanted self-service aisles but was worried about losing the over-the-counter relationship his regulars come for. We kept the original teak counter at the front as the billing and conversation point, and opened the rest of the floor into three low aisles you can see over from anywhere in the shop.',
-    highlights: ['Kept the original teak counter', 'Sightlines across the whole floor', 'Done in 4 weeks, shop open'],
+      'The desk is placed to face the entrance without blocking the light from the glazing behind it, and the panelling behind reception carries the colour so the desk itself can stay quiet.',
     featured: false,
   },
 ]
@@ -384,10 +322,20 @@ export const about = {
     'Commercial renovation',
     'Residential renovation',
   ],
-  // TODO replace with a real photo of you / your team: '/team/founder.jpg'
-  portrait: '1524758631624-e2822e304c36',
+  portrait: 'about-portrait',
+  portraitAlt:
+    'A panelled lounge nook with built-in shelving and plants, from the Kalpak apartment.',
   portraitCaption: 'Kalpak, SNN Raj Serenity, Begur.',
-  detail: '1621905251189-08b45d6a269e',
+}
+
+/* A five-second silent loop, shown in the About section. Trimmed from
+   the studio's own walkthrough of the beauty store fit-out. Autoplay
+   only works muted, and it is decorative, so it carries no audio at all
+   and holds on the poster frame for anyone who prefers less motion. */
+export const studioVideo = {
+  src: '/video/beauty-store-walkthrough.mp4',
+  poster: '/video/beauty-store-poster.webp',
+  alt: 'A walk through the finished beauty store — backlit display wall and curved counter.',
 }
 
 /* --- 9. Testimonials ---------------------------------------------- */
