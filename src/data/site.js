@@ -281,19 +281,18 @@ export const spaceTypes = [
 
 export const categories = ['All', ...spaceTypes]
 
-/* Illustrates a space type we have no finished build photographed yet,
-   so its filter shows the work rather than an apology. The photograph is
-   stock, licensed for commercial use; `note` is the line that keeps the
-   card from reading as a delivered project, which matters because a
-   prospective client can reverse-image-search it. Replace the whole
-   entry with a real project the day you have one. */
+/* Illustrates a space type we have no finished build photographed yet.
+   `plan: true` draws the studio's own concept-stage layout instead of
+   borrowing a photograph — a stock kitchen either looks domestic or
+   looks like a press shot of somebody else's line, and neither belongs
+   in a section headed "spaces we have built". Swap the entry for a real
+   project the day one is photographed. */
 export const typeReferences = {
   'Cloud kitchen': {
-    photo: 'cloud-kitchen',
-    alt: 'A compact production kitchen — an island run, wood cabinetry and low pendants.',
+    plan: true,
     title: 'Cloud kitchens',
-    text: 'Compact production kitchens planned around throughput: the hot line, the cold side, storage and a dispatch window, in the smallest footprint that still works at peak.',
-    note: 'Photographs of our own go up as each build is handed over.',
+    text: 'Compact production kitchens planned around throughput: goods in, cold and dry store, the prep run, the hot line under the hood, plate-up, and a dispatch window the riders never have to walk past the cooking to reach.',
+    note: 'Concept layout. Photographs of our own go up as each build is handed over.',
   },
 }
 
