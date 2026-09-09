@@ -83,7 +83,7 @@ export default function Hero() {
             >
               <Img
                 photo="hero-main"
-                alt="A completed retail interior with warm lighting and open display shelving"
+                alt="A completed residential interior — a lit pooja unit, floating display shelves and a fitted sideboard"
                 priority
                 width={1200}
                 ratio={1.24}
@@ -94,18 +94,6 @@ export default function Hero() {
               <div
                 aria-hidden
                 className="arch pointer-events-none absolute -bottom-4 -right-4 -top-4 left-4 border border-gold/25 md:-right-6 md:left-6"
-              />
-            </div>
-
-            {/* inset second image */}
-            <div className="animate-floaty absolute -bottom-8 -left-2 w-36 sm:-left-8 sm:w-48 lg:-left-14 lg:w-56">
-              <Img
-                photo="hero-inset"
-                alt="Café interior designed by the studio"
-                width={600}
-                ratio={1}
-                sizes="200px"
-                className="aspect-square rounded-2xl border-4 border-cream shadow-lift"
               />
             </div>
 

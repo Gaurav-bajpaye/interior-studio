@@ -1,6 +1,11 @@
-"""Fetch every photograph the site uses and write self-hosted,
-responsive WebP variants into public/images/. Run once; the repo
-then carries its own images and needs no external CDN."""
+"""Build the responsive WebP variants the site serves from
+public/images/.
+
+Each entry's source is either a local file in the repo — the studio's
+own photographs, dropped into public/images-new/ — or an Unsplash id
+for the placeholders still standing in for work we do not have shots
+of yet. Local files win; nothing about a real photo should depend on a
+network fetch."""
 import io, os, sys, urllib.request
 from PIL import Image
 
@@ -8,10 +13,9 @@ OUT = "public/images"
 WIDTHS = [480, 960, 1600]
 UA = {"User-Agent": "Mozilla/5.0"}
 
-# name -> (unsplash id, aspect ratio h/w)
+# name -> (local file under public/, or an Unsplash id, aspect ratio h/w)
 ASSETS = {
-    "hero-main":        ("1441986300917-64674bd600d8", 1.25),
-    "hero-inset":       ("1554118811-1e0d58224f24",    1.00),
+    "hero-main":        ("images-new/1000671484.jpg",     1.25),
 
     "maara-after":      ("1558769132-cb1aea458c5e",    0.75),
     "maara-before":     ("1517581177682-a085bb7ffb15", 0.75),
@@ -54,15 +58,27 @@ os.makedirs(OUT, exist_ok=True)
 cache = {}
 made = 0
 
+def load(source):
+    """A source with a dot in it is a file in the repo; otherwise it is
+    an Unsplash photo id."""
+    if "." in source:
+        path = os.path.join("public", source)
+        if not os.path.exists(path):
+            sys.exit(f"missing local source: {path}")
+        img = Image.open(path).convert("RGB")
+        print("local  ", source, img.size)
+        return img
+    url = f"https://images.unsplash.com/photo-{source}?auto=format&q=85&w=2200"
+    req = urllib.request.Request(url, headers=UA)
+    img = Image.open(io.BytesIO(urllib.request.urlopen(req, timeout=60).read())).convert("RGB")
+    print("fetched", source, img.size)
+    return img
+
+
 for name, (pid, ratio) in ASSETS.items():
-    if pid in cache:
-        master = cache[pid]
-    else:
-        url = f"https://images.unsplash.com/photo-{pid}?auto=format&q=85&w=2200"
-        req = urllib.request.Request(url, headers=UA)
-        master = Image.open(io.BytesIO(urllib.request.urlopen(req, timeout=60).read())).convert("RGB")
-        cache[pid] = master
-        print("fetched", pid, master.size)
+    if pid not in cache:
+        cache[pid] = load(pid)
+    master = cache[pid]
 
     for w in WIDTHS:
         h = round(w * ratio)
