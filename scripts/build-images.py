@@ -51,9 +51,9 @@ ASSETS = {
     "kalpak-2":         ("source-photos/1000671482.jpg",  0.75),
     "kalpak-3":         ("source-photos/1000671484.jpg",  0.75),
 
-    # Reference photograph for a space type we have no project for yet.
-    # Stock, and labelled as such on the page.
-    "cloudkitchen-ref": ("1622021142947-da7dedc7c39a", 0.66),
+    # Illustrates the Cloud kitchen filter, which has no build of ours
+    # photographed yet. Stock, licensed for commercial use.
+    "cloud-kitchen":    ("1600585152220-90363fe7e115", 0.66),
 
     # Why choose us — a stock interior, deliberately not one of ours
     "benefits-stock":   ("1524758631624-e2822e304c36",    0.72),

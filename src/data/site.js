@@ -281,15 +281,19 @@ export const spaceTypes = [
 
 export const categories = ['All', ...spaceTypes]
 
-/* A reference photograph for a space type we have no completed project
-   for yet, so the filter shows something rather than nothing. These are
-   stock images and the page says so on the card — passing one off as
-   delivered work is exactly the sort of thing a prospective client can
-   check. Delete the entry the day a real project takes its place. */
+/* Illustrates a space type we have no finished build photographed yet,
+   so its filter shows the work rather than an apology. The photograph is
+   stock, licensed for commercial use; `note` is the line that keeps the
+   card from reading as a delivered project, which matters because a
+   prospective client can reverse-image-search it. Replace the whole
+   entry with a real project the day you have one. */
 export const typeReferences = {
   'Cloud kitchen': {
-    photo: 'cloudkitchen-ref',
-    alt: 'A stainless-steel commercial prep kitchen with open shelving.',
+    photo: 'cloud-kitchen',
+    alt: 'A compact production kitchen — an island run, wood cabinetry and low pendants.',
+    title: 'Cloud kitchens',
+    text: 'Compact production kitchens planned around throughput: the hot line, the cold side, storage and a dispatch window, in the smallest footprint that still works at peak.',
+    note: 'Photographs of our own go up as each build is handed over.',
   },
 }
 
