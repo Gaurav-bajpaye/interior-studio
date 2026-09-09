@@ -27,8 +27,8 @@ ASSETS = {
     "beauty-1":         ("source-photos/1000654615.jpg",  0.75),
     "beauty-2":         ("source-photos/1000654616.jpg",  0.75),
 
-    # Office reception
-    "office-1":         ("source-photos/1000655392.jpg",  0.75),
+    # Retail store fit-out — counter, mirrored cabinet, colour-blocked walls
+    "retail-fitout-1":  ("source-photos/1000655392.jpg",  0.75),
 
     # Furniture & home store — room-sets on the showroom floor
     "home-store-1":     ("source-photos/1000655396.jpg",  0.75),

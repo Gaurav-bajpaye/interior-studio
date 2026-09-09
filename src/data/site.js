@@ -266,17 +266,17 @@ export const projects = [
     featured: false,
   },
   {
-    id: 'office-reception',
-    name: 'Office reception',                // TODO the client's name
-    type: 'Commercial renovation',
-    storeType: 'Reception & lobby',
+    id: 'retail-fitout',
+    name: 'Retail store fit-out',            // TODO the client's name
+    type: 'Retail stores',
+    storeType: 'Retail fit-out',
     location: '',                            // TODO area, city
-    photo: 'office-1',
+    photo: 'retail-fitout-1',
     gallery: [],
     summary:
-      'A reception desk in wood and blue, set against a full-height glazed wall.',
+      'A fitted shell handed over ready for stock — counter, storage and lighting in, floor zoned by finish.',
     description:
-      'The desk is placed to face the entrance without blocking the light from the glazing behind it, and the panelling behind reception carries the colour so the desk itself can stay quiet.',
+      'The counter and its mirrored wall cabinet are built in blue against colour-blocked walls, so the fixtures read as part of the room rather than furniture set down in it. Two floor finishes split the space without a partition: timber for the served side, a hard-wearing sheet floor for the customer side. Track lighting runs the length of the ceiling so the layout can change without rewiring.',
     featured: false,
   },
 ]
