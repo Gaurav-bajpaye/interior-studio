@@ -83,7 +83,7 @@ export default function Hero() {
             >
               <Img
                 photo="hero-main"
-                alt="A completed residential interior — a lit pooja unit, floating display shelves and a fitted sideboard"
+                alt="A completed residential dining room — a teal panelled wall, macrame hanging and a fitted bench"
                 priority
                 width={1200}
                 ratio={1.24}

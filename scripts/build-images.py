@@ -21,7 +21,7 @@ UA = {"User-Agent": "Mozilla/5.0"}
 # source, 1 = flush to the bottom. The default 0.42 sits just above centre.
 ASSETS = {
     # ---- the studio's own photographs, from source-photos/ -------------
-    "hero-main":        ("source-photos/1000671484.jpg",  1.25),   # bias below
+    "hero-main":        ("source-photos/1000671482.jpg",  1.25),
 
     # Beauty & haircare store — pink display wall, curved counter
     "beauty-1":         ("source-photos/1000654615.jpg",  0.75),
@@ -51,6 +51,10 @@ ASSETS = {
     "kalpak-2":         ("source-photos/1000671482.jpg",  0.75),
     "kalpak-3":         ("source-photos/1000671484.jpg",  0.75),
 
+    # Reference photograph for a space type we have no project for yet.
+    # Stock, and labelled as such on the page.
+    "cloudkitchen-ref": ("1622021142947-da7dedc7c39a", 0.66),
+
     # Why choose us — a stock interior, deliberately not one of ours
     "benefits-stock":   ("1524758631624-e2822e304c36",    0.72),
 
@@ -59,9 +63,9 @@ ASSETS = {
     "about-detail":     ("source-photos/1000671477.jpg",  1.00),
 }
 
-# The hero's ring light sits right at the top of the frame; a centred crop
-# cut it off, so this one crops from the very top.
-BIAS = {"hero-main": 0.0}
+# The hero's ceiling light sits at the very top of the frame, so its crop
+# is pulled up near the top edge to keep the fitting in shot.
+BIAS = {"hero-main": 0.10}
 DEFAULT_BIAS = 0.42
 
 os.makedirs(OUT, exist_ok=True)

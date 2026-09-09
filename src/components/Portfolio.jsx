@@ -4,7 +4,7 @@ import Reveal from './Reveal'
 import Img from './Img'
 import Icon from './Icons'
 import ProjectModal from './ProjectModal'
-import { categories, projects } from '../data/site'
+import { categories, projects, typeReferences } from '../data/site'
 
 export default function Portfolio() {
   const [filter, setFilter] = useState('All')
@@ -64,14 +64,33 @@ export default function Portfolio() {
             leaving the reader with one stray card. */}
         {shown.length === 0 && (
           <Reveal className="sm:col-span-2 lg:col-span-2">
-            <div className="flex h-full flex-col justify-center rounded-2xl border border-dashed border-line bg-shell/40 p-8 md:p-10">
-              <h3 className="font-display text-[1.375rem] leading-snug text-charcoal">
-                No {filter.toLowerCase()} projects on the site yet.
-              </h3>
-              <p className="mt-3 max-w-md leading-relaxed text-muted">
-                It is work we take on, and the photographs go up as each one is
-                handed over. Yours could be the first one on this page.
-              </p>
+            <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-dashed border-line bg-shell/40">
+              {typeReferences[filter] && (
+                <div className="relative">
+                  <Img
+                    photo={typeReferences[filter].photo}
+                    alt={typeReferences[filter].alt}
+                    width={1200}
+                    ratio={0.66}
+                    sizes="(max-width: 640px) 92vw, 60vw"
+                    className="aspect-[3/2] w-full"
+                  />
+                  {/* Not our work, and it says so — a prospective client can
+                      and will check. */}
+                  <span className="absolute left-3 top-3 rounded-full bg-charcoal/75 px-2.5 py-1 text-[.6875rem] font-semibold uppercase tracking-[.1em] text-cream backdrop-blur-sm">
+                    Reference image
+                  </span>
+                </div>
+              )}
+              <div className="flex flex-1 flex-col justify-center p-7 md:p-8">
+                <h3 className="font-display text-[1.375rem] leading-snug text-charcoal">
+                  No {filter.toLowerCase()} projects on the site yet.
+                </h3>
+                <p className="mt-3 max-w-md leading-relaxed text-muted">
+                  It is work we take on, and the photographs go up as each one is
+                  handed over. Yours could be the first one on this page.
+                </p>
+              </div>
             </div>
           </Reveal>
         )}
