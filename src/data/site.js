@@ -312,8 +312,12 @@ export const about = {
     'Commercial renovation',
     'Residential renovation',
   ],
-  /* Signed under the copy, so the practice has a name on it. */
-  signature: { name: business.founder, role: business.founderRole },
+  /* Signed under the copy, so the practice has a name on it. The role
+     is set in caps by the stylesheet, not here. */
+  signature: {
+    name: business.founder,
+    role: `${business.founderRole}, ${business.legalName}`,
+  },
   portrait: 'about-portrait',
   portraitAlt: `${business.founder}, ${business.founderRole.toLowerCase()} of ${business.legalName}.`,
   /* The video leads, so the caption names the space it walks through. */

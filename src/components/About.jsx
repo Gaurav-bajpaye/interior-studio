@@ -104,14 +104,15 @@ export default function About() {
               ))}
             </div>
 
-            {/* who stands behind the work */}
-            <Reveal delay={180} className="mt-7 flex items-baseline gap-2">
-              <span className="text-[.9375rem] font-medium text-charcoal">
+            {/* who stands behind the work — signed like a name plate,
+                the serif name over the role in tracked caps */}
+            <Reveal delay={180} className="mt-9">
+              <p className="font-display text-[clamp(1.5rem,2.6vw,1.9rem)] font-semibold leading-tight tracking-[-0.015em] text-charcoal">
                 {about.signature.name}
-              </span>
-              <span className="text-[.8125rem] text-muted">
+              </p>
+              <p className="mt-1.5 text-[.8125rem] uppercase tracking-[.16em] text-muted">
                 {about.signature.role}
-              </span>
+              </p>
             </Reveal>
 
             {/* specialties */}
