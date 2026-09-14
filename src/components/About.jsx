@@ -59,17 +59,6 @@ export default function About() {
               </div>
             </Reveal>
 
-            <Reveal delay={140} className="absolute -bottom-6 -right-2 w-40 sm:w-48 lg:-right-8">
-              <Img
-                photo={about.portrait}
-                alt={about.portraitAlt}
-                width={500}
-                ratio={1}
-                sizes="190px"
-                className="aspect-square rounded-2xl border-4 border-cream shadow-lift"
-              />
-            </Reveal>
-
             <Reveal delay={220} className="mt-10 max-w-xs text-[.8125rem] leading-relaxed text-muted lg:mt-8">
               {about.mediaCaption}{' '}
               <span className="text-muted/80">{about.portraitCaption}</span>
@@ -107,6 +96,14 @@ export default function About() {
             {/* who stands behind the work — signed like a name plate,
                 the serif name over the role in tracked caps */}
             <Reveal delay={180} className="mt-9">
+              <Img
+                photo={about.portrait}
+                alt={about.portraitAlt}
+                width={500}
+                ratio={1}
+                sizes="88px"
+                className="mb-4 aspect-square w-[5.5rem] rounded-2xl shadow-soft"
+              />
               <p className="font-display text-[clamp(1.5rem,2.6vw,1.9rem)] font-semibold leading-tight tracking-[-0.015em] text-charcoal">
                 {about.signature.name}
               </p>
