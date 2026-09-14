@@ -50,7 +50,7 @@ ASSETS = {
 
     # About: the founder's portrait, shown as the square inset beside
     # the walkthrough clip
-    "about-portrait":   ("source-photos/mohd-aquib-zia.jpg", 1.00),
+    "about-portrait":   ("source-photos/mohd-aquif-zia.jpg", 1.00),
     "about-detail":     ("source-photos/1000671477.jpg",  1.00),
 }
 

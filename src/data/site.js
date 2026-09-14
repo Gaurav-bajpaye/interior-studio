@@ -21,7 +21,7 @@ export const business = {
   foundedYear: 2025,
   /* Whose practice this is — used in the About section and in the
      structured data in index.html. */
-  founder: 'Mohd Aquib Zia',
+  founder: 'Mohd Aquif Zia',
   founderRole: 'Founder',
 }
 
