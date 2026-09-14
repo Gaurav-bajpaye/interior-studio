@@ -101,8 +101,8 @@ export default function About() {
                 alt={about.portraitAlt}
                 width={500}
                 ratio={1}
-                sizes="88px"
-                className="mb-4 aspect-square w-[5.5rem] rounded-2xl shadow-soft"
+                sizes="(max-width: 640px) 128px, 160px"
+                className="mb-5 aspect-square w-32 rounded-[1.25rem] shadow-soft sm:w-40"
               />
               <p className="font-display text-[clamp(1.5rem,2.6vw,1.9rem)] font-semibold leading-tight tracking-[-0.015em] text-charcoal">
                 {about.signature.name}
