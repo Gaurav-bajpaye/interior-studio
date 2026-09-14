@@ -302,7 +302,7 @@ export const about = {
   paragraphs: [
     `${business.legalName} began in ${business.foundedYear} with a single brief: a shop that had outgrown its floor but could not afford to move. Solving that — more usable space, same rent, a better room — turned out to be the problem almost every growing business has.`,
     'Since then we have designed and delivered spaces for retail stores, salons, cafés, cloud kitchens and restaurants, alongside commercial and residential renovations. Some were empty shells. Most were working businesses that had to stay open while we built around them.',
-    `We are deliberately a small studio, led by ${business.founder}. The person who visits your space is the person who draws it and the person who stands on site when the carpenter has a question.`,
+    `Led by ${business.founder}, ${business.legalName} keeps things personal and hands-on. From the first sketch to the final site detail, the person you meet is the person shaping and overseeing your space.`,
   ],
   specialties: [
     'Retail stores',
