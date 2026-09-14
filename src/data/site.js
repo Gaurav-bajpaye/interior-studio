@@ -18,7 +18,11 @@ export const business = {
   // Short description used in the footer + SEO meta
   blurb:
     'We design, renovate and fit out commercial and residential spaces — retail stores, salons, cafés, cloud kitchens and restaurants — across India.',
-  foundedYear: 2019,
+  foundedYear: 2025,
+  /* Whose practice this is — used in the About section and in the
+     structured data in index.html. */
+  founder: 'Mohd Aquib Zia',
+  founderRole: 'Founder',
 }
 
 /* --- 1b. Brand artwork -------------------------------------------
@@ -298,7 +302,7 @@ export const about = {
   paragraphs: [
     `${business.legalName} began in ${business.foundedYear} with a single brief: a shop that had outgrown its floor but could not afford to move. Solving that — more usable space, same rent, a better room — turned out to be the problem almost every growing business has.`,
     'Since then we have designed and delivered spaces for retail stores, salons, cafés, cloud kitchens and restaurants, alongside commercial and residential renovations. Some were empty shells. Most were working businesses that had to stay open while we built around them.',
-    'We are deliberately a small studio. The person who visits your space is the person who draws it and the person who stands on site when the carpenter has a question.',
+    `We are deliberately a small studio, led by ${business.founder}. The person who visits your space is the person who draws it and the person who stands on site when the carpenter has a question.`,
   ],
   specialties: [
     'Retail stores',
@@ -308,9 +312,10 @@ export const about = {
     'Commercial renovation',
     'Residential renovation',
   ],
+  /* Signed under the copy, so the practice has a name on it. */
+  signature: { name: business.founder, role: business.founderRole },
   portrait: 'about-portrait',
-  portraitAlt:
-    'A panelled lounge nook with built-in shelving and plants, from the Kalpak apartment.',
+  portraitAlt: `${business.founder}, ${business.founderRole.toLowerCase()} of ${business.legalName}.`,
   /* The video leads, so the caption names the space it walks through. */
   mediaCaption: 'A walk through the beauty store fit-out,',
   portraitCaption: 'Inorbit Mall, Hubli.',

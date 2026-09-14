@@ -48,14 +48,17 @@ ASSETS = {
     # Why choose us — a stock interior, deliberately not one of ours
     "benefits-stock":   ("1524758631624-e2822e304c36",    0.72),
 
-    # About: the arch portrait and the square inset
-    "about-portrait":   ("source-photos/1000671483.jpg",  1.25),
+    # About: the founder's portrait, shown as the square inset beside
+    # the walkthrough clip
+    "about-portrait":   ("source-photos/mohd-aquib-zia.jpg", 1.00),
     "about-detail":     ("source-photos/1000671477.jpg",  1.00),
 }
 
 # The hero's ceiling light sits at the very top of the frame, so its crop
 # is pulled up near the top edge to keep the fitting in shot.
-BIAS = {"hero-main": 0.10}
+# A head-and-shoulders portrait crops from the top: the default centre
+# bias would take the top of his head off.
+BIAS = {"hero-main": 0.10, "about-portrait": 0.0}
 DEFAULT_BIAS = 0.42
 
 os.makedirs(OUT, exist_ok=True)

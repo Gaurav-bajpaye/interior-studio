@@ -104,6 +104,16 @@ export default function About() {
               ))}
             </div>
 
+            {/* who stands behind the work */}
+            <Reveal delay={180} className="mt-7 flex items-baseline gap-2">
+              <span className="text-[.9375rem] font-medium text-charcoal">
+                {about.signature.name}
+              </span>
+              <span className="text-[.8125rem] text-muted">
+                {about.signature.role}
+              </span>
+            </Reveal>
+
             {/* specialties */}
             <Reveal delay={200} className="mt-10 flex flex-wrap gap-2">
               {about.specialties.map((s) => (
